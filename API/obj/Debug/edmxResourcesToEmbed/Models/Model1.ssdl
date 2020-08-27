@@ -1,0 +1,1136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="add_id" />
+    </Key>
+    <Property Name="add_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="addressType_addressType_id" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="45" />
+    <Property Name="midName" Type="nvarchar" MaxLength="45" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="45" />
+    <Property Name="country" Type="nvarchar" MaxLength="45" />
+    <Property Name="city" Type="nvarchar" MaxLength="45" />
+    <Property Name="state" Type="nvarchar" MaxLength="45" />
+    <Property Name="email" Type="nvarchar" MaxLength="45" />
+    <Property Name="add1" Type="nvarchar" MaxLength="45" />
+    <Property Name="add2" Type="nvarchar" MaxLength="45" />
+    <Property Name="phone" Type="nvarchar" MaxLength="45" />
+    <Property Name="tel" Type="nvarchar" MaxLength="45" />
+    <Property Name="fax" Type="nvarchar" MaxLength="45" />
+    <Property Name="addresscol" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="addresstype">
+    <Key>
+      <PropertyRef Name="addressType_id" />
+    </Key>
+    <Property Name="addressType_id" Type="int" Nullable="false" />
+    <Property Name="addressType_name" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="barcode">
+    <Key>
+      <PropertyRef Name="serialNumber" />
+    </Key>
+    <Property Name="serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="Customers_id" />
+    </Key>
+    <Property Name="Customers_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address_add_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="measurement">
+    <Key>
+      <PropertyRef Name="measure_id" />
+    </Key>
+    <Property Name="measure_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="measre_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="measurement_Count_per_unit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customers_Customers_id" Type="int" Nullable="false" />
+    <Property Name="users_user_id" Type="int" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="notic" Type="nvarchar" MaxLength="45" />
+    <Property Name="store_store_id" Type="int" Nullable="false" />
+    <Property Name="order_state" Type="int" />
+  </EntityType>
+  <EntityType Name="order_has_product">
+    <Key>
+      <PropertyRef Name="order_order_id" />
+      <PropertyRef Name="product_product_id" />
+      <PropertyRef Name="weight_weight_id" />
+    </Key>
+    <Property Name="order_order_id" Type="int" Nullable="false" />
+    <Property Name="product_product_id" Type="int" Nullable="false" />
+    <Property Name="measurement_measure_id" Type="int" Nullable="false" />
+    <Property Name="weight_weight_id" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="45" />
+    <Property Name="order_has_product_Pages_Count" Type="int" />
+    <Property Name="order_has_product_dept_count" Type="int" />
+    <Property Name="order_has_product_state" Type="int" />
+  </EntityType>
+  <EntityType Name="orderserial">
+    <Key>
+      <PropertyRef Name="order_order_id" />
+      <PropertyRef Name="barcode_serialNumber" />
+    </Key>
+    <Property Name="order_order_id" Type="int" Nullable="false" />
+    <Property Name="barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productName" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="product_has_weight">
+    <Key>
+      <PropertyRef Name="product_product_id" />
+      <PropertyRef Name="weight_weight_id" />
+    </Key>
+    <Property Name="product_product_id" Type="int" Nullable="false" />
+    <Property Name="weight_weight_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="rolesId" />
+    </Key>
+    <Property Name="rolesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rolesName" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="shift">
+    <Key>
+      <PropertyRef Name="shift_id" />
+    </Key>
+    <Property Name="shift_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shiftName" Type="nvarchar" MaxLength="45" />
+    <Property Name="shiftAdmin_shiftAdmin_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="shift_has_workers">
+    <Key>
+      <PropertyRef Name="shift_shift_id" />
+      <PropertyRef Name="workers_worker_id" />
+    </Key>
+    <Property Name="shift_shift_id" Type="int" Nullable="false" />
+    <Property Name="workers_worker_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="shiftadmin">
+    <Key>
+      <PropertyRef Name="shiftAdmin_id" />
+    </Key>
+    <Property Name="shiftAdmin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address_add_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="storeName" Type="nvarchar" MaxLength="45" />
+    <Property Name="storeAdminName" Type="nvarchar" MaxLength="45" />
+    <Property Name="storeLocation" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="store_has_product">
+    <Key>
+      <PropertyRef Name="store_store_id" />
+      <PropertyRef Name="product_product_id" />
+      <PropertyRef Name="shift_shift_id" />
+      <PropertyRef Name="barcode_serialNumber" />
+      <PropertyRef Name="weight_weight_id" />
+    </Key>
+    <Property Name="store_store_id" Type="int" Nullable="false" />
+    <Property Name="product_product_id" Type="int" Nullable="false" />
+    <Property Name="shift_shift_id" Type="int" Nullable="false" />
+    <Property Name="barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="weight_weight_id" Type="int" Nullable="false" />
+    <Property Name="store_has_productDate" Type="datetime" />
+    <Property Name="store_has_product_state" Type="int" />
+  </EntityType>
+  <EntityType Name="store_has_product_has_order">
+    <Key>
+      <PropertyRef Name="store_has_product_store_store_id" />
+      <PropertyRef Name="store_has_product_product_product_id" />
+      <PropertyRef Name="store_has_product_shift_shift_id" />
+      <PropertyRef Name="store_has_product_barcode_serialNumber" />
+      <PropertyRef Name="store_has_product_weight_weight_id" />
+      <PropertyRef Name="order_order_id" />
+    </Key>
+    <Property Name="store_has_product_store_store_id" Type="int" Nullable="false" />
+    <Property Name="store_has_product_product_product_id" Type="int" Nullable="false" />
+    <Property Name="store_has_product_shift_shift_id" Type="int" Nullable="false" />
+    <Property Name="store_has_product_barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="store_has_product_weight_weight_id" Type="int" Nullable="false" />
+    <Property Name="order_order_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="transvehcile">
+    <Key>
+      <PropertyRef Name="v_id" />
+      <PropertyRef Name="customers_Customers_id" />
+    </Key>
+    <Property Name="v_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customers_Customers_id" Type="int" Nullable="false" />
+    <Property Name="transVehcile_driver_name" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="transVehcile_num" Type="nvarchar" MaxLength="45" />
+    <Property Name="transVehcile_model" Type="nvarchar" MaxLength="45" />
+    <Property Name="transVehcile_serial" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="transVehcile_phone" Type="nvarchar" MaxLength="45" />
+    <Property Name="transVehcile_add" Type="nvarchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="transvehcile_has_order">
+    <Key>
+      <PropertyRef Name="transVehcile_v_id" />
+      <PropertyRef Name="order_order_id" />
+    </Key>
+    <Property Name="transVehcile_v_id" Type="int" Nullable="false" />
+    <Property Name="order_order_id" Type="int" Nullable="false" />
+    <Property Name="transVehcile_has_order_state" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="45" />
+    <Property Name="password" Type="nvarchar" MaxLength="45" />
+    <Property Name="address_add_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users_has_roles">
+    <Key>
+      <PropertyRef Name="users_user_id" />
+      <PropertyRef Name="roles_rolesId" />
+    </Key>
+    <Property Name="users_user_id" Type="int" Nullable="false" />
+    <Property Name="roles_rolesId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="weight">
+    <Key>
+      <PropertyRef Name="weight_id" />
+    </Key>
+    <Property Name="weight_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="weight_net" Type="int" />
+  </EntityType>
+  <EntityType Name="workers">
+    <Key>
+      <PropertyRef Name="worker_id" />
+    </Key>
+    <Property Name="worker_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address_add_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="address$fk_address_addressType1">
+    <End Role="addresstype" Type="Self.addresstype" Multiplicity="1" />
+    <End Role="address" Type="Self.address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="addresstype">
+        <PropertyRef Name="addressType_id" />
+      </Principal>
+      <Dependent Role="address">
+        <PropertyRef Name="addressType_addressType_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="customers$fk_customers_address">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="customers" Type="Self.customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="customers">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order$fk_order_customers1">
+    <End Role="customers" Type="Self.customers" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="Customers_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="customers_Customers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order$fk_order_store1">
+    <End Role="store" Type="Self.store" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="store_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order$fk_order_users1">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="users_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product$fk_order_has_product_measurement1">
+    <End Role="measurement" Type="Self.measurement" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurement">
+        <PropertyRef Name="measure_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="measurement_measure_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product$fk_order_has_product_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product$fk_order_has_product_product1">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="product_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product$fk_order_has_product_weight1">
+    <End Role="weight" Type="Self.weight" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weight">
+        <PropertyRef Name="weight_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="orderserial$fk_orderSerial_barcode1">
+    <End Role="barcode" Type="Self.barcode" Multiplicity="1" />
+    <End Role="orderserial" Type="Self.orderserial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barcode">
+        <PropertyRef Name="serialNumber" />
+      </Principal>
+      <Dependent Role="orderserial">
+        <PropertyRef Name="barcode_serialNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="orderserial$fk_orderSerial_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="orderserial" Type="Self.orderserial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="orderserial">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="product_has_weight$fk_product_has_weight_product1">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="product_has_weight" Type="Self.product_has_weight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="product_has_weight">
+        <PropertyRef Name="product_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="product_has_weight$fk_product_has_weight_weight1">
+    <End Role="weight" Type="Self.weight" Multiplicity="1" />
+    <End Role="product_has_weight" Type="Self.product_has_weight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weight">
+        <PropertyRef Name="weight_id" />
+      </Principal>
+      <Dependent Role="product_has_weight">
+        <PropertyRef Name="weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shift$fk_shift_shiftAdmin1">
+    <End Role="shiftadmin" Type="Self.shiftadmin" Multiplicity="1" />
+    <End Role="shift" Type="Self.shift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shiftadmin">
+        <PropertyRef Name="shiftAdmin_id" />
+      </Principal>
+      <Dependent Role="shift">
+        <PropertyRef Name="shiftAdmin_shiftAdmin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shift_has_workers$fk_shift_has_workers_shift1">
+    <End Role="shift" Type="Self.shift" Multiplicity="1" />
+    <End Role="shift_has_workers" Type="Self.shift_has_workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shift">
+        <PropertyRef Name="shift_id" />
+      </Principal>
+      <Dependent Role="shift_has_workers">
+        <PropertyRef Name="shift_shift_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shift_has_workers$fk_shift_has_workers_workers1">
+    <End Role="workers" Type="Self.workers" Multiplicity="1" />
+    <End Role="shift_has_workers" Type="Self.shift_has_workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="workers">
+        <PropertyRef Name="worker_id" />
+      </Principal>
+      <Dependent Role="shift_has_workers">
+        <PropertyRef Name="workers_worker_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shiftadmin$fk_shiftAdmin_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="shiftadmin" Type="Self.shiftadmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="shiftadmin">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product$fk_store_has_product_barcode1">
+    <End Role="barcode" Type="Self.barcode" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barcode">
+        <PropertyRef Name="serialNumber" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="barcode_serialNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product$fk_store_has_product_product1">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="product_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product$fk_store_has_product_shift1">
+    <End Role="shift" Type="Self.shift" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shift">
+        <PropertyRef Name="shift_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="shift_shift_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product$fk_store_has_product_store1">
+    <End Role="store" Type="Self.store" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="store_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product$fk_store_has_product_weight1">
+    <End Role="weight" Type="Self.weight" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weight">
+        <PropertyRef Name="weight_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_has_order$fk_store_has_product_has_order_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="store_has_product_has_order" Type="Self.store_has_product_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="store_has_product_has_order">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_has_order$fk_store_has_product_has_order_store_has_product1">
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="1" />
+    <End Role="store_has_product_has_order" Type="Self.store_has_product_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store_has_product">
+        <PropertyRef Name="store_store_id" />
+        <PropertyRef Name="product_product_id" />
+        <PropertyRef Name="shift_shift_id" />
+        <PropertyRef Name="barcode_serialNumber" />
+        <PropertyRef Name="weight_weight_id" />
+      </Principal>
+      <Dependent Role="store_has_product_has_order">
+        <PropertyRef Name="store_has_product_store_store_id" />
+        <PropertyRef Name="store_has_product_product_product_id" />
+        <PropertyRef Name="store_has_product_shift_shift_id" />
+        <PropertyRef Name="store_has_product_barcode_serialNumber" />
+        <PropertyRef Name="store_has_product_weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transvehcile$fk_transVehcile_customers1">
+    <End Role="customers" Type="Self.customers" Multiplicity="1" />
+    <End Role="transvehcile" Type="Self.transvehcile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="Customers_id" />
+      </Principal>
+      <Dependent Role="transvehcile">
+        <PropertyRef Name="customers_Customers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transvehcile_has_order$fk_transVehcile_has_order_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="transvehcile_has_order" Type="Self.transvehcile_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="transvehcile_has_order">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users$fk_users_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_has_roles$fk_users_has_roles_roles1">
+    <End Role="roles" Type="Self.roles" Multiplicity="1" />
+    <End Role="users_has_roles" Type="Self.users_has_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="rolesId" />
+      </Principal>
+      <Dependent Role="users_has_roles">
+        <PropertyRef Name="roles_rolesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_has_roles$fk_users_has_roles_users1">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="users_has_roles" Type="Self.users_has_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="users_has_roles">
+        <PropertyRef Name="users_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="workers$fk_workers_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="workers" Type="Self.workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="workers">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_Customer_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Customer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CUSTOMER_ID" Type="int" Mode="In" />
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Customer_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Customer_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Customer_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Customer_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Customer_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_LOGINSELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+    <Parameter Name="rolesName" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="SP_LOGINSELECT_tmp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+    <Parameter Name="rolesName" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Measurement_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MeasurementName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MeasurementKiloGram" Type="int" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Measurement_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MeasurementId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Measurement_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Measurement_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Measurement_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Measurement_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Measurement_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MeasurementId" Type="int" Mode="In" />
+    <Parameter Name="MeasurementName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MeasurementKiloGram" Type="int" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Order_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="StoreId" Type="int" Mode="In" />
+    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Items_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="measureId" Type="int" Mode="In" />
+    <Parameter Name="weightId" Type="int" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Items_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="measureId" Type="int" Mode="In" />
+    <Parameter Name="weightId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Items_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+    <Parameter Name="measureId" Type="int" Mode="In" />
+    <Parameter Name="weightId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Items_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Items_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="measureId" Type="int" Mode="In" />
+    <Parameter Name="weightId" Type="int" Mode="In" />
+    <Parameter Name="NewProductId" Type="int" Mode="In" />
+    <Parameter Name="NewmeasureId" Type="int" Mode="In" />
+    <Parameter Name="NewweightId" Type="int" Mode="In" />
+    <Parameter Name="NewQuantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Order_Trans_Vin_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="TransVinId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Trans_Vin_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="TransId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Trans_Vin_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="transvehcileID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Trans_Vin_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Trans_Vin_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="TransId" Type="int" Mode="In" />
+    <Parameter Name="NewOrderId" Type="int" Mode="In" />
+    <Parameter Name="NewTransId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Order_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="StoreId" Type="int" Mode="In" />
+    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Product_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Product_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Product_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Product_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Product_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Product_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Sales_BarCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Barcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="OrderId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProdductId" Type="nvarchar" Mode="In" />
+    <Parameter Name="weightId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Serial_found" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+    <Parameter Name="NetCounter" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Sales_BarCode_Check" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Barcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Sales_Order_Trans_Vin_Load" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="transVehcileSerial" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Admin_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Shift_Admin_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftAdminID" Type="int" Mode="In" />
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Admin_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Admin_SEARCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Admin_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Shift_Admin_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Shift_Admin_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Shift_Main_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ShiftAdminId" Type="int" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Shift_Main_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Main_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Main_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Main_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Shift_Main_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Shift_Main_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="ShiftAdminId" Type="int" Mode="In" />
+    <Parameter Name="ShiftName" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Shift_Worker_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="WorkerId" Type="int" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Shift_Worker_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="WorkerId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Worker_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="WorkerId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Worker_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Worker_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Shift_Worker_To_DataGrid_All" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Shift_Worker_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="WorkerId" Type="int" Mode="In" />
+    <Parameter Name="WorkerId_Updated" Type="int" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Store_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Store_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="Store_Admin" Type="nvarchar" Mode="In" />
+    <Parameter Name="Store_Location" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Store_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Store_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Store_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Store_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShiftId" Type="int" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="StoreId" Type="int" Mode="In" />
+    <Parameter Name="Weight" Type="int" Mode="In" />
+    <Parameter Name="date1" Type="date" Mode="In" />
+    <Parameter Name="SerialNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Store_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Store_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Store_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Store_To_DataGrid_tmp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Store_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Store_ID" Type="int" Mode="In" />
+    <Parameter Name="Store_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="Store_Admin" Type="nvarchar" Mode="In" />
+    <Parameter Name="Store_Location" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Trans_Vin_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TxtDivername" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtVinNum" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtModel" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtPhone" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtCustomerId" Type="int" Mode="In" />
+    <Parameter Name="TxtAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtSerial" Type="nvarchar" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Trans_Vin_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VinNo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Trans_Vin_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_TRANS_VIN_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Trans_Vin_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Trans_Vin_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Trans_vin_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VinNo" Type="int" Mode="In" />
+    <Parameter Name="TxtDivername" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtVinNum" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtModel" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtPhone" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtCustomerId" Type="int" Mode="In" />
+    <Parameter Name="TxtAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="TxtSerial" Type="nvarchar" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_User_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="nvarchar" Mode="In" />
+    <Parameter Name="userPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="userRole" Type="int" Mode="In" />
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_User_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_weight_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Worker_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Worker_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WorkerID" Type="int" Mode="In" />
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Worker_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Worker_SEARCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Worker_To_ComboBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Worker_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADD_ID" Type="int" Mode="In" />
+    <Parameter Name="A_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_City" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_State" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+    <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_Workers_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="address" EntityType="Self.address" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="addresstype" EntityType="Self.addresstype" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="barcode" EntityType="Self.barcode" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="measurement" EntityType="Self.measurement" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="order" EntityType="Self.order" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="order_has_product" EntityType="Self.order_has_product" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="orderserial" EntityType="Self.orderserial" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="product_has_weight" EntityType="Self.product_has_weight" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="roles" EntityType="Self.roles" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="shift" EntityType="Self.shift" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="shift_has_workers" EntityType="Self.shift_has_workers" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="shiftadmin" EntityType="Self.shiftadmin" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="store" EntityType="Self.store" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="store_has_product" EntityType="Self.store_has_product" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="store_has_product_has_order" EntityType="Self.store_has_product_has_order" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="transvehcile" EntityType="Self.transvehcile" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="transvehcile_has_order" EntityType="Self.transvehcile_has_order" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="users_has_roles" EntityType="Self.users_has_roles" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="weight" EntityType="Self.weight" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="workers" EntityType="Self.workers" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <AssociationSet Name="address$fk_address_addressType1" Association="Self.address$fk_address_addressType1">
+      <End Role="addresstype" EntitySet="addresstype" />
+      <End Role="address" EntitySet="address" />
+    </AssociationSet>
+    <AssociationSet Name="customers$fk_customers_address" Association="Self.customers$fk_customers_address">
+      <End Role="address" EntitySet="address" />
+      <End Role="customers" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="order$fk_order_customers1" Association="Self.order$fk_order_customers1">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="order$fk_order_store1" Association="Self.order$fk_order_store1">
+      <End Role="store" EntitySet="store" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="order$fk_order_users1" Association="Self.order$fk_order_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product$fk_order_has_product_measurement1" Association="Self.order_has_product$fk_order_has_product_measurement1">
+      <End Role="measurement" EntitySet="measurement" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product$fk_order_has_product_order1" Association="Self.order_has_product$fk_order_has_product_order1">
+      <End Role="order" EntitySet="order" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product$fk_order_has_product_product1" Association="Self.order_has_product$fk_order_has_product_product1">
+      <End Role="product" EntitySet="product" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product$fk_order_has_product_weight1" Association="Self.order_has_product$fk_order_has_product_weight1">
+      <End Role="weight" EntitySet="weight" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="orderserial$fk_orderSerial_barcode1" Association="Self.orderserial$fk_orderSerial_barcode1">
+      <End Role="barcode" EntitySet="barcode" />
+      <End Role="orderserial" EntitySet="orderserial" />
+    </AssociationSet>
+    <AssociationSet Name="orderserial$fk_orderSerial_order1" Association="Self.orderserial$fk_orderSerial_order1">
+      <End Role="order" EntitySet="order" />
+      <End Role="orderserial" EntitySet="orderserial" />
+    </AssociationSet>
+    <AssociationSet Name="product_has_weight$fk_product_has_weight_product1" Association="Self.product_has_weight$fk_product_has_weight_product1">
+      <End Role="product" EntitySet="product" />
+      <End Role="product_has_weight" EntitySet="product_has_weight" />
+    </AssociationSet>
+    <AssociationSet Name="product_has_weight$fk_product_has_weight_weight1" Association="Self.product_has_weight$fk_product_has_weight_weight1">
+      <End Role="weight" EntitySet="weight" />
+      <End Role="product_has_weight" EntitySet="product_has_weight" />
+    </AssociationSet>
+    <AssociationSet Name="shift$fk_shift_shiftAdmin1" Association="Self.shift$fk_shift_shiftAdmin1">
+      <End Role="shiftadmin" EntitySet="shiftadmin" />
+      <End Role="shift" EntitySet="shift" />
+    </AssociationSet>
+    <AssociationSet Name="shift_has_workers$fk_shift_has_workers_shift1" Association="Self.shift_has_workers$fk_shift_has_workers_shift1">
+      <End Role="shift" EntitySet="shift" />
+      <End Role="shift_has_workers" EntitySet="shift_has_workers" />
+    </AssociationSet>
+    <AssociationSet Name="shift_has_workers$fk_shift_has_workers_workers1" Association="Self.shift_has_workers$fk_shift_has_workers_workers1">
+      <End Role="workers" EntitySet="workers" />
+      <End Role="shift_has_workers" EntitySet="shift_has_workers" />
+    </AssociationSet>
+    <AssociationSet Name="shiftadmin$fk_shiftAdmin_address1" Association="Self.shiftadmin$fk_shiftAdmin_address1">
+      <End Role="address" EntitySet="address" />
+      <End Role="shiftadmin" EntitySet="shiftadmin" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product$fk_store_has_product_barcode1" Association="Self.store_has_product$fk_store_has_product_barcode1">
+      <End Role="barcode" EntitySet="barcode" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product$fk_store_has_product_product1" Association="Self.store_has_product$fk_store_has_product_product1">
+      <End Role="product" EntitySet="product" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product$fk_store_has_product_shift1" Association="Self.store_has_product$fk_store_has_product_shift1">
+      <End Role="shift" EntitySet="shift" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product$fk_store_has_product_store1" Association="Self.store_has_product$fk_store_has_product_store1">
+      <End Role="store" EntitySet="store" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product$fk_store_has_product_weight1" Association="Self.store_has_product$fk_store_has_product_weight1">
+      <End Role="weight" EntitySet="weight" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_has_order$fk_store_has_product_has_order_order1" Association="Self.store_has_product_has_order$fk_store_has_product_has_order_order1">
+      <End Role="order" EntitySet="order" />
+      <End Role="store_has_product_has_order" EntitySet="store_has_product_has_order" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_has_order$fk_store_has_product_has_order_store_has_product1" Association="Self.store_has_product_has_order$fk_store_has_product_has_order_store_has_product1">
+      <End Role="store_has_product" EntitySet="store_has_product" />
+      <End Role="store_has_product_has_order" EntitySet="store_has_product_has_order" />
+    </AssociationSet>
+    <AssociationSet Name="transvehcile$fk_transVehcile_customers1" Association="Self.transvehcile$fk_transVehcile_customers1">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="transvehcile" EntitySet="transvehcile" />
+    </AssociationSet>
+    <AssociationSet Name="transvehcile_has_order$fk_transVehcile_has_order_order1" Association="Self.transvehcile_has_order$fk_transVehcile_has_order_order1">
+      <End Role="order" EntitySet="order" />
+      <End Role="transvehcile_has_order" EntitySet="transvehcile_has_order" />
+    </AssociationSet>
+    <AssociationSet Name="users$fk_users_address1" Association="Self.users$fk_users_address1">
+      <End Role="address" EntitySet="address" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="users_has_roles$fk_users_has_roles_roles1" Association="Self.users_has_roles$fk_users_has_roles_roles1">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="users_has_roles" EntitySet="users_has_roles" />
+    </AssociationSet>
+    <AssociationSet Name="users_has_roles$fk_users_has_roles_users1" Association="Self.users_has_roles$fk_users_has_roles_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_has_roles" EntitySet="users_has_roles" />
+    </AssociationSet>
+    <AssociationSet Name="workers$fk_workers_address1" Association="Self.workers$fk_workers_address1">
+      <End Role="address" EntitySet="address" />
+      <End Role="workers" EntitySet="workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

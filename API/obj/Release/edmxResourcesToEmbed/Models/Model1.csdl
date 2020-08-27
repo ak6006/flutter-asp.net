@@ -1,0 +1,1407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="add_id" />
+    </Key>
+    <Property Name="add_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="addressType_addressType_id" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="midName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="add1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="add2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="fax" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="addresscol" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="addresstype" Relationship="Self.address_fk_address_addressType1" FromRole="address" ToRole="addresstype" />
+    <NavigationProperty Name="customers" Relationship="Self.customers_fk_customers_address" FromRole="address" ToRole="customers" />
+    <NavigationProperty Name="shiftadmins" Relationship="Self.shiftadmin_fk_shiftAdmin_address1" FromRole="address" ToRole="shiftadmin" />
+    <NavigationProperty Name="users" Relationship="Self.users_fk_users_address1" FromRole="address" ToRole="users" />
+    <NavigationProperty Name="workers" Relationship="Self.workers_fk_workers_address1" FromRole="address" ToRole="workers" />
+  </EntityType>
+  <EntityType Name="addresstype">
+    <Key>
+      <PropertyRef Name="addressType_id" />
+    </Key>
+    <Property Name="addressType_id" Type="Int32" Nullable="false" />
+    <Property Name="addressType_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="addresses" Relationship="Self.address_fk_address_addressType1" FromRole="addresstype" ToRole="address" />
+  </EntityType>
+  <EntityType Name="barcode">
+    <Key>
+      <PropertyRef Name="serialNumber" />
+    </Key>
+    <Property Name="serialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_barcode1" FromRole="barcode" ToRole="store_has_product" />
+    <NavigationProperty Name="orders" Relationship="Self.orderserial" FromRole="barcode" ToRole="order" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="Customers_id" />
+    </Key>
+    <Property Name="Customers_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address_add_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="address" Relationship="Self.customers_fk_customers_address" FromRole="customers" ToRole="address" />
+    <NavigationProperty Name="orders" Relationship="Self.order_fk_order_customers1" FromRole="customers" ToRole="order" />
+    <NavigationProperty Name="transvehciles" Relationship="Self.transvehcile_fk_transVehcile_customers1" FromRole="customers" ToRole="transvehcile" />
+  </EntityType>
+  <EntityType Name="measurement">
+    <Key>
+      <PropertyRef Name="measure_id" />
+    </Key>
+    <Property Name="measure_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="measre_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="measurement_Count_per_unit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_measurement1" FromRole="measurement" ToRole="order_has_product" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customers_Customers_id" Type="Int32" Nullable="false" />
+    <Property Name="users_user_id" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="notic" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="store_store_id" Type="Int32" Nullable="false" />
+    <Property Name="order_state" Type="Int32" />
+    <NavigationProperty Name="customer" Relationship="Self.order_fk_order_customers1" FromRole="order" ToRole="customers" />
+    <NavigationProperty Name="store" Relationship="Self.order_fk_order_store1" FromRole="order" ToRole="store" />
+    <NavigationProperty Name="user" Relationship="Self.order_fk_order_users1" FromRole="order" ToRole="users" />
+    <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_order1" FromRole="order" ToRole="order_has_product" />
+    <NavigationProperty Name="transvehcile_has_order" Relationship="Self.transvehcile_has_order_fk_transVehcile_has_order_order1" FromRole="order" ToRole="transvehcile_has_order" />
+    <NavigationProperty Name="barcodes" Relationship="Self.orderserial" FromRole="order" ToRole="barcode" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_has_order" FromRole="order" ToRole="store_has_product" />
+  </EntityType>
+  <EntityType Name="order_has_product">
+    <Key>
+      <PropertyRef Name="order_order_id" />
+      <PropertyRef Name="product_product_id" />
+      <PropertyRef Name="weight_weight_id" />
+    </Key>
+    <Property Name="order_order_id" Type="Int32" Nullable="false" />
+    <Property Name="product_product_id" Type="Int32" Nullable="false" />
+    <Property Name="measurement_measure_id" Type="Int32" Nullable="false" />
+    <Property Name="weight_weight_id" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="order_has_product_Pages_Count" Type="Int32" />
+    <Property Name="order_has_product_dept_count" Type="Int32" />
+    <Property Name="order_has_product_state" Type="Int32" />
+    <NavigationProperty Name="measurement" Relationship="Self.order_has_product_fk_order_has_product_measurement1" FromRole="order_has_product" ToRole="measurement" />
+    <NavigationProperty Name="order" Relationship="Self.order_has_product_fk_order_has_product_order1" FromRole="order_has_product" ToRole="order" />
+    <NavigationProperty Name="product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
+    <NavigationProperty Name="weight" Relationship="Self.order_has_product_fk_order_has_product_weight1" FromRole="order_has_product" ToRole="weight" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="product" ToRole="order_has_product" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="product" ToRole="store_has_product" />
+    <NavigationProperty Name="weights" Relationship="Self.product_has_weight" FromRole="product" ToRole="weight" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="rolesId" />
+    </Key>
+    <Property Name="rolesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolesName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="users" Relationship="Self.users_has_roles" FromRole="roles" ToRole="users" />
+  </EntityType>
+  <EntityType Name="shift">
+    <Key>
+      <PropertyRef Name="shift_id" />
+    </Key>
+    <Property Name="shift_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shiftName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="shiftAdmin_shiftAdmin_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="shiftadmin" Relationship="Self.shift_fk_shift_shiftAdmin1" FromRole="shift" ToRole="shiftadmin" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_shift1" FromRole="shift" ToRole="store_has_product" />
+    <NavigationProperty Name="workers" Relationship="Self.shift_has_workers" FromRole="shift" ToRole="workers" />
+  </EntityType>
+  <EntityType Name="shiftadmin">
+    <Key>
+      <PropertyRef Name="shiftAdmin_id" />
+    </Key>
+    <Property Name="shiftAdmin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address_add_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="address" Relationship="Self.shiftadmin_fk_shiftAdmin_address1" FromRole="shiftadmin" ToRole="address" />
+    <NavigationProperty Name="shifts" Relationship="Self.shift_fk_shift_shiftAdmin1" FromRole="shiftadmin" ToRole="shift" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="storeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="storeAdminName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="storeLocation" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="orders" Relationship="Self.order_fk_order_store1" FromRole="store" ToRole="order" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_store1" FromRole="store" ToRole="store_has_product" />
+  </EntityType>
+  <EntityType Name="store_has_product">
+    <Key>
+      <PropertyRef Name="store_store_id" />
+      <PropertyRef Name="product_product_id" />
+      <PropertyRef Name="shift_shift_id" />
+      <PropertyRef Name="barcode_serialNumber" />
+      <PropertyRef Name="weight_weight_id" />
+    </Key>
+    <Property Name="store_store_id" Type="Int32" Nullable="false" />
+    <Property Name="product_product_id" Type="Int32" Nullable="false" />
+    <Property Name="shift_shift_id" Type="Int32" Nullable="false" />
+    <Property Name="barcode_serialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="weight_weight_id" Type="Int32" Nullable="false" />
+    <Property Name="store_has_productDate" Type="DateTime" Precision="3" />
+    <Property Name="store_has_product_state" Type="Int32" />
+    <NavigationProperty Name="barcode" Relationship="Self.store_has_product_fk_store_has_product_barcode1" FromRole="store_has_product" ToRole="barcode" />
+    <NavigationProperty Name="product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="store_has_product" ToRole="product" />
+    <NavigationProperty Name="shift" Relationship="Self.store_has_product_fk_store_has_product_shift1" FromRole="store_has_product" ToRole="shift" />
+    <NavigationProperty Name="store" Relationship="Self.store_has_product_fk_store_has_product_store1" FromRole="store_has_product" ToRole="store" />
+    <NavigationProperty Name="weight" Relationship="Self.store_has_product_fk_store_has_product_weight1" FromRole="store_has_product" ToRole="weight" />
+    <NavigationProperty Name="orders" Relationship="Self.store_has_product_has_order" FromRole="store_has_product" ToRole="order" />
+  </EntityType>
+  <EntityType Name="transvehcile">
+    <Key>
+      <PropertyRef Name="v_id" />
+      <PropertyRef Name="customers_Customers_id" />
+    </Key>
+    <Property Name="v_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customers_Customers_id" Type="Int32" Nullable="false" />
+    <Property Name="transVehcile_driver_name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="transVehcile_num" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="transVehcile_model" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="transVehcile_serial" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="transVehcile_phone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="transVehcile_add" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="customer" Relationship="Self.transvehcile_fk_transVehcile_customers1" FromRole="transvehcile" ToRole="customers" />
+  </EntityType>
+  <EntityType Name="transvehcile_has_order">
+    <Key>
+      <PropertyRef Name="transVehcile_v_id" />
+      <PropertyRef Name="order_order_id" />
+    </Key>
+    <Property Name="transVehcile_v_id" Type="Int32" Nullable="false" />
+    <Property Name="order_order_id" Type="Int32" Nullable="false" />
+    <Property Name="transVehcile_has_order_state" Type="Int32" />
+    <NavigationProperty Name="order" Relationship="Self.transvehcile_has_order_fk_transVehcile_has_order_order1" FromRole="transvehcile_has_order" ToRole="order" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="address_add_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="address" Relationship="Self.users_fk_users_address1" FromRole="users" ToRole="address" />
+    <NavigationProperty Name="orders" Relationship="Self.order_fk_order_users1" FromRole="users" ToRole="order" />
+    <NavigationProperty Name="roles" Relationship="Self.users_has_roles" FromRole="users" ToRole="roles" />
+  </EntityType>
+  <EntityType Name="weight">
+    <Key>
+      <PropertyRef Name="weight_id" />
+    </Key>
+    <Property Name="weight_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="weight_net" Type="Int32" />
+    <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_weight1" FromRole="weight" ToRole="order_has_product" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_weight1" FromRole="weight" ToRole="store_has_product" />
+    <NavigationProperty Name="products" Relationship="Self.product_has_weight" FromRole="weight" ToRole="product" />
+  </EntityType>
+  <EntityType Name="worker">
+    <Key>
+      <PropertyRef Name="worker_id" />
+    </Key>
+    <Property Name="worker_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address_add_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="address" Relationship="Self.workers_fk_workers_address1" FromRole="workers" ToRole="address" />
+    <NavigationProperty Name="shifts" Relationship="Self.shift_has_workers" FromRole="workers" ToRole="shift" />
+  </EntityType>
+  <Association Name="address_fk_address_addressType1">
+    <End Role="addresstype" Type="Self.addresstype" Multiplicity="1" />
+    <End Role="address" Type="Self.address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="addresstype">
+        <PropertyRef Name="addressType_id" />
+      </Principal>
+      <Dependent Role="address">
+        <PropertyRef Name="addressType_addressType_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="customers_fk_customers_address">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="customers" Type="Self.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="customers">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shiftadmin_fk_shiftAdmin_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="shiftadmin" Type="Self.shiftadmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="shiftadmin">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_fk_users_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="workers_fk_workers_address1">
+    <End Role="address" Type="Self.address" Multiplicity="1" />
+    <End Role="workers" Type="Self.worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="add_id" />
+      </Principal>
+      <Dependent Role="workers">
+        <PropertyRef Name="address_add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_fk_store_has_product_barcode1">
+    <End Role="barcode" Type="Self.barcode" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barcode">
+        <PropertyRef Name="serialNumber" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="barcode_serialNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_fk_order_customers1">
+    <End Role="customers" Type="Self.customer" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="Customers_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="customers_Customers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transvehcile_fk_transVehcile_customers1">
+    <End Role="customers" Type="Self.customer" Multiplicity="1" />
+    <End Role="transvehcile" Type="Self.transvehcile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="Customers_id" />
+      </Principal>
+      <Dependent Role="transvehcile">
+        <PropertyRef Name="customers_Customers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product_fk_order_has_product_measurement1">
+    <End Role="measurement" Type="Self.measurement" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurement">
+        <PropertyRef Name="measure_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="measurement_measure_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_fk_order_store1">
+    <End Role="store" Type="Self.store" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="store_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_fk_order_users1">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="users_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product_fk_order_has_product_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transvehcile_has_order_fk_transVehcile_has_order_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="transvehcile_has_order" Type="Self.transvehcile_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="transvehcile_has_order">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product_fk_order_has_product_product1">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="product_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_has_product_fk_order_has_product_weight1">
+    <End Role="weight" Type="Self.weight" Multiplicity="1" />
+    <End Role="order_has_product" Type="Self.order_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weight">
+        <PropertyRef Name="weight_id" />
+      </Principal>
+      <Dependent Role="order_has_product">
+        <PropertyRef Name="weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_fk_store_has_product_product1">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="product_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="shift_fk_shift_shiftAdmin1">
+    <End Role="shiftadmin" Type="Self.shiftadmin" Multiplicity="1" />
+    <End Role="shift" Type="Self.shift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shiftadmin">
+        <PropertyRef Name="shiftAdmin_id" />
+      </Principal>
+      <Dependent Role="shift">
+        <PropertyRef Name="shiftAdmin_shiftAdmin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_fk_store_has_product_shift1">
+    <End Role="shift" Type="Self.shift" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shift">
+        <PropertyRef Name="shift_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="shift_shift_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_fk_store_has_product_store1">
+    <End Role="store" Type="Self.store" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="store_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="store_has_product_fk_store_has_product_weight1">
+    <End Role="weight" Type="Self.weight" Multiplicity="1" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weight">
+        <PropertyRef Name="weight_id" />
+      </Principal>
+      <Dependent Role="store_has_product">
+        <PropertyRef Name="weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="orderserial">
+    <End Role="barcode" Type="Self.barcode" Multiplicity="*" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+  </Association>
+  <Association Name="product_has_weight">
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <End Role="weight" Type="Self.weight" Multiplicity="*" />
+  </Association>
+  <Association Name="shift_has_workers">
+    <End Role="shift" Type="Self.shift" Multiplicity="*" />
+    <End Role="workers" Type="Self.worker" Multiplicity="*" />
+  </Association>
+  <Association Name="store_has_product_has_order">
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
+  </Association>
+  <Association Name="users_has_roles">
+    <End Role="roles" Type="Self.role" Multiplicity="*" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="addresses" EntityType="Self.address" />
+    <EntitySet Name="addresstypes" EntityType="Self.addresstype" />
+    <EntitySet Name="barcodes" EntityType="Self.barcode" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="measurements" EntityType="Self.measurement" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="order_has_product" EntityType="Self.order_has_product" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="shifts" EntityType="Self.shift" />
+    <EntitySet Name="shiftadmins" EntityType="Self.shiftadmin" />
+    <EntitySet Name="stores" EntityType="Self.store" />
+    <EntitySet Name="store_has_product" EntityType="Self.store_has_product" />
+    <EntitySet Name="transvehciles" EntityType="Self.transvehcile" />
+    <EntitySet Name="transvehcile_has_order" EntityType="Self.transvehcile_has_order" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="weights" EntityType="Self.weight" />
+    <EntitySet Name="workers" EntityType="Self.worker" />
+    <AssociationSet Name="address_fk_address_addressType1" Association="Self.address_fk_address_addressType1">
+      <End Role="addresstype" EntitySet="addresstypes" />
+      <End Role="address" EntitySet="addresses" />
+    </AssociationSet>
+    <AssociationSet Name="customers_fk_customers_address" Association="Self.customers_fk_customers_address">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="customers" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="shiftadmin_fk_shiftAdmin_address1" Association="Self.shiftadmin_fk_shiftAdmin_address1">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="shiftadmin" EntitySet="shiftadmins" />
+    </AssociationSet>
+    <AssociationSet Name="users_fk_users_address1" Association="Self.users_fk_users_address1">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="workers_fk_workers_address1" Association="Self.workers_fk_workers_address1">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="workers" EntitySet="workers" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_fk_store_has_product_barcode1" Association="Self.store_has_product_fk_store_has_product_barcode1">
+      <End Role="barcode" EntitySet="barcodes" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_fk_order_customers1" Association="Self.order_fk_order_customers1">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="transvehcile_fk_transVehcile_customers1" Association="Self.transvehcile_fk_transVehcile_customers1">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="transvehcile" EntitySet="transvehciles" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product_fk_order_has_product_measurement1" Association="Self.order_has_product_fk_order_has_product_measurement1">
+      <End Role="measurement" EntitySet="measurements" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_fk_order_store1" Association="Self.order_fk_order_store1">
+      <End Role="store" EntitySet="stores" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="order_fk_order_users1" Association="Self.order_fk_order_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product_fk_order_has_product_order1" Association="Self.order_has_product_fk_order_has_product_order1">
+      <End Role="order" EntitySet="orders" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="transvehcile_has_order_fk_transVehcile_has_order_order1" Association="Self.transvehcile_has_order_fk_transVehcile_has_order_order1">
+      <End Role="order" EntitySet="orders" />
+      <End Role="transvehcile_has_order" EntitySet="transvehcile_has_order" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product_fk_order_has_product_product1" Association="Self.order_has_product_fk_order_has_product_product1">
+      <End Role="product" EntitySet="products" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="order_has_product_fk_order_has_product_weight1" Association="Self.order_has_product_fk_order_has_product_weight1">
+      <End Role="weight" EntitySet="weights" />
+      <End Role="order_has_product" EntitySet="order_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_fk_store_has_product_product1" Association="Self.store_has_product_fk_store_has_product_product1">
+      <End Role="product" EntitySet="products" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="shift_fk_shift_shiftAdmin1" Association="Self.shift_fk_shift_shiftAdmin1">
+      <End Role="shiftadmin" EntitySet="shiftadmins" />
+      <End Role="shift" EntitySet="shifts" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_fk_store_has_product_shift1" Association="Self.store_has_product_fk_store_has_product_shift1">
+      <End Role="shift" EntitySet="shifts" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_fk_store_has_product_store1" Association="Self.store_has_product_fk_store_has_product_store1">
+      <End Role="store" EntitySet="stores" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_fk_store_has_product_weight1" Association="Self.store_has_product_fk_store_has_product_weight1">
+      <End Role="weight" EntitySet="weights" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="orderserial" Association="Self.orderserial">
+      <End Role="barcode" EntitySet="barcodes" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="product_has_weight" Association="Self.product_has_weight">
+      <End Role="product" EntitySet="products" />
+      <End Role="weight" EntitySet="weights" />
+    </AssociationSet>
+    <AssociationSet Name="shift_has_workers" Association="Self.shift_has_workers">
+      <End Role="shift" EntitySet="shifts" />
+      <End Role="workers" EntitySet="workers" />
+    </AssociationSet>
+    <AssociationSet Name="store_has_product_has_order" Association="Self.store_has_product_has_order">
+      <End Role="order" EntitySet="orders" />
+      <End Role="store_has_product" EntitySet="store_has_product" />
+    </AssociationSet>
+    <AssociationSet Name="users_has_roles" Association="Self.users_has_roles">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <FunctionImport Name="SP_Customer_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Customer_Delete">
+      <Parameter Name="CUSTOMER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Customer_ID" ReturnType="Collection(Model.SP_Customer_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Customer_Search" ReturnType="Collection(Model.SP_Customer_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Customer_To_ComboBox" ReturnType="Collection(Model.SP_Customer_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Customer_To_DataGrid" ReturnType="Collection(Model.SP_Customer_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Customer_Update">
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LOGINSELECT" ReturnType="Collection(Model.SP_LOGINSELECT_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+      <Parameter Name="rolesName" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LOGINSELECT_tmp" ReturnType="Collection(Model.SP_LOGINSELECT_tmp_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+      <Parameter Name="rolesName" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Measurement_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="MeasurementName" Mode="In" Type="String" />
+      <Parameter Name="MeasurementKiloGram" Mode="In" Type="Int32" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Measurement_DELETE">
+      <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Measurement_ID" ReturnType="Collection(Model.SP_Measurement_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Measurement_Search" ReturnType="Collection(Model.SP_Measurement_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Measurement_To_ComboBox" ReturnType="Collection(Model.SP_Measurement_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Measurement_To_DataGrid" ReturnType="Collection(Model.SP_Measurement_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Measurement_Update">
+      <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
+      <Parameter Name="MeasurementName" Mode="In" Type="String" />
+      <Parameter Name="MeasurementKiloGram" Mode="In" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Add_New">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="StoreId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+      <Parameter Name="OrderNote" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_DELETE">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_ID" ReturnType="Collection(Model.SP_Order_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Items_Add_New">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="measureId" Mode="In" Type="Int32" />
+      <Parameter Name="weightId" Mode="In" Type="Int32" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Items_DELETE">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="measureId" Mode="In" Type="Int32" />
+      <Parameter Name="weightId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Items_ID" ReturnType="Collection(Model.SP_Order_Items_ID_Result)">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+      <Parameter Name="measureId" Mode="In" Type="Int32" />
+      <Parameter Name="weightId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Items_To_DataGrid" ReturnType="Collection(Model.SP_Order_Items_To_DataGrid_Result)">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Items_Update">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="measureId" Mode="In" Type="Int32" />
+      <Parameter Name="weightId" Mode="In" Type="Int32" />
+      <Parameter Name="NewProductId" Mode="In" Type="Int32" />
+      <Parameter Name="NewmeasureId" Mode="In" Type="Int32" />
+      <Parameter Name="NewweightId" Mode="In" Type="Int32" />
+      <Parameter Name="NewQuantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Search" ReturnType="Collection(Model.SP_Order_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_To_DataGrid" ReturnType="Collection(Model.SP_Order_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Order_Trans_Vin_Add_New">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="TransVinId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Trans_Vin_DELETE">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="TransId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Trans_Vin_ID" ReturnType="Collection(Model.SP_Order_Trans_Vin_ID_Result)">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="transvehcileID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Trans_Vin_To_DataGrid" ReturnType="Collection(Model.SP_Order_Trans_Vin_To_DataGrid_Result)">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Trans_Vin_Update">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="TransId" Mode="In" Type="Int32" />
+      <Parameter Name="NewOrderId" Mode="In" Type="Int32" />
+      <Parameter Name="NewTransId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Order_Update">
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="StoreId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+      <Parameter Name="OrderNote" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Product_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Product_DELETE">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Product_ID" ReturnType="Collection(Model.SP_Product_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Product_Search" ReturnType="Collection(Model.SP_Product_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Product_To_ComboBox" ReturnType="Collection(Model.SP_Product_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Product_To_DataGrid" ReturnType="Collection(Model.SP_Product_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Product_Update">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Sales_BarCode" ReturnType="Collection(String)">
+      <Parameter Name="Barcode" Mode="In" Type="String" />
+      <Parameter Name="OrderId" Mode="In" Type="String" />
+      <Parameter Name="ProdductId" Mode="In" Type="String" />
+      <Parameter Name="weightId" Mode="In" Type="String" />
+      <Parameter Name="Serial_found" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+      <Parameter Name="NetCounter" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Sales_BarCode_Check" ReturnType="Collection(Model.SP_Sales_BarCode_Check_Result)">
+      <Parameter Name="Barcode" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Sales_Order_Trans_Vin_Load" ReturnType="Collection(Model.SP_Sales_Order_Trans_Vin_Load_Result)">
+      <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Admin_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Admin_DELETE">
+      <Parameter Name="ShiftAdminID" Mode="In" Type="Int32" />
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Admin_ID" ReturnType="Collection(Model.SP_Shift_Admin_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Admin_SEARCH" ReturnType="Collection(Model.SP_Shift_Admin_SEARCH_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Admin_To_ComboBox" ReturnType="Collection(Model.SP_Shift_Admin_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Shift_Admin_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Admin_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Shift_Admin_Update">
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Main_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="ShiftName" Mode="In" Type="String" />
+      <Parameter Name="ShiftAdminId" Mode="In" Type="Int32" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Main_DELETE">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Main_ID" ReturnType="Collection(Model.SP_Shift_Main_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Main_Search" ReturnType="Collection(Model.SP_Shift_Main_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Main_To_ComboBox" ReturnType="Collection(Model.SP_Shift_Main_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Shift_Main_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Main_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Shift_Main_Update">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="ShiftAdminId" Mode="In" Type="Int32" />
+      <Parameter Name="ShiftName" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_Add_New" ReturnType="Collection(Int32)">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="WorkerId" Mode="In" Type="Int32" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_DELETE">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="WorkerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_ID" ReturnType="Collection(Model.SP_Shift_Worker_ID_Result)">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="WorkerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_Search" ReturnType="Collection(Model.SP_Shift_Worker_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Worker_To_DataGrid_Result)">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Shift_Worker_To_DataGrid_All" ReturnType="Collection(Model.SP_Shift_Worker_To_DataGrid_All_Result)" />
+    <FunctionImport Name="SP_Shift_Worker_Update">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="WorkerId" Mode="In" Type="Int32" />
+      <Parameter Name="WorkerId_Updated" Mode="In" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_Add_New" ReturnType="Collection(Model.SP_Store_Add_New_Result)">
+      <Parameter Name="Store_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="Store_Admin" Mode="In" Type="String" />
+      <Parameter Name="Store_Location" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_Delete">
+      <Parameter Name="Store_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_ID" ReturnType="Collection(Model.SP_Store_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_Product_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="StoreId" Mode="In" Type="Int32" />
+      <Parameter Name="Weight" Mode="In" Type="Int32" />
+      <Parameter Name="date1" Mode="In" Type="DateTime" />
+      <Parameter Name="SerialNumber" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_Search" ReturnType="Collection(Model.SP_Store_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Store_To_ComboBox" ReturnType="Collection(Model.SP_Store_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Store_To_DataGrid" ReturnType="Collection(Model.SP_Store_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Store_To_DataGrid_tmp" ReturnType="Collection(Model.SP_Store_To_DataGrid_tmp_Result)" />
+    <FunctionImport Name="SP_Store_Update">
+      <Parameter Name="Store_ID" Mode="In" Type="Int32" />
+      <Parameter Name="Store_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="Store_Admin" Mode="In" Type="String" />
+      <Parameter Name="Store_Location" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Trans_Vin_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="TxtDivername" Mode="In" Type="String" />
+      <Parameter Name="TxtVinNum" Mode="In" Type="String" />
+      <Parameter Name="TxtModel" Mode="In" Type="String" />
+      <Parameter Name="TxtPhone" Mode="In" Type="String" />
+      <Parameter Name="TxtCustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="TxtAddress" Mode="In" Type="String" />
+      <Parameter Name="TxtSerial" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Trans_Vin_DELETE">
+      <Parameter Name="VinNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Trans_Vin_ID" ReturnType="Collection(Model.SP_Trans_Vin_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_TRANS_VIN_Search" ReturnType="Collection(Model.SP_TRANS_VIN_Search_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Trans_Vin_To_ComboBox" ReturnType="Collection(Model.SP_Trans_Vin_To_ComboBox_Result)">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Trans_Vin_To_DataGrid" ReturnType="Collection(Model.SP_Trans_Vin_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_Trans_vin_Update">
+      <Parameter Name="VinNo" Mode="In" Type="Int32" />
+      <Parameter Name="TxtDivername" Mode="In" Type="String" />
+      <Parameter Name="TxtVinNum" Mode="In" Type="String" />
+      <Parameter Name="TxtModel" Mode="In" Type="String" />
+      <Parameter Name="TxtPhone" Mode="In" Type="String" />
+      <Parameter Name="TxtCustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="TxtAddress" Mode="In" Type="String" />
+      <Parameter Name="TxtSerial" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_User_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="userName" Mode="In" Type="String" />
+      <Parameter Name="userPassword" Mode="In" Type="String" />
+      <Parameter Name="userRole" Mode="In" Type="Int32" />
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_User_To_DataGrid" ReturnType="Collection(Model.SP_User_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_weight_To_ComboBox" ReturnType="Collection(Model.SP_weight_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Worker_Add_New" ReturnType="Collection(String)">
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Worker_DELETE">
+      <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Worker_ID" ReturnType="Collection(Model.SP_Worker_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Worker_SEARCH" ReturnType="Collection(Model.SP_Worker_SEARCH_Result)">
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Worker_To_ComboBox" ReturnType="Collection(Model.SP_Worker_To_ComboBox_Result)" />
+    <FunctionImport Name="SP_Worker_Update">
+      <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
+      <Parameter Name="A_Name" Mode="In" Type="String" />
+      <Parameter Name="A_Country" Mode="In" Type="String" />
+      <Parameter Name="A_City" Mode="In" Type="String" />
+      <Parameter Name="A_State" Mode="In" Type="String" />
+      <Parameter Name="A_Phone" Mode="In" Type="String" />
+      <Parameter Name="A_Fax" Mode="In" Type="String" />
+      <Parameter Name="A_Email" Mode="In" Type="String" />
+      <Parameter Name="ADRESS" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
+  </EntityContainer>
+  <ComplexType Name="SP_Customer_ID_Result">
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Customer_Search_Result">
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Customer_To_ComboBox_Result">
+    <Property Type="Int32" Name="Customers_id" Nullable="false" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Customer_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_LOGINSELECT_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="userName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_LOGINSELECT_tmp_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="userName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Measurement_ID_Result">
+    <Property Type="Int32" Name="رقم_الوحدة" Nullable="false" />
+    <Property Type="String" Name="اسم_وحدة_القياس" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="measurement_Count_per_unit" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Measurement_Search_Result">
+    <Property Type="Int32" Name="رقم_الوحدة" Nullable="false" />
+    <Property Type="String" Name="اسم_وحدة_القياس" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="measurement_Count_per_unit" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Measurement_To_ComboBox_Result">
+    <Property Type="Int32" Name="measure_id" Nullable="false" />
+    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Measurement_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الوحدة" Nullable="false" />
+    <Property Type="String" Name="اسم_وحدة_القياس" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="measurement_Count_per_unit" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_ID_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="Int32" Name="Customers_id" Nullable="false" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="notic" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_Items_ID_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="String" Name="اسم_العميل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="وحدة_القياس" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="الكمية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="الوزن" Nullable="true" />
+    <Property Type="Int32" Name="weight_id" Nullable="false" />
+    <Property Type="Int32" Name="product_id" Nullable="false" />
+    <Property Type="Int32" Name="measure_id" Nullable="false" />
+    <Property Type="Int32" Name="order_has_product_Pages_Count" Nullable="true" />
+    <Property Type="Int32" Name="order_has_product_dept_count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_Items_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="String" Name="اسم_العميل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="وحدة_القياس" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="الكمية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="الوزن" Nullable="true" />
+    <Property Type="Int32" Name="weight_id" Nullable="false" />
+    <Property Type="Int32" Name="product_id" Nullable="false" />
+    <Property Type="Int32" Name="measure_id" Nullable="false" />
+    <Property Type="Int32" Name="order_has_product_Pages_Count" Nullable="true" />
+    <Property Type="Int32" Name="order_has_product_dept_count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_Search_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="رقم_المخزن" Nullable="false" />
+    <Property Type="String" Name="المخزن" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="ملاحظة" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="رقم_المخزن" Nullable="false" />
+    <Property Type="String" Name="المخزن" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="ملاحظة" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_Trans_Vin_ID_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="اسم_السائق" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="رقم_العربية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="v_id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Order_Trans_Vin_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الطلبية" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="اسم_السائق" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="رقم_العربية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="v_id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Product_ID_Result">
+    <Property Type="Int32" Name="رقم_المنتج" Nullable="false" />
+    <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Product_Search_Result">
+    <Property Type="Int32" Name="رقم_المنتج" Nullable="false" />
+    <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Product_To_ComboBox_Result">
+    <Property Type="Int32" Name="product_id" Nullable="false" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Product_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_المنتج" Nullable="false" />
+    <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Sales_BarCode_Check_Result">
+    <Property Type="Int32" Name="store_store_id" Nullable="false" />
+    <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Shift_Name" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+    <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="SP_Sales_Order_Trans_Vin_Load_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="order_has_product_Pages_Count" Nullable="true" />
+    <Property Type="Int32" Name="order_has_product_dept_count" Nullable="true" />
+    <Property Type="Int32" Name="weight_weight_id" Nullable="false" />
+    <Property Type="Int32" Name="product_product_id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Admin_ID_Result">
+    <Property Type="Int32" Name="رقم_المدير" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Admin_SEARCH_Result">
+    <Property Type="Int32" Name="رقم_المدير" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Admin_To_ComboBox_Result">
+    <Property Type="Int32" Name="shiftAdmin_id" Nullable="false" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Admin_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_المدير" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Main_ID_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_الوردية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_مدير_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_مدير_الوردية" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Main_Search_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_الوردية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_مدير_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_مدير_الوردية" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Main_To_ComboBox_Result">
+    <Property Type="Int32" Name="shift_id" Nullable="false" />
+    <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Main_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_الوردية" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_مدير_الوردية" Nullable="false" />
+    <Property Type="String" Name="اسم_مدير_الوردية" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Worker_ID_Result">
+    <Property Type="Int32" Name="shift_shift_id" Nullable="false" />
+    <Property Type="Int32" Name="workers_worker_id" Nullable="false" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Worker_Search_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="String" Name="اسم_العامل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Worker_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="String" Name="اسم_العامل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Shift_Worker_To_DataGrid_All_Result">
+    <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="String" Name="اسم_العامل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_Add_New_Result">
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeAdminName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeLocation" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_ID_Result">
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeAdminName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeLocation" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_Search_Result">
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeAdminName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeLocation" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_To_ComboBox_Result">
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_To_DataGrid_Result">
+    <Property Type="Int32" Name="store_id" Nullable="false" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeAdminName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="storeLocation" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Store_To_DataGrid_tmp_Result">
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_Trans_Vin_ID_Result">
+    <Property Type="Int32" Name="الرقم" Nullable="false" />
+    <Property Type="String" Name="اسم_السائق" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="رقم_العربية" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="الموديل" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="سريال_العربية" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="العنوان" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_TRANS_VIN_Search_Result">
+    <Property Type="Int32" Name="الرقم" Nullable="false" />
+    <Property Type="String" Name="اسم_السائق" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="رقم_العربية" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="الموديل" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="سريال_العربية" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="العنوان" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Trans_Vin_To_ComboBox_Result">
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="Int32" Name="v_id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Trans_Vin_To_DataGrid_Result">
+    <Property Type="Int32" Name="الرقم" Nullable="false" />
+    <Property Type="String" Name="اسم_السائق" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="رقم_العربية" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="الموديل" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="سريال_العربية" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="العنوان" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
+    <Property Type="String" Name="اسم_الوكيل" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_User_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_المستخدم" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="roles_rolesId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_weight_To_ComboBox_Result">
+    <Property Type="Int32" Name="weight_id" Nullable="false" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_Worker_ID_Result">
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Worker_SEARCH_Result">
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Worker_To_ComboBox_Result">
+    <Property Type="Int32" Name="worker_id" Nullable="false" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_Workers_To_DataGrid_Result">
+    <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
+    <Property Type="Int32" Name="معرف" Nullable="false" />
+    <Property Type="String" Name="الاسم" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="دولة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المحافظة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="المدينة" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="بريد_الكتروني" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="عنوان" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+</Schema>

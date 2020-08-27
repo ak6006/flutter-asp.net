@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f96acc4b32ac4840b3ed354e46c77cf2" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.address" Width="1.5" PointX="1.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.addresstype" Width="1.5" PointX="1.5" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.barcode" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.customer" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.measurement" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.order" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.order_has_product" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.role" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.shift" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.shiftadmin" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.store" Width="1.5" PointX="3" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.store_has_product" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.transvehcile" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.transvehcile_has_order" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.user" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.weight" Width="1.5" PointX="3" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.worker" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.address_fk_address_addressType1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.customers_fk_customers_address" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.shiftadmin_fk_shiftAdmin_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.users_fk_users_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.workers_fk_workers_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_fk_store_has_product_barcode1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_fk_order_customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.transvehcile_fk_transVehcile_customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_measurement1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_fk_order_store1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_fk_order_users1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_order1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.transvehcile_has_order_fk_transVehcile_has_order_order1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_weight1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_fk_store_has_product_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.shift_fk_shift_shiftAdmin1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_fk_store_has_product_shift1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_fk_store_has_product_store1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_fk_store_has_product_weight1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.orderserial" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.product_has_weight" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.shift_has_workers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.store_has_product_has_order" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.users_has_roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
