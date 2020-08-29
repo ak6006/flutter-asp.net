@@ -7,20 +7,29 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class ValuesController : ApiController
     {
-
         private Entities db = new Entities();
+        private ApplicationDBContext AuthDB = new ApplicationDBContext();
 
         [HttpGet]
-        public List<SP_Sales_BarCode_Check_Result> Data(string Key)
+        public IHttpActionResult Data(string Key)
         {
+            var UserId = User.Identity.GetUserId();
+            var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
+            var UserPhone = UserData.PhoneNumber;
             ObjectParameter RecFound = new ObjectParameter("rec_found", typeof(int));
-            var result = db.SP_Sales_BarCode_Check(Key, RecFound).ToList();
-            return result;
+            
+            var result = db.SP_Sales_BarCode_Check(Key, RecFound).SingleOrDefault();
+            if (result != null)
+                return Ok(result);
+            else
+                return NotFound();
         }
 
         // GET api/values/5

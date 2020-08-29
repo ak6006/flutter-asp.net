@@ -22,12 +22,6 @@ namespace API.Controllers
         public List<SP_Customer_To_DataGrid_Result> Getcustomers()
         {
             List<SP_Customer_To_DataGrid_Result> customers = db.SP_Customer_To_DataGrid().ToList();
-            //List<CustomerDto> customers = new List<CustomerDto>();
-            //for (int i = 0; i < customrs.Count; i++)
-            //{
-            //    customers[i].CustomerId = customrs[i].رقم_الوكيل;
-            //    customers[i].CustomerId = customrs[i].رقم_الوكيل;
-            //}
             return customers;
         }
 
