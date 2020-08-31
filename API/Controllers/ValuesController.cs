@@ -17,6 +17,8 @@ namespace API.Controllers
         private Entities db = new Entities();
         private ApplicationDBContext AuthDB = new ApplicationDBContext();
 
+
+        // route api/Values/Data
         [HttpGet]
         public IHttpActionResult Data(string Key)
         {
@@ -42,6 +44,7 @@ namespace API.Controllers
         // POST api/values
         public void Post([FromBody] string value)
         {
+            
         }
 
         // PUT api/values/5

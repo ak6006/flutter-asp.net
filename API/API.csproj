@@ -336,6 +336,7 @@
     <Compile Include="Controllers\customersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\measurementsController.cs" />
+    <Compile Include="Controllers\TransController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Global.asax.cs">
