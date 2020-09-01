@@ -11,9 +11,7 @@ namespace API.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class order_has_product
     {
         public int order_order_id { get; set; }
@@ -23,14 +21,11 @@ namespace API.Models
         public string Quantity { get; set; }
         public Nullable<int> order_has_product_Pages_Count { get; set; }
         public Nullable<int> order_has_product_dept_count { get; set; }
-        public Nullable<int> order_has_product_state { get; set; }     
-        public virtual measurement measurement { get; set; }       
+        public Nullable<int> order_has_product_state { get; set; }
+    
+        public virtual measurement measurement { get; set; }
         public virtual order order { get; set; }
-        
-      
         public virtual product product { get; set; }
-
-
         public virtual weight weight { get; set; }
     }
 }

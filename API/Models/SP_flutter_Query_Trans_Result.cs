@@ -11,17 +11,12 @@ namespace API.Models
 {
     using System;
     
-    public partial class SP_Sales_Order_Trans_Vin_Load_Result
+    public partial class SP_flutter_Query_Trans_Result
     {
         public int order_id { get; set; }
         public string transVehcile_driver_name { get; set; }
-        public string firstName { get; set; }
+        public string transVehcile_num { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public string productName { get; set; }
-        public Nullable<int> order_has_product_Pages_Count { get; set; }
-        public Nullable<int> order_has_product_dept_count { get; set; }
-        public int weight_weight_id { get; set; }
-        public int product_product_id { get; set; }
-        public Nullable<int> weight_net { get; set; }
+        public Nullable<int> transVehcile_has_order_state { get; set; }
     }
 }

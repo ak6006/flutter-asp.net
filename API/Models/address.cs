@@ -11,8 +11,7 @@ namespace API.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +22,7 @@ namespace API.Models
             this.users = new HashSet<user>();
             this.workers = new HashSet<worker>();
         }
-        
+    
         public int add_id { get; set; }
         public int addressType_addressType_id { get; set; }
         public string firstName { get; set; }

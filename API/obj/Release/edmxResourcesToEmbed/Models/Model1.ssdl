@@ -628,6 +628,9 @@
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="SP_flutter_Query_Trans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="SP_LOGINSELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="nvarchar" Mode="In" />
     <Parameter Name="password" Type="nvarchar" Mode="In" />

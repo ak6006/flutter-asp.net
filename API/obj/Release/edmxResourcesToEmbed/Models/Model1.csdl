@@ -1001,6 +1001,9 @@
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(Model.SP_flutter_Query_Trans_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_Customer_ID_Result">
     <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -1184,6 +1187,7 @@
     <Property Type="Int32" Name="order_has_product_dept_count" Nullable="true" />
     <Property Type="Int32" Name="weight_weight_id" Nullable="false" />
     <Property Type="Int32" Name="product_product_id" Nullable="false" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
   </ComplexType>
   <ComplexType Name="SP_Shift_Admin_ID_Result">
     <Property Type="Int32" Name="رقم_المدير" Nullable="false" />
@@ -1403,5 +1407,12 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_flutter_Query_Trans_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
   </ComplexType>
 </Schema>

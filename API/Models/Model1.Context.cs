@@ -14,9 +14,8 @@ namespace API.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    public partial class Entities : IdentityDbContext
+    
+    public partial class Entities : DbContext
     {
         public Entities()
             : base("name=Entities")
@@ -25,7 +24,7 @@ namespace API.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<address> addresses { get; set; }
@@ -1290,6 +1289,15 @@ namespace API.Models
         public virtual ObjectResult<SP_Workers_To_DataGrid_Result> SP_Workers_To_DataGrid()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Workers_To_DataGrid_Result>("SP_Workers_To_DataGrid");
+        }
+    
+        public virtual ObjectResult<SP_flutter_Query_Trans_Result> SP_flutter_Query_Trans(string custmerPhone)
+        {
+            var custmerPhoneParameter = custmerPhone != null ?
+                new ObjectParameter("CustmerPhone", custmerPhone) :
+                new ObjectParameter("CustmerPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Query_Trans_Result>("SP_flutter_Query_Trans", custmerPhoneParameter);
         }
     }
 }

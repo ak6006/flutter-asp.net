@@ -10,21 +10,19 @@ using System.Web.Http;
 namespace API.Controllers
 {
     [Authorize]
-    public class TransController : ApiController
+    public class CustTransController : ApiController
     {
         private Entities db = new Entities();
         private ApplicationDBContext AuthDB = new ApplicationDBContext();
 
 
-        // route => api/trans/transdata 
         [HttpGet]
-        public IHttpActionResult TransData(string Key)
+        public IHttpActionResult Get()
         {
-
             var UserId = User.Identity.GetUserId();
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
-            var result = db.SP_Sales_Order_Trans_Vin_Load(Key).ToList();
+            var result = db.SP_flutter_Query_Trans(UserPhone).ToList();
 
             if (result != null)
             {

@@ -521,6 +521,7 @@
           <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
           <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
           <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -871,6 +872,17 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

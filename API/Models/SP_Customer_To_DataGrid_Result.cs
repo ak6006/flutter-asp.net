@@ -9,10 +9,8 @@
 
 namespace API.Models
 {
-    using Newtonsoft.Json;
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class SP_Customer_To_DataGrid_Result
     {
         public int رقم_الوكيل { get; set; }
