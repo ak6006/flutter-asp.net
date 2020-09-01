@@ -24,8 +24,16 @@ namespace API.Controllers
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
             var result = db.SP_Sales_Order_Trans_Vin_Load(Key).ToList();
+
             if (result != null)
-                return Ok(result);
+            {
+                var Today = DateTime.Today;
+                var TodayResult = result.Where(r => r.date.ToString() == Today.ToString());
+                if(TodayResult!=null)
+                    return Ok(TodayResult);
+                else
+                    return NotFound();
+            }    
             else
                 return NotFound();
         }
