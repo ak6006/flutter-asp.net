@@ -93,6 +93,8 @@
     <Property Name="order_has_product_Pages_Count" Type="Int32" />
     <Property Name="order_has_product_dept_count" Type="Int32" />
     <Property Name="order_has_product_state" Type="Int32" />
+    <Property Name="order_has_product_in_date" Type="DateTime" Precision="3" />
+    <Property Name="order_has_product_out_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="measurement" Relationship="Self.order_has_product_fk_order_has_product_measurement1" FromRole="order_has_product" ToRole="measurement" />
     <NavigationProperty Name="order" Relationship="Self.order_has_product_fk_order_has_product_order1" FromRole="order_has_product" ToRole="order" />
     <NavigationProperty Name="product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
@@ -192,6 +194,8 @@
     <Property Name="transVehcile_v_id" Type="Int32" Nullable="false" />
     <Property Name="order_order_id" Type="Int32" Nullable="false" />
     <Property Name="transVehcile_has_order_state" Type="Int32" />
+    <Property Name="trans_in_date" Type="DateTime" Precision="3" />
+    <Property Name="trans_out_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="order" Relationship="Self.transvehcile_has_order_fk_transVehcile_has_order_order1" FromRole="transvehcile_has_order" ToRole="order" />
   </EntityType>
   <EntityType Name="user">
@@ -641,6 +645,12 @@
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_flutter_Customer_Orders_Query" ReturnType="Collection(Model.SP_flutter_Customer_Orders_Query_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(Model.SP_flutter_Query_Trans_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="SP_LOGINSELECT" ReturnType="Collection(Model.SP_LOGINSELECT_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
@@ -1001,9 +1011,6 @@
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
-    <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(Model.SP_flutter_Query_Trans_Result)">
-      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_Customer_ID_Result">
     <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -1047,6 +1054,27 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_flutter_Customer_Orders_Query_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Quantity" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="order_has_product_state" Nullable="true" />
+    <Property Type="DateTime" Name="order_has_product_in_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="order_has_product_out_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_flutter_Query_Trans_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
+    <Property Type="DateTime" Name="trans_in_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="trans_out_date" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="SP_LOGINSELECT_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -1407,12 +1435,5 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
-  </ComplexType>
-  <ComplexType Name="SP_flutter_Query_Trans_Result">
-    <Property Type="Int32" Name="order_id" Nullable="false" />
-    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
-    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
-    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -78,6 +78,8 @@
           <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
           <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
           <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -157,6 +159,8 @@
           <ScalarProperty Name="transVehcile_v_id" ColumnName="transVehcile_v_id" />
           <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
           <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+          <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+          <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -292,6 +296,35 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Customer_Update" FunctionName="Model.Store.SP_Customer_Update" />
+    <FunctionImportMapping FunctionImportName="SP_flutter_Customer_Orders_Query" FunctionName="Model.Store.SP_flutter_Customer_Orders_Query">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.SP_flutter_Customer_Orders_Query_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+          <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+          <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="Model.Store.SP_LOGINSELECT">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Model.SP_LOGINSELECT_Result">
@@ -872,17 +905,6 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
-          <ScalarProperty Name="order_id" ColumnName="order_id" />
-          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
-          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

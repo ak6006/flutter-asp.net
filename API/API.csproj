@@ -411,6 +411,9 @@
     <Compile Include="Models\SP_Customer_To_DataGrid_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SP_flutter_Customer_Orders_Query_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_flutter_Query_Trans_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

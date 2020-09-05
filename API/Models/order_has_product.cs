@@ -22,6 +22,8 @@ namespace API.Models
         public Nullable<int> order_has_product_Pages_Count { get; set; }
         public Nullable<int> order_has_product_dept_count { get; set; }
         public Nullable<int> order_has_product_state { get; set; }
+        public Nullable<System.DateTime> order_has_product_in_date { get; set; }
+        public Nullable<System.DateTime> order_has_product_out_date { get; set; }
     
         public virtual measurement measurement { get; set; }
         public virtual order order { get; set; }

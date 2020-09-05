@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="address">
           <Key>
             <PropertyRef Name="add_id" />
@@ -79,6 +79,8 @@
           <Property Name="order_has_product_Pages_Count" Type="int" />
           <Property Name="order_has_product_dept_count" Type="int" />
           <Property Name="order_has_product_state" Type="int" />
+          <Property Name="order_has_product_in_date" Type="datetime" />
+          <Property Name="order_has_product_out_date" Type="datetime" />
         </EntityType>
         <EntityType Name="orderserial">
           <Key>
@@ -196,6 +198,8 @@
           <Property Name="transVehcile_v_id" Type="int" Nullable="false" />
           <Property Name="order_order_id" Type="int" Nullable="false" />
           <Property Name="transVehcile_has_order_state" Type="int" />
+          <Property Name="trans_in_date" Type="datetime" />
+          <Property Name="trans_out_date" Type="datetime" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -632,6 +636,9 @@
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="SP_flutter_Customer_Orders_Query" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_flutter_Query_Trans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
@@ -1141,7 +1148,8 @@
             <End Role="workers" EntitySet="workers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1238,6 +1246,8 @@
           <Property Name="order_has_product_Pages_Count" Type="Int32" />
           <Property Name="order_has_product_dept_count" Type="Int32" />
           <Property Name="order_has_product_state" Type="Int32" />
+          <Property Name="order_has_product_in_date" Type="DateTime" Precision="3" />
+          <Property Name="order_has_product_out_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="measurement" Relationship="Self.order_has_product_fk_order_has_product_measurement1" FromRole="order_has_product" ToRole="measurement" />
           <NavigationProperty Name="order" Relationship="Self.order_has_product_fk_order_has_product_order1" FromRole="order_has_product" ToRole="order" />
           <NavigationProperty Name="product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
@@ -1337,6 +1347,8 @@
           <Property Name="transVehcile_v_id" Type="Int32" Nullable="false" />
           <Property Name="order_order_id" Type="Int32" Nullable="false" />
           <Property Name="transVehcile_has_order_state" Type="Int32" />
+          <Property Name="trans_in_date" Type="DateTime" Precision="3" />
+          <Property Name="trans_out_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="order" Relationship="Self.transvehcile_has_order_fk_transVehcile_has_order_order1" FromRole="transvehcile_has_order" ToRole="order" />
         </EntityType>
         <EntityType Name="user">
@@ -1766,10 +1778,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_ID" ReturnType="Collection(Model.SP_Customer_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_Search" ReturnType="Collection(Model.SP_Customer_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_To_ComboBox" ReturnType="Collection(Model.SP_Customer_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Customer_To_DataGrid" ReturnType="Collection(Model.SP_Customer_To_DataGrid_Result)" />
@@ -1785,6 +1797,12 @@
             <Parameter Name="ADRESS" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_flutter_Customer_Orders_Query" ReturnType="Collection(Model.SP_flutter_Customer_Orders_Query_Result)">
+            <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(Model.SP_flutter_Query_Trans_Result)">
+            <Parameter Name="CustmerPhone" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_LOGINSELECT" ReturnType="Collection(Model.SP_LOGINSELECT_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -1805,13 +1823,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_DELETE">
-          <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
+            <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_ID" ReturnType="Collection(Model.SP_Measurement_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_Search" ReturnType="Collection(Model.SP_Measurement_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_To_ComboBox" ReturnType="Collection(Model.SP_Measurement_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Measurement_To_DataGrid" ReturnType="Collection(Model.SP_Measurement_To_DataGrid_Result)" />
@@ -1828,10 +1846,10 @@
             <Parameter Name="OrderNote" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_DELETE">
-          <Parameter Name="OrderId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_ID" ReturnType="Collection(Model.SP_Order_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_Add_New">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -1853,7 +1871,7 @@
             <Parameter Name="weightId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_To_DataGrid" ReturnType="Collection(Model.SP_Order_Items_To_DataGrid_Result)">
-          <Parameter Name="OrderId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_Update">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -1866,7 +1884,7 @@
             <Parameter Name="NewQuantity" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Search" ReturnType="Collection(Model.SP_Order_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_To_DataGrid" ReturnType="Collection(Model.SP_Order_To_DataGrid_Result)" />
           <FunctionImport Name="SP_Order_Trans_Vin_Add_New">
@@ -1882,7 +1900,7 @@
             <Parameter Name="transvehcileID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Trans_Vin_To_DataGrid" ReturnType="Collection(Model.SP_Order_Trans_Vin_To_DataGrid_Result)">
-          <Parameter Name="OrderId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Trans_Vin_Update">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -1903,13 +1921,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_DELETE">
-          <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_ID" ReturnType="Collection(Model.SP_Product_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_Search" ReturnType="Collection(Model.SP_Product_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_To_ComboBox" ReturnType="Collection(Model.SP_Product_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Product_To_DataGrid" ReturnType="Collection(Model.SP_Product_To_DataGrid_Result)" />
@@ -1932,7 +1950,7 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Sales_Order_Trans_Vin_Load" ReturnType="Collection(Model.SP_Sales_Order_Trans_Vin_Load_Result)">
-          <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
+            <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_Add_New" ReturnType="Collection(String)">
             <Parameter Name="A_Name" Mode="In" Type="String" />
@@ -1951,10 +1969,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_ID" ReturnType="Collection(Model.SP_Shift_Admin_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_SEARCH" ReturnType="Collection(Model.SP_Shift_Admin_SEARCH_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_To_ComboBox" ReturnType="Collection(Model.SP_Shift_Admin_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Shift_Admin_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Admin_To_DataGrid_Result)" />
@@ -1978,13 +1996,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_DELETE">
-          <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+            <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_ID" ReturnType="Collection(Model.SP_Shift_Main_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_Search" ReturnType="Collection(Model.SP_Shift_Main_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_To_ComboBox" ReturnType="Collection(Model.SP_Shift_Main_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Shift_Main_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Main_To_DataGrid_Result)" />
@@ -2013,7 +2031,7 @@
             <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Worker_To_DataGrid" ReturnType="Collection(Model.SP_Shift_Worker_To_DataGrid_Result)">
-          <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+            <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Worker_To_DataGrid_All" ReturnType="Collection(Model.SP_Shift_Worker_To_DataGrid_All_Result)" />
           <FunctionImport Name="SP_Shift_Worker_Update">
@@ -2030,10 +2048,10 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Delete">
-          <Parameter Name="Store_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Store_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_ID" ReturnType="Collection(Model.SP_Store_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Product_Add_New" ReturnType="Collection(String)">
             <Parameter Name="ShiftId" Mode="In" Type="Int32" />
@@ -2046,7 +2064,7 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Search" ReturnType="Collection(Model.SP_Store_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_To_ComboBox" ReturnType="Collection(Model.SP_Store_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Store_To_DataGrid" ReturnType="Collection(Model.SP_Store_To_DataGrid_Result)" />
@@ -2070,16 +2088,16 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_DELETE">
-          <Parameter Name="VinNo" Mode="In" Type="Int32" />
+            <Parameter Name="VinNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_ID" ReturnType="Collection(Model.SP_Trans_Vin_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_TRANS_VIN_Search" ReturnType="Collection(Model.SP_TRANS_VIN_Search_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_To_ComboBox" ReturnType="Collection(Model.SP_Trans_Vin_To_ComboBox_Result)">
-          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_To_DataGrid" ReturnType="Collection(Model.SP_Trans_Vin_To_DataGrid_Result)" />
           <FunctionImport Name="SP_Trans_vin_Update">
@@ -2126,10 +2144,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_ID" ReturnType="Collection(Model.SP_Worker_ID_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_SEARCH" ReturnType="Collection(Model.SP_Worker_SEARCH_Result)">
-          <Parameter Name="SEARCH" Mode="In" Type="String" />
+            <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_To_ComboBox" ReturnType="Collection(Model.SP_Worker_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Worker_Update">
@@ -2146,9 +2164,6 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
-          <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(Model.SP_flutter_Query_Trans_Result)">
-            <Parameter Name="CustmerPhone" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_Customer_ID_Result">
           <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -2192,6 +2207,27 @@
           <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
           <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
           <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+        </ComplexType>
+        <ComplexType Name="SP_flutter_Customer_Orders_Query_Result">
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="order_has_product_state" Nullable="true" />
+          <Property Type="DateTime" Name="order_has_product_in_date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="order_has_product_out_date" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_flutter_Query_Trans_Result">
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
+          <Property Type="DateTime" Name="trans_in_date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="trans_out_date" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="SP_LOGINSELECT_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -2553,13 +2589,6 @@
           <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
           <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
         </ComplexType>
-        <ComplexType Name="SP_flutter_Query_Trans_Result">
-          <Property Type="Int32" Name="order_id" Nullable="false" />
-          <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
-          <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
-          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2643,6 +2672,8 @@
                 <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
                 <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
                 <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+                <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+                <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2722,6 +2753,8 @@
                 <ScalarProperty Name="transVehcile_v_id" ColumnName="transVehcile_v_id" />
                 <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
                 <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+                <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+                <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2857,6 +2890,35 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Customer_Update" FunctionName="Model.Store.SP_Customer_Update" />
+          <FunctionImportMapping FunctionImportName="SP_flutter_Customer_Orders_Query" FunctionName="Model.Store.SP_flutter_Customer_Orders_Query">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.SP_flutter_Customer_Orders_Query_Result">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+                <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+                <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+                <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+                <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+                <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+                <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+                <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="Model.Store.SP_LOGINSELECT">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.SP_LOGINSELECT_Result">
@@ -3437,17 +3499,6 @@
                 <ScalarProperty Name="تلفون" ColumnName="تلفون" />
                 <ScalarProperty Name="هاتف" ColumnName="هاتف" />
                 <ScalarProperty Name="فاكس" ColumnName="فاكس" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
-                <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

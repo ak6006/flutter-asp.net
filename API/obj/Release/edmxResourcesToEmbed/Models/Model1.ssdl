@@ -74,6 +74,8 @@
     <Property Name="order_has_product_Pages_Count" Type="int" />
     <Property Name="order_has_product_dept_count" Type="int" />
     <Property Name="order_has_product_state" Type="int" />
+    <Property Name="order_has_product_in_date" Type="datetime" />
+    <Property Name="order_has_product_out_date" Type="datetime" />
   </EntityType>
   <EntityType Name="orderserial">
     <Key>
@@ -191,6 +193,8 @@
     <Property Name="transVehcile_v_id" Type="int" Nullable="false" />
     <Property Name="order_order_id" Type="int" Nullable="false" />
     <Property Name="transVehcile_has_order_state" Type="int" />
+    <Property Name="trans_in_date" Type="datetime" />
+    <Property Name="trans_out_date" Type="datetime" />
   </EntityType>
   <EntityType Name="users">
     <Key>
@@ -627,6 +631,9 @@
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SP_flutter_Customer_Orders_Query" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_flutter_Query_Trans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />

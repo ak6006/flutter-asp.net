@@ -165,6 +165,24 @@ namespace API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Customer_Update", aDD_IDParameter, a_NameParameter, a_CountryParameter, a_CityParameter, a_StateParameter, a_PhoneParameter, a_FaxParameter, a_EmailParameter, aDRESSParameter, new_identity, rec_found);
         }
     
+        public virtual ObjectResult<SP_flutter_Customer_Orders_Query_Result> SP_flutter_Customer_Orders_Query(string custmerPhone)
+        {
+            var custmerPhoneParameter = custmerPhone != null ?
+                new ObjectParameter("CustmerPhone", custmerPhone) :
+                new ObjectParameter("CustmerPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Customer_Orders_Query_Result>("SP_flutter_Customer_Orders_Query", custmerPhoneParameter);
+        }
+    
+        public virtual ObjectResult<SP_flutter_Query_Trans_Result> SP_flutter_Query_Trans(string custmerPhone)
+        {
+            var custmerPhoneParameter = custmerPhone != null ?
+                new ObjectParameter("CustmerPhone", custmerPhone) :
+                new ObjectParameter("CustmerPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Query_Trans_Result>("SP_flutter_Query_Trans", custmerPhoneParameter);
+        }
+    
         public virtual ObjectResult<SP_LOGINSELECT_Result> SP_LOGINSELECT(string username, string password, ObjectParameter rec_found, ObjectParameter rolesName)
         {
             var usernameParameter = username != null ?
@@ -1289,15 +1307,6 @@ namespace API.Models
         public virtual ObjectResult<SP_Workers_To_DataGrid_Result> SP_Workers_To_DataGrid()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Workers_To_DataGrid_Result>("SP_Workers_To_DataGrid");
-        }
-    
-        public virtual ObjectResult<SP_flutter_Query_Trans_Result> SP_flutter_Query_Trans(string custmerPhone)
-        {
-            var custmerPhoneParameter = custmerPhone != null ?
-                new ObjectParameter("CustmerPhone", custmerPhone) :
-                new ObjectParameter("CustmerPhone", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Query_Trans_Result>("SP_flutter_Query_Trans", custmerPhoneParameter);
         }
     }
 }

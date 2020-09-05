@@ -11,14 +11,17 @@ namespace API.Models
 {
     using System;
     
-    public partial class SP_flutter_Query_Trans_Result
+    public partial class SP_flutter_Customer_Orders_Query_Result
     {
         public int order_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
         public string transVehcile_driver_name { get; set; }
         public string transVehcile_num { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> transVehcile_has_order_state { get; set; }
-        public Nullable<System.DateTime> trans_in_date { get; set; }
-        public Nullable<System.DateTime> trans_out_date { get; set; }
+        public string productName { get; set; }
+        public string Quantity { get; set; }
+        public string measre_name { get; set; }
+        public Nullable<int> order_has_product_state { get; set; }
+        public Nullable<System.DateTime> order_has_product_in_date { get; set; }
+        public Nullable<System.DateTime> order_has_product_out_date { get; set; }
     }
 }

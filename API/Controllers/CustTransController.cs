@@ -22,7 +22,7 @@ namespace API.Controllers
             var UserId = User.Identity.GetUserId();
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
-            var result = db.SP_flutter_Query_Trans(UserPhone).ToList();
+            var result = db.SP_flutter_Customer_Orders_Query(UserPhone).ToList();
 
             if (result != null)
             {
