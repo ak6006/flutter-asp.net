@@ -230,6 +230,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
     </Reference>
@@ -337,7 +338,10 @@
     <Compile Include="Controllers\CustTransController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\measurementsController.cs" />
+    <Compile Include="Controllers\NotiController.cs" />
     <Compile Include="Controllers\TransController.cs" />
+    <Compile Include="Controllers\TransHistoryController.cs" />
+    <Compile Include="Controllers\UpdateUserTokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -346,6 +350,10 @@
     <Compile Include="Migrations\202008261026568_test.cs" />
     <Compile Include="Migrations\202008261026568_test.designer.cs">
       <DependentUpon>202008261026568_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009091428454_DeviceToken.cs" />
+    <Compile Include="Migrations\202009091428454_DeviceToken.designer.cs">
+      <DependentUpon>202009091428454_DeviceToken.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -390,6 +398,7 @@
     <Compile Include="Models\product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PushNotification.cs" />
     <Compile Include="Models\role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -774,6 +783,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008261026568_test.resx">
       <DependentUpon>202008261026568_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009091428454_DeviceToken.resx">
+      <DependentUpon>202009091428454_DeviceToken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

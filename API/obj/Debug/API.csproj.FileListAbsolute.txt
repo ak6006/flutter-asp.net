@@ -201,4 +201,5 @@ C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Cryptography.Xml.xm
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Permissions.xml
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Principal.Windows.xml
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Tegoo II\Desktop\Team I\API\API\obj\Debug\API.Migrations.DeviceToken.resources
 C:\Users\Tegoo II\Desktop\Team I\API\API\obj\Debug\API.csprojAssemblyReference.cache

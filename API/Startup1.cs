@@ -27,7 +27,7 @@ namespace API
             {
                 //URl http how expirestion
                 TokenEndpointPath = new PathString("/login"),//http-https
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(3),
                 AllowInsecureHttp = true,
                 //how to create token (fields)==>
                 Provider = new TokenCreate()

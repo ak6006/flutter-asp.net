@@ -10,15 +10,16 @@ using System.Web.Http;
 namespace API.Controllers
 {
     [Authorize]
-    public class CustTransController : ApiController
+    public class TransHistoryController : ApiController
     {
         private Entities db = new Entities();
         private ApplicationDBContext AuthDB = new ApplicationDBContext();
 
-        //api/custtrans/get
+        //api/TransHistory/data
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult Data(string Key)
         {
+            //return Ok("ay test");
             var UserId = User.Identity.GetUserId();
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
@@ -26,8 +27,9 @@ namespace API.Controllers
 
             if (result != null)
             {
-                var Today = DateTime.Today;
-                var TodayResult = result.Where(r => r.date.ToString() == Today.ToString());
+                //var Today = DateTime.Today;
+                
+                var TodayResult = result.Where(r => r.date.ToString() == Key.ToString());
                 if (TodayResult != null)
                     return Ok(TodayResult);
                 else

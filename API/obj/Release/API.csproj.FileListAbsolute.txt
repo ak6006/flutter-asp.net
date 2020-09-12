@@ -202,3 +202,4 @@ C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Cryptography.Xml.xm
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Permissions.xml
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Security.Principal.Windows.xml
 C:\Users\Tegoo II\Desktop\Team I\API\API\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Tegoo II\Desktop\Team I\API\API\obj\Release\API.Migrations.DeviceToken.resources
