@@ -13,7 +13,7 @@ namespace API.Models
     public class PushNotification
     {
 
-        public PushNotification(NotificationViewModel input , string deviceId)
+        public PushNotification(NotificationViewModel input ,string deviceId)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace API.Models
                 // from my api firebase app
                 var senderId = "902308947399";
 
-                //string deviceId = "ckLmuO9fRQGMVqTRAzcwa4:APA91bERWMMBih1XVM-rixnK4lpN-I8j5T0cJgAuGnYYOvSDN1Fm9Q5KhRcJ6XfibSJoPF7BVgUEFdzjQFarCA9Em7PiBUc1ZZAdVBwpMMsu-yRLvOgVq9z1-Zb8eSItgZTSOSAeQjUU";
+                //string deviceId = "chDDD-mQS5Kvoot36RKfnU:APA91bGNcb6yYAPzgKU2fPRTXv4_8jUvUc8c92DOh-fqz7ZWg1utfZvfbrbSyYA6SexLhzBfNQtp5Pslxu6mQUi3nlrlOrOCC_0JqXdYDQ7qwZMQyQUaVXvIV_X8swyXSzbah4_xBaqc";
 
                 WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
 

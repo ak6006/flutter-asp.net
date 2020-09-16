@@ -28,12 +28,12 @@ namespace API.Controllers
 
             if (result != null)
             {
-                var Today = DateTime.Today;
-                var TodayResult = result.Where(r => r.date.ToString() == Today.ToString());
-                if (TodayResult != null)
-                    return Ok(TodayResult);
-                else
-                    return NotFound();
+                //var Today = DateTime.Today;
+                //var TodayResult = result.Where(r => r.date.ToString() == Today.ToString());
+                //if (TodayResult != null)
+                    return Ok(result);
+                //else
+                    //return NotFound();
             }
             else
                 return NotFound();

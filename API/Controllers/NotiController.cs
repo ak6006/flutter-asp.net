@@ -21,16 +21,21 @@ namespace API.Controllers
         [HttpPost]
         public IHttpActionResult Data(NotificationViewModel input)
         {
-            var deviceId = AuthDB.Users.Where(u => u.PhoneNumber == input.CustomerPhone).FirstOrDefault().DeviceToken;
-            try
+            var SelectedUsers = AuthDB.Users.Where(u => u.PhoneNumber == input.CustomerPhone).ToList();
+            foreach (var u in SelectedUsers)
             {
-                PushNotification p = new PushNotification(input, deviceId);
-                return Ok();
+                var deviceId = u.DeviceToken;
+                try
+                {
+                    PushNotification p = new PushNotification(input,deviceId);
+                }
+                catch
+                {
+                    return NotFound();
+                }
             }
-            catch
-            {
-                return NotFound();
-            }
+
+            return Ok();
 
         }
     }
