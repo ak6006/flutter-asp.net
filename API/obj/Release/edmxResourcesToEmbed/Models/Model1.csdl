@@ -1011,6 +1011,9 @@
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
+    <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(Model.SP_flutter_SumQuantity_Orders_Query_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_Customer_ID_Result">
     <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -1435,5 +1438,10 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="SP_flutter_SumQuantity_Orders_Query_Result">
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="sumQuantity" Nullable="true" />
   </ComplexType>
 </Schema>

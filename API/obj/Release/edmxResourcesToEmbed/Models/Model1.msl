@@ -908,5 +908,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="Model.Store.SP_flutter_SumQuantity_Orders_Query">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.SP_flutter_SumQuantity_Orders_Query_Result">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

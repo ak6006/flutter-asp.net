@@ -1308,5 +1308,14 @@ namespace API.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Workers_To_DataGrid_Result>("SP_Workers_To_DataGrid");
         }
+    
+        public virtual ObjectResult<SP_flutter_SumQuantity_Orders_Query_Result> SP_flutter_SumQuantity_Orders_Query(string custmerPhone)
+        {
+            var custmerPhoneParameter = custmerPhone != null ?
+                new ObjectParameter("CustmerPhone", custmerPhone) :
+                new ObjectParameter("CustmerPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_SumQuantity_Orders_Query_Result>("SP_flutter_SumQuantity_Orders_Query", custmerPhoneParameter);
+        }
     }
 }
