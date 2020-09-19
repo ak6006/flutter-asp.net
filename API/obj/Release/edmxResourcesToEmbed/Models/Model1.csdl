@@ -1013,6 +1013,8 @@
     <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
     <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(Model.SP_flutter_SumQuantity_Orders_Query_Result)">
       <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+      <Parameter Name="BeginDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_Customer_ID_Result">

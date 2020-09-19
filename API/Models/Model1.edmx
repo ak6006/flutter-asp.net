@@ -645,6 +645,8 @@
         </Function>
         <Function Name="SP_flutter_SumQuantity_Orders_Query" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="BeginDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="SP_LOGINSELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nvarchar" Mode="In" />
@@ -2168,7 +2170,10 @@
           <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(Model.SP_Workers_To_DataGrid_Result)" />
           <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(Model.SP_flutter_SumQuantity_Orders_Query_Result)">
             <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+            <Parameter Name="BeginDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          
         </EntityContainer>
         <ComplexType Name="SP_Customer_ID_Result">
           <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -2599,6 +2604,7 @@
           <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
           <Property Type="Int32" Name="sumQuantity" Nullable="true" />
         </ComplexType>
+        
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3521,6 +3527,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
