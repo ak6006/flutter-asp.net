@@ -34,10 +34,30 @@ namespace API.Controllers
                 return NotFound();
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public IHttpActionResult Products()
+        {
+            var products = db.products.ToList();
+            List<ProductName> ProdNames=new List<ProductName>();
+            foreach (var item in products)
+            {
+                ProductName PName = new ProductName()
+                {
+                    productName = item.productName
+                };
+                ProdNames.Add(PName);
+            }
+            if (ProdNames != null)
+                return Ok(ProdNames);
+            else
+                return NotFound();
+        }
+
         // GET api/values/5
         //public string Get(int id)
         //{
-            
+
         //    return "value";
         //}
 

@@ -345,6 +345,7 @@
     <Compile Include="Controllers\UpdateUserTokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
+    <Compile Include="Dto\ProductName.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
