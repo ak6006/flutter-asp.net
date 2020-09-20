@@ -34,6 +34,8 @@ namespace API.Controllers
                 return NotFound();
         }
 
+
+        // route api/Values/products
         [AllowAnonymous]
         [HttpGet]
         public IHttpActionResult Products()
@@ -42,12 +44,18 @@ namespace API.Controllers
             List<ProductName> ProdNames=new List<ProductName>();
             foreach (var item in products)
             {
-                ProductName PName = new ProductName()
+                ProductName PNames = new ProductName()
                 {
                     productName = item.productName
                 };
-                ProdNames.Add(PName);
+                ProdNames.Add(PNames);
             }
+            ProductName PName = new ProductName()
+            {
+                productName = "كل المنتجات"
+            };
+            ProdNames.Add(PName);
+
             if (ProdNames != null)
                 return Ok(ProdNames);
             else
