@@ -17,17 +17,35 @@ namespace API.Controllers
 
         //api/Payment/get
         [HttpGet]
-        public IHttpActionResult Get(DateTime beginDate , DateTime endDate)
+        public IHttpActionResult Get(DateTime beginDate , DateTime endDate , string ProductName)
         {
             var UserId = User.Identity.GetUserId();
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
             var result = db.SP_flutter_SumQuantity_Orders_Query(UserPhone,beginDate,endDate).ToList();
-
-            if (result != null)
-                return Ok(result);
+            if(ProductName == null)
+            {
+                if (result != null)
+                    return Ok(result);
+                else
+                    return NotFound();
+            }
             else
-                return NotFound();
+            {
+                List<SP_flutter_SumQuantity_Orders_Query_Result> FilteredResult = new
+                    List<SP_flutter_SumQuantity_Orders_Query_Result>();
+                foreach (var item in result)
+                {
+                    if (item.productName == ProductName)
+                    {
+                        FilteredResult.Add(item);
+                    }
+                }
+                if (FilteredResult != null)
+                    return Ok(FilteredResult);
+                else
+                    return NotFound();
+            }
         }
     }
 }
