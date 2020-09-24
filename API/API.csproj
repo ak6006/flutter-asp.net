@@ -339,6 +339,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\measurementsController.cs" />
     <Compile Include="Controllers\NotiController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\TransController.cs" />
     <Compile Include="Controllers\TransHistoryController.cs" />

@@ -31,8 +31,7 @@ namespace API
                 AllowInsecureHttp = true,
                 //how to create token (fields)==>
                 Provider = new TokenCreate()
-
-            }); ;
+            }); 
             //Check token valid 
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 

@@ -11,14 +11,14 @@
         <EntityTypeShape EntityType="Model.customer" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.measurement" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.order" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.order_has_product" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.order_has_product" Width="2.375" PointX="8.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.product" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.role" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.shift" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.shiftadmin" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.store" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.store_has_product" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.transvehcile" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.transvehcile" Width="2" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.transvehcile_has_order" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.user" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.weight" Width="1.5" PointX="3" PointY="34.5" IsExpanded="true" />
