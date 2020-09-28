@@ -84,7 +84,7 @@ namespace API.Controllers
                              where (o.customers_Customers_id == CustomerId)
                              join p in db.order_has_product on o.order_id equals p.order_order_id
                              where o.order_state == 0
-                             select new
+                             select new CustomerOrdersDto
                              {
                                  OrderId = o.order_id,
                                  OrderDate = o.date,
@@ -94,23 +94,33 @@ namespace API.Controllers
                                  WieghtName = p.weight.weight_net,
                                  MeasureId = p.measurement_measure_id,
                                  MeasureName = p.measurement.measre_name,
-                                 quantity = p.Quantity
+                                 quantity = p.Quantity,
+                                 OrderHasProductId = p.order_has_product_Id
                              };
+
                 foreach (var item in result)
                 {
-                    CustomerOrdersDto item2 = new CustomerOrdersDto()
+                    try
                     {
-                        MeasureId = item.MeasureId,
-                        MeasureName = item.MeasureName,
-                        OrderId = item.OrderId,
-                        ProductId = item.ProductId,
-                        ProductName = item.ProductName,
-                        WieghtId = item.WieghtId,
-                        WieghtName = item.WieghtName,
-                        OrderDate = item.OrderDate,
-                        quantity = item.quantity
-                    };
-                    customerOrders.Add(item2);
+                        var CarResult = from t in db.transvehcile_has_order
+                                        where (t.order_order_id == item.OrderId)
+                                        join v in db.transvehciles on t.transVehcile_v_id equals v.v_id
+                                        select new OrderCars
+                                        {
+                                            VId = t.transVehcile_v_id,
+                                            DriverName = v.transVehcile_driver_name
+                                        };
+                        foreach (var CarItem in CarResult)
+                        {
+                            item.orderCars.Add(CarItem);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                    
+                    customerOrders.Add(item);
                 }
             }
             catch

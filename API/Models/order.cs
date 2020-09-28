@@ -17,10 +17,10 @@ namespace API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public order()
         {
-            this.order_has_product = new HashSet<order_has_product>();
             this.transvehcile_has_order = new HashSet<transvehcile_has_order>();
             this.barcodes = new HashSet<barcode>();
             this.store_has_product = new HashSet<store_has_product>();
+            this.order_has_product = new HashSet<order_has_product>();
         }
     
         public int order_id { get; set; }
@@ -35,12 +35,12 @@ namespace API.Models
         public virtual store store { get; set; }
         public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order_has_product> order_has_product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transvehcile_has_order> transvehcile_has_order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<barcode> barcodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<store_has_product> store_has_product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order_has_product> order_has_product { get; set; }
     }
 }

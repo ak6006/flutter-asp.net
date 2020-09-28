@@ -12,6 +12,7 @@ namespace API.Dto
     public class CustomerOrdersDto
     {
         public int OrderId { get; set; }
+        public int OrderHasProductId { get; set; }
         public DateTime? OrderDate { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
@@ -20,6 +21,11 @@ namespace API.Dto
         public int MeasureId { get; set; }
         public string MeasureName { get; set; }
         public string quantity { get; set; }
+        public List<OrderCars> orderCars { get; set; }
+        public CustomerOrdersDto()
+        {
+            orderCars = new List<OrderCars>();    
+        }
 
     }
     public class ProductName
@@ -48,4 +54,11 @@ namespace API.Dto
         public int VehicleId { get; set; }
         public string DriverName { get; set; }
     }
+
+    public class OrderCars
+    {
+        public int VId { get; set; }
+        public string DriverName { get; set; }
+    }
+
 }

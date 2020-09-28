@@ -14,6 +14,7 @@ namespace API.Models
     
     public partial class order_has_product
     {
+        public int order_has_product_Id { get; set; }
         public int order_order_id { get; set; }
         public int product_product_id { get; set; }
         public int measurement_measure_id { get; set; }

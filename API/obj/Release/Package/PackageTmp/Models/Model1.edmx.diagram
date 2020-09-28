@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="Model.customer" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.measurement" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.order" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.order_has_product" Width="2.375" PointX="8.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.product" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.role" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.shift" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
@@ -19,7 +18,7 @@
         <EntityTypeShape EntityType="Model.store" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.store_has_product" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.transvehcile" Width="2" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.transvehcile_has_order" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.transvehcile_has_order" Width="2.125" PointX="5.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.user" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.weight" Width="1.5" PointX="3" PointY="34.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.worker" Width="1.5" PointX="5.25" PointY="22.75" IsExpanded="true" />
@@ -31,13 +30,9 @@
         <AssociationConnector Association="Model.store_has_product_fk_store_has_product_barcode1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.order_fk_order_customers1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.transvehcile_fk_transVehcile_customers1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_measurement1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.order_fk_order_store1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.order_fk_order_users1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_order1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.transvehcile_has_order_fk_transVehcile_has_order_order1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_product1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_weight1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.store_has_product_fk_store_has_product_product1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.shift_fk_shift_shiftAdmin1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.store_has_product_fk_store_has_product_shift1" ManuallyRouted="false" />
@@ -48,6 +43,11 @@
         <AssociationConnector Association="Model.shift_has_workers" ManuallyRouted="false" />
         <AssociationConnector Association="Model.store_has_product_has_order" ManuallyRouted="false" />
         <AssociationConnector Association="Model.users_has_roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.order_has_product" Width="2.625" PointX="8.625" PointY="17.25" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_measurement1" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_order1" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_product1" />
+        <AssociationConnector Association="Model.order_has_product_fk_order_has_product_weight1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

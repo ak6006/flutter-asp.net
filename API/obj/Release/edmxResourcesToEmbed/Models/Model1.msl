@@ -67,22 +67,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="order_has_product">
-      <EntityTypeMapping TypeName="Model.order_has_product">
-        <MappingFragment StoreEntitySet="order_has_product">
-          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
-          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
-          <ScalarProperty Name="measurement_measure_id" ColumnName="measurement_measure_id" />
-          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
-          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
-          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
-          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
-          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="Model.product">
         <MappingFragment StoreEntitySet="product">
@@ -156,6 +140,7 @@
     <EntitySetMapping Name="transvehcile_has_order">
       <EntityTypeMapping TypeName="Model.transvehcile_has_order">
         <MappingFragment StoreEntitySet="transvehcile_has_order">
+          <ScalarProperty Name="transVehcile_has_order_Id" ColumnName="transVehcile_has_order_Id" />
           <ScalarProperty Name="transVehcile_v_id" ColumnName="transVehcile_v_id" />
           <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
           <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
@@ -917,5 +902,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="order_has_product">
+      <EntityTypeMapping TypeName="Model.order_has_product">
+        <MappingFragment StoreEntitySet="order_has_product">
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
+          <ScalarProperty Name="measurement_measure_id" ColumnName="measurement_measure_id" />
+          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="order_has_product_Id" ColumnName="order_has_product_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="Model.Store.SP_Flutter_Order_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="Model.Store.SP_Flutter_Order_van_Update" />
   </EntityContainerMapping>
 </Mapping>

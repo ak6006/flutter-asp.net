@@ -33,7 +33,6 @@ namespace API.Models
         public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<measurement> measurements { get; set; }
         public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<order_has_product> order_has_product { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<shift> shifts { get; set; }
@@ -45,6 +44,7 @@ namespace API.Models
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<weight> weights { get; set; }
         public virtual DbSet<worker> workers { get; set; }
+        public virtual DbSet<order_has_product> order_has_product { get; set; }
     
         public virtual ObjectResult<string> SP_Customer_Add_New(string a_Name, string a_Country, string a_City, string a_State, string a_Phone, string a_Fax, string a_Email, string aDRESS, ObjectParameter new_identity, ObjectParameter rec_found)
         {
@@ -1324,6 +1324,84 @@ namespace API.Models
                 new ObjectParameter("EndDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_SumQuantity_Orders_Query_Result>("SP_flutter_SumQuantity_Orders_Query", custmerPhoneParameter, beginDateParameter, endDateParameter);
+        }
+    
+        public virtual int SP_Flutter_Order_Add_New(Nullable<int> customerId, Nullable<int> storeId, Nullable<System.DateTime> orderDate, string orderNote, Nullable<int> productId, Nullable<int> measureId, Nullable<int> weightId, Nullable<int> quantity, string listOfvan)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            var storeIdParameter = storeId.HasValue ?
+                new ObjectParameter("StoreId", storeId) :
+                new ObjectParameter("StoreId", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var orderNoteParameter = orderNote != null ?
+                new ObjectParameter("OrderNote", orderNote) :
+                new ObjectParameter("OrderNote", typeof(string));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var measureIdParameter = measureId.HasValue ?
+                new ObjectParameter("measureId", measureId) :
+                new ObjectParameter("measureId", typeof(int));
+    
+            var weightIdParameter = weightId.HasValue ?
+                new ObjectParameter("weightId", weightId) :
+                new ObjectParameter("weightId", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(int));
+    
+            var listOfvanParameter = listOfvan != null ?
+                new ObjectParameter("listOfvan", listOfvan) :
+                new ObjectParameter("listOfvan", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_Add_New", customerIdParameter, storeIdParameter, orderDateParameter, orderNoteParameter, productIdParameter, measureIdParameter, weightIdParameter, quantityParameter, listOfvanParameter);
+        }
+    
+        public virtual int SP_Flutter_Order_van_Update(Nullable<int> orderId, Nullable<int> orderHasProductId, Nullable<System.DateTime> orderDate, Nullable<int> productId, Nullable<int> wieghtId, Nullable<int> measureId, Nullable<int> quantity, string listOfvan)
+        {
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("OrderId", orderId) :
+                new ObjectParameter("OrderId", typeof(int));
+    
+            var orderHasProductIdParameter = orderHasProductId.HasValue ?
+                new ObjectParameter("OrderHasProductId", orderHasProductId) :
+                new ObjectParameter("OrderHasProductId", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var wieghtIdParameter = wieghtId.HasValue ?
+                new ObjectParameter("WieghtId", wieghtId) :
+                new ObjectParameter("WieghtId", typeof(int));
+    
+            var measureIdParameter = measureId.HasValue ?
+                new ObjectParameter("MeasureId", measureId) :
+                new ObjectParameter("MeasureId", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var listOfvanParameter = listOfvan != null ?
+                new ObjectParameter("listOfvan", listOfvan) :
+                new ObjectParameter("listOfvan", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_van_Update", orderIdParameter, orderHasProductIdParameter, orderDateParameter, productIdParameter, wieghtIdParameter, measureIdParameter, quantityParameter, listOfvanParameter);
         }
     }
 }

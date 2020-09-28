@@ -66,6 +66,7 @@
       <PropertyRef Name="product_product_id" />
       <PropertyRef Name="weight_weight_id" />
     </Key>
+    <Property Name="order_has_product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="order_order_id" Type="int" Nullable="false" />
     <Property Name="product_product_id" Type="int" Nullable="false" />
     <Property Name="measurement_measure_id" Type="int" Nullable="false" />
@@ -190,6 +191,7 @@
       <PropertyRef Name="transVehcile_v_id" />
       <PropertyRef Name="order_order_id" />
     </Key>
+    <Property Name="transVehcile_has_order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="transVehcile_v_id" Type="int" Nullable="false" />
     <Property Name="order_order_id" Type="int" Nullable="false" />
     <Property Name="transVehcile_has_order_state" Type="int" />
@@ -634,6 +636,27 @@
   </Function>
   <Function Name="SP_flutter_Customer_Orders_Query" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Flutter_Order_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="StoreId" Type="int" Mode="In" />
+    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="measureId" Type="int" Mode="In" />
+    <Parameter Name="weightId" Type="int" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="listOfvan" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Flutter_Order_van_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+    <Parameter Name="OrderHasProductId" Type="int" Mode="In" />
+    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="WieghtId" Type="int" Mode="In" />
+    <Parameter Name="MeasureId" Type="int" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+    <Parameter Name="listOfvan" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_flutter_Query_Trans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
