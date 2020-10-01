@@ -67,14 +67,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="products">
-      <EntityTypeMapping TypeName="Model.product">
-        <MappingFragment StoreEntitySet="product">
-          <ScalarProperty Name="product_id" ColumnName="product_id" />
-          <ScalarProperty Name="productName" ColumnName="productName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="roles">
       <EntityTypeMapping TypeName="Model.role">
         <MappingFragment StoreEntitySet="roles">
@@ -181,14 +173,6 @@
       </EndProperty>
       <EndProperty Name="order">
         <ScalarProperty Name="order_id" ColumnName="order_order_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="product_has_weight" TypeName="Model.product_has_weight" StoreEntitySet="product_has_weight">
-      <EndProperty Name="product">
-        <ScalarProperty Name="product_id" ColumnName="product_product_id" />
-      </EndProperty>
-      <EndProperty Name="weight">
-        <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="shift_has_workers" TypeName="Model.shift_has_workers" StoreEntitySet="shift_has_workers">
@@ -921,5 +905,23 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="Model.Store.SP_Flutter_Order_Add_New" />
     <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="Model.Store.SP_Flutter_Order_van_Update" />
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="Model.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
+          <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="product_has_weight" TypeName="Model.product_has_weight" StoreEntitySet="product_has_weight">
+      <EndProperty Name="weight">
+        <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
+      </EndProperty>
+      <EndProperty Name="product">
+        <ScalarProperty Name="product_id" ColumnName="product_product_id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

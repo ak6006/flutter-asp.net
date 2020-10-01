@@ -92,6 +92,8 @@
     </Key>
     <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="productName" Type="nvarchar" MaxLength="45" />
+    <Property Name="TodayPrice" Type="float" />
+    <Property Name="PriceUpdateTime" Type="datetime" />
   </EntityType>
   <EntityType Name="product_has_weight">
     <Key>
@@ -779,6 +781,7 @@
   </Function>
   <Function Name="SP_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProductPrice" Type="float" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>

@@ -171,7 +171,9 @@ namespace API.Controllers
                 ProductName PNames = new ProductName()
                 {
                     ProductId = item.product_id,
-                    productName = item.productName
+                    productName = item.productName,
+                    Price = item.TodayPrice,
+                    PriceUpdateTime = item.PriceUpdateTime
                 };
                 ProdNames.Add(PNames);
             }

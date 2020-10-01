@@ -97,6 +97,8 @@
           </Key>
           <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="productName" Type="nvarchar" MaxLength="45" />
+          <Property Name="TodayPrice" Type="float" />
+          <Property Name="PriceUpdateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="product_has_weight">
           <Key>
@@ -784,6 +786,7 @@
         </Function>
         <Function Name="SP_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProductPrice" Type="float" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -1259,16 +1262,6 @@
           <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_has_order" FromRole="order" ToRole="store_has_product" />
           <NavigationProperty Name="order_has_product" Relationship="Model.order_has_product_fk_order_has_product_order1" FromRole="order" ToRole="order_has_product" />
         </EntityType>
-        <EntityType Name="product">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="productName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="product" ToRole="store_has_product" />
-          <NavigationProperty Name="weights" Relationship="Self.product_has_weight" FromRole="product" ToRole="weight" />
-          <NavigationProperty Name="order_has_product" Relationship="Model.order_has_product_fk_order_has_product_product1" FromRole="product" ToRole="order_has_product" />
-        </EntityType>
         <EntityType Name="role">
           <Key>
             <PropertyRef Name="rolesId" />
@@ -1324,11 +1317,11 @@
           <Property Name="store_has_productDate" Type="DateTime" Precision="3" />
           <Property Name="store_has_product_state" Type="Int32" />
           <NavigationProperty Name="barcode" Relationship="Self.store_has_product_fk_store_has_product_barcode1" FromRole="store_has_product" ToRole="barcode" />
-          <NavigationProperty Name="product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="store_has_product" ToRole="product" />
           <NavigationProperty Name="shift" Relationship="Self.store_has_product_fk_store_has_product_shift1" FromRole="store_has_product" ToRole="shift" />
           <NavigationProperty Name="store" Relationship="Self.store_has_product_fk_store_has_product_store1" FromRole="store_has_product" ToRole="store" />
           <NavigationProperty Name="weight" Relationship="Self.store_has_product_fk_store_has_product_weight1" FromRole="store_has_product" ToRole="weight" />
           <NavigationProperty Name="orders" Relationship="Self.store_has_product_has_order" FromRole="store_has_product" ToRole="order" />
+          <NavigationProperty Name="product" Relationship="Model.store_has_product_fk_store_has_product_product1" FromRole="store_has_product" ToRole="product" />
         </EntityType>
         <EntityType Name="transvehcile">
           <Key>
@@ -1377,8 +1370,8 @@
           <Property Name="weight_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="weight_net" Type="Int32" />
           <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_weight1" FromRole="weight" ToRole="store_has_product" />
-          <NavigationProperty Name="products" Relationship="Self.product_has_weight" FromRole="weight" ToRole="product" />
           <NavigationProperty Name="order_has_product" Relationship="Model.order_has_product_fk_order_has_product_weight1" FromRole="weight" ToRole="order_has_product" />
+          <NavigationProperty Name="products" Relationship="Model.product_has_weight" FromRole="weight" ToRole="product" />
         </EntityType>
         <EntityType Name="worker">
           <Key>
@@ -1521,18 +1514,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="store_has_product_fk_store_has_product_product1">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="store_has_product">
-              <PropertyRef Name="product_product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="shift_fk_shift_shiftAdmin1">
           <End Role="shiftadmin" Type="Self.shiftadmin" Multiplicity="1" />
           <End Role="shift" Type="Self.shift" Multiplicity="*" />
@@ -1585,10 +1566,6 @@
           <End Role="barcode" Type="Self.barcode" Multiplicity="*" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
         </Association>
-        <Association Name="product_has_weight">
-          <End Role="product" Type="Self.product" Multiplicity="*" />
-          <End Role="weight" Type="Self.weight" Multiplicity="*" />
-        </Association>
         <Association Name="shift_has_workers">
           <End Role="shift" Type="Self.shift" Multiplicity="*" />
           <End Role="workers" Type="Self.worker" Multiplicity="*" />
@@ -1608,7 +1585,6 @@
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="measurements" EntityType="Self.measurement" />
           <EntitySet Name="orders" EntityType="Self.order" />
-          <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="roles" EntityType="Self.role" />
           <EntitySet Name="shifts" EntityType="Self.shift" />
           <EntitySet Name="shiftadmins" EntityType="Self.shiftadmin" />
@@ -1663,10 +1639,6 @@
             <End Role="order" EntitySet="orders" />
             <End Role="transvehcile_has_order" EntitySet="transvehcile_has_order" />
           </AssociationSet>
-          <AssociationSet Name="store_has_product_fk_store_has_product_product1" Association="Self.store_has_product_fk_store_has_product_product1">
-            <End Role="product" EntitySet="products" />
-            <End Role="store_has_product" EntitySet="store_has_product" />
-          </AssociationSet>
           <AssociationSet Name="shift_fk_shift_shiftAdmin1" Association="Self.shift_fk_shift_shiftAdmin1">
             <End Role="shiftadmin" EntitySet="shiftadmins" />
             <End Role="shift" EntitySet="shifts" />
@@ -1686,10 +1658,6 @@
           <AssociationSet Name="orderserial" Association="Self.orderserial">
             <End Role="barcode" EntitySet="barcodes" />
             <End Role="order" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="product_has_weight" Association="Self.product_has_weight">
-            <End Role="product" EntitySet="products" />
-            <End Role="weight" EntitySet="weights" />
           </AssociationSet>
           <AssociationSet Name="shift_has_workers" Association="Self.shift_has_workers">
             <End Role="shift" EntitySet="shifts" />
@@ -1859,6 +1827,7 @@
           </FunctionImport>
           <FunctionImport Name="SP_Product_Add_New" ReturnType="Collection(String)">
             <Parameter Name="ProductName" Mode="In" Type="String" />
+            <Parameter Name="ProductPrice" Mode="In" Type="Double" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -2120,10 +2089,6 @@
             <End Role="order" EntitySet="orders" />
             <End Role="order_has_product" EntitySet="order_has_product" />
           </AssociationSet>
-          <AssociationSet Name="order_has_product_fk_order_has_product_product1" Association="Model.order_has_product_fk_order_has_product_product1">
-            <End Role="product" EntitySet="products" />
-            <End Role="order_has_product" EntitySet="order_has_product" />
-          </AssociationSet>
           <AssociationSet Name="order_has_product_fk_order_has_product_weight1" Association="Model.order_has_product_fk_order_has_product_weight1">
             <End Role="weight" EntitySet="weights" />
             <End Role="order_has_product" EntitySet="order_has_product" />
@@ -2149,9 +2114,20 @@
             <Parameter Name="quantity" Mode="In" Type="Int32" />
             <Parameter Name="listOfvan" Mode="In" Type="String" />
           </FunctionImport>
-          
-          
-        </EntityContainer>
+          <EntitySet Name="products" EntityType="Model.product" />
+          <AssociationSet Name="order_has_product_fk_order_has_product_product1" Association="Model.order_has_product_fk_order_has_product_product1">
+            <End Role="product" EntitySet="products" />
+            <End Role="order_has_product" EntitySet="order_has_product" />
+          </AssociationSet>
+          <AssociationSet Name="store_has_product_fk_store_has_product_product1" Association="Model.store_has_product_fk_store_has_product_product1">
+            <End Role="product" EntitySet="products" />
+            <End Role="store_has_product" EntitySet="store_has_product" />
+          </AssociationSet>
+          <AssociationSet Name="product_has_weight" Association="Model.product_has_weight">
+            <End Role="product" EntitySet="products" />
+            <End Role="weight" EntitySet="weights" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="SP_Customer_ID_Result">
           <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
           <Property Type="Int32" Name="معرف" Nullable="false" />
@@ -2600,8 +2576,8 @@
           <Property Name="order_has_product_out_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="measurement" Relationship="Model.order_has_product_fk_order_has_product_measurement1" FromRole="order_has_product" ToRole="measurement" />
           <NavigationProperty Name="order" Relationship="Model.order_has_product_fk_order_has_product_order1" FromRole="order_has_product" ToRole="order" />
-          <NavigationProperty Name="product" Relationship="Model.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
           <NavigationProperty Name="weight" Relationship="Model.order_has_product_fk_order_has_product_weight1" FromRole="order_has_product" ToRole="weight" />
+          <NavigationProperty Name="product" Relationship="Model.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
         </EntityType>
         <Association Name="order_has_product_fk_order_has_product_measurement1">
           <End Type="Model.measurement" Role="measurement" Multiplicity="1" />
@@ -2627,18 +2603,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="order_has_product_fk_order_has_product_product1">
-          <End Type="Model.product" Role="product" Multiplicity="1" />
-          <End Type="Model.order_has_product" Role="order_has_product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="order_has_product">
-              <PropertyRef Name="product_product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="order_has_product_fk_order_has_product_weight1">
           <End Type="Model.weight" Role="weight" Multiplicity="1" />
           <End Type="Model.order_has_product" Role="order_has_product" Multiplicity="*" />
@@ -2651,8 +2615,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        
-      </Schema>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TodayPrice" Type="Double" />
+          <Property Name="PriceUpdateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="order_has_product" Relationship="Model.order_has_product_fk_order_has_product_product1" FromRole="product" ToRole="order_has_product" />
+          <NavigationProperty Name="store_has_product" Relationship="Model.store_has_product_fk_store_has_product_product1" FromRole="product" ToRole="store_has_product" />
+          <NavigationProperty Name="weights" Relationship="Model.product_has_weight" FromRole="product" ToRole="weight" />
+        </EntityType>
+        <Association Name="order_has_product_fk_order_has_product_product1">
+          <End Type="Model.product" Role="product" Multiplicity="1" />
+          <End Type="Model.order_has_product" Role="order_has_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order_has_product">
+              <PropertyRef Name="product_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="store_has_product_fk_store_has_product_product1">
+          <End Type="Model.product" Role="product" Multiplicity="1" />
+          <End Type="Model.store_has_product" Role="store_has_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="store_has_product">
+              <PropertyRef Name="product_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_has_weight">
+          <End Type="Model.product" Role="product" Multiplicity="*" />
+          <End Type="Model.weight" Role="weight" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2721,14 +2724,6 @@
                 <ScalarProperty Name="notic" ColumnName="notic" />
                 <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
                 <ScalarProperty Name="order_state" ColumnName="order_state" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="Model.product">
-              <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="productName" ColumnName="productName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2838,14 +2833,6 @@
             </EndProperty>
             <EndProperty Name="order">
               <ScalarProperty Name="order_id" ColumnName="order_order_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="product_has_weight" TypeName="Model.product_has_weight" StoreEntitySet="product_has_weight">
-            <EndProperty Name="product">
-              <ScalarProperty Name="product_id" ColumnName="product_product_id" />
-            </EndProperty>
-            <EndProperty Name="weight">
-              <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="shift_has_workers" TypeName="Model.shift_has_workers" StoreEntitySet="shift_has_workers">
@@ -3578,8 +3565,25 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="Model.Store.SP_Flutter_Order_Add_New" />
           <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="Model.Store.SP_Flutter_Order_van_Update" />
-          
-        </EntityContainerMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="Model.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
+                <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="product_has_weight" TypeName="Model.product_has_weight" StoreEntitySet="product_has_weight">
+            <EndProperty Name="weight">
+              <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
+            </EndProperty>
+            <EndProperty Name="product">
+              <ScalarProperty Name="product_id" ColumnName="product_product_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -32,6 +32,8 @@ namespace API.Dto
     {
         public int ProductId { get; set; }
         public string productName{ get; set; }
+        public double? Price { get; set; }
+        public DateTime? PriceUpdateTime { get; set; }
     }
     public class StoreName
     {

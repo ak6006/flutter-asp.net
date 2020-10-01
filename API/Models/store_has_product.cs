@@ -29,11 +29,11 @@ namespace API.Models
         public Nullable<int> store_has_product_state { get; set; }
     
         public virtual barcode barcode { get; set; }
-        public virtual product product { get; set; }
         public virtual shift shift { get; set; }
         public virtual store store { get; set; }
         public virtual weight weight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }
+        public virtual product product { get; set; }
     }
 }

@@ -33,7 +33,6 @@ namespace API.Models
         public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<measurement> measurements { get; set; }
         public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<product> products { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<shift> shifts { get; set; }
         public virtual DbSet<shiftadmin> shiftadmins { get; set; }
@@ -45,6 +44,7 @@ namespace API.Models
         public virtual DbSet<weight> weights { get; set; }
         public virtual DbSet<worker> workers { get; set; }
         public virtual DbSet<order_has_product> order_has_product { get; set; }
+        public virtual DbSet<product> products { get; set; }
     
         public virtual ObjectResult<string> SP_Customer_Add_New(string a_Name, string a_Country, string a_City, string a_State, string a_Phone, string a_Fax, string a_Email, string aDRESS, ObjectParameter new_identity, ObjectParameter rec_found)
         {
@@ -536,13 +536,17 @@ namespace API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Order_Update", orderIdParameter, customerIdParameter, storeIdParameter, orderDateParameter, orderNoteParameter);
         }
     
-        public virtual ObjectResult<string> SP_Product_Add_New(string productName, ObjectParameter new_identity, ObjectParameter rec_found)
+        public virtual ObjectResult<string> SP_Product_Add_New(string productName, Nullable<double> productPrice, ObjectParameter new_identity, ObjectParameter rec_found)
         {
             var productNameParameter = productName != null ?
                 new ObjectParameter("ProductName", productName) :
                 new ObjectParameter("ProductName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_Product_Add_New", productNameParameter, new_identity, rec_found);
+            var productPriceParameter = productPrice.HasValue ?
+                new ObjectParameter("ProductPrice", productPrice) :
+                new ObjectParameter("ProductPrice", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_Product_Add_New", productNameParameter, productPriceParameter, new_identity, rec_found);
         }
     
         public virtual int SP_Product_DELETE(Nullable<int> productId)
