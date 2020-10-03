@@ -11,11 +11,11 @@ namespace API.Models
 {
     using System;
     
-    public partial class SP_Product_Search_Result
+    public partial class SP_Sales_Order_Trans_Vin_display_Result
     {
-        public int رقم_المنتج { get; set; }
-        public string اسم_المنتج { get; set; }
-        public Nullable<double> السعر { get; set; }
-        public Nullable<System.DateTime> اخر_تحديث_للسعر { get; set; }
+        public string transVehcile_driver_name { get; set; }
+        public string transVehcile_num { get; set; }
+        public string transVehcile_model { get; set; }
+        public string firstName { get; set; }
     }
 }

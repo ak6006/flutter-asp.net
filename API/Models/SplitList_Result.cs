@@ -11,11 +11,8 @@ namespace API.Models
 {
     using System;
     
-    public partial class SP_Product_Search_Result
+    public partial class SplitList_Result
     {
-        public int رقم_المنتج { get; set; }
-        public string اسم_المنتج { get; set; }
-        public Nullable<double> السعر { get; set; }
-        public Nullable<System.DateTime> اخر_تحديث_للسعر { get; set; }
+        public string Value { get; set; }
     }
 }

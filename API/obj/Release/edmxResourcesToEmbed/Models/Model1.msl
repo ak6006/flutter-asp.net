@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="DB_A67616_makahighfeedModelStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="addresses">
-      <EntityTypeMapping TypeName="Model.address">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.address">
         <MappingFragment StoreEntitySet="address">
           <ScalarProperty Name="add_id" ColumnName="add_id" />
           <ScalarProperty Name="addressType_addressType_id" ColumnName="addressType_addressType_id" />
@@ -23,7 +23,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="addresstypes">
-      <EntityTypeMapping TypeName="Model.addresstype">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.addresstype">
         <MappingFragment StoreEntitySet="addresstype">
           <ScalarProperty Name="addressType_id" ColumnName="addressType_id" />
           <ScalarProperty Name="addressType_name" ColumnName="addressType_name" />
@@ -31,14 +31,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="barcodes">
-      <EntityTypeMapping TypeName="Model.barcode">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.barcode">
         <MappingFragment StoreEntitySet="barcode">
           <ScalarProperty Name="serialNumber" ColumnName="serialNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="customers">
-      <EntityTypeMapping TypeName="Model.customer">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.customer">
         <MappingFragment StoreEntitySet="customers">
           <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
           <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
@@ -46,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="measurements">
-      <EntityTypeMapping TypeName="Model.measurement">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.measurement">
         <MappingFragment StoreEntitySet="measurement">
           <ScalarProperty Name="measure_id" ColumnName="measure_id" />
           <ScalarProperty Name="measre_name" ColumnName="measre_name" />
@@ -55,7 +55,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orders">
-      <EntityTypeMapping TypeName="Model.order">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.order">
         <MappingFragment StoreEntitySet="order">
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="customers_Customers_id" ColumnName="customers_Customers_id" />
@@ -67,8 +67,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="order_has_product">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.order_has_product">
+        <MappingFragment StoreEntitySet="order_has_product">
+          <ScalarProperty Name="order_has_product_Id" ColumnName="order_has_product_Id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="measurement_measure_id" ColumnName="measurement_measure_id" />
+          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
+          <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="roles">
-      <EntityTypeMapping TypeName="Model.role">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.role">
         <MappingFragment StoreEntitySet="roles">
           <ScalarProperty Name="rolesId" ColumnName="rolesId" />
           <ScalarProperty Name="rolesName" ColumnName="rolesName" />
@@ -76,7 +103,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="shifts">
-      <EntityTypeMapping TypeName="Model.shift">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.shift">
         <MappingFragment StoreEntitySet="shift">
           <ScalarProperty Name="shift_id" ColumnName="shift_id" />
           <ScalarProperty Name="shiftName" ColumnName="shiftName" />
@@ -85,7 +112,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="shiftadmins">
-      <EntityTypeMapping TypeName="Model.shiftadmin">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.shiftadmin">
         <MappingFragment StoreEntitySet="shiftadmin">
           <ScalarProperty Name="shiftAdmin_id" ColumnName="shiftAdmin_id" />
           <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
@@ -93,7 +120,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="stores">
-      <EntityTypeMapping TypeName="Model.store">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.store">
         <MappingFragment StoreEntitySet="store">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
@@ -103,7 +130,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="store_has_product">
-      <EntityTypeMapping TypeName="Model.store_has_product">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.store_has_product">
         <MappingFragment StoreEntitySet="store_has_product">
           <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
           <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
@@ -116,7 +143,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="transvehciles">
-      <EntityTypeMapping TypeName="Model.transvehcile">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.transvehcile">
         <MappingFragment StoreEntitySet="transvehcile">
           <ScalarProperty Name="v_id" ColumnName="v_id" />
           <ScalarProperty Name="customers_Customers_id" ColumnName="customers_Customers_id" />
@@ -130,7 +157,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="transvehcile_has_order">
-      <EntityTypeMapping TypeName="Model.transvehcile_has_order">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.transvehcile_has_order">
         <MappingFragment StoreEntitySet="transvehcile_has_order">
           <ScalarProperty Name="transVehcile_has_order_Id" ColumnName="transVehcile_has_order_Id" />
           <ScalarProperty Name="transVehcile_v_id" ColumnName="transVehcile_v_id" />
@@ -142,7 +169,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="users">
-      <EntityTypeMapping TypeName="Model.user">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.user">
         <MappingFragment StoreEntitySet="users">
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="userName" ColumnName="userName" />
@@ -152,7 +179,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="weights">
-      <EntityTypeMapping TypeName="Model.weight">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.weight">
         <MappingFragment StoreEntitySet="weight">
           <ScalarProperty Name="weight_id" ColumnName="weight_id" />
           <ScalarProperty Name="weight_net" ColumnName="weight_net" />
@@ -160,14 +187,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="workers">
-      <EntityTypeMapping TypeName="Model.worker">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.worker">
         <MappingFragment StoreEntitySet="workers">
           <ScalarProperty Name="worker_id" ColumnName="worker_id" />
           <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="orderserial" TypeName="Model.orderserial" StoreEntitySet="orderserial">
+    <AssociationSetMapping Name="orderserial" TypeName="DB_A67616_makahighfeedModel.orderserial" StoreEntitySet="orderserial">
       <EndProperty Name="barcode">
         <ScalarProperty Name="serialNumber" ColumnName="barcode_serialNumber" />
       </EndProperty>
@@ -175,7 +202,15 @@
         <ScalarProperty Name="order_id" ColumnName="order_order_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="shift_has_workers" TypeName="Model.shift_has_workers" StoreEntitySet="shift_has_workers">
+    <AssociationSetMapping Name="product_has_weight" TypeName="DB_A67616_makahighfeedModel.product_has_weight" StoreEntitySet="product_has_weight">
+      <EndProperty Name="product">
+        <ScalarProperty Name="product_id" ColumnName="product_product_id" />
+      </EndProperty>
+      <EndProperty Name="weight">
+        <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="shift_has_workers" TypeName="DB_A67616_makahighfeedModel.shift_has_workers" StoreEntitySet="shift_has_workers">
       <EndProperty Name="shift">
         <ScalarProperty Name="shift_id" ColumnName="shift_shift_id" />
       </EndProperty>
@@ -183,7 +218,7 @@
         <ScalarProperty Name="worker_id" ColumnName="workers_worker_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="store_has_product_has_order" TypeName="Model.store_has_product_has_order" StoreEntitySet="store_has_product_has_order">
+    <AssociationSetMapping Name="store_has_product_has_order" TypeName="DB_A67616_makahighfeedModel.store_has_product_has_order" StoreEntitySet="store_has_product_has_order">
       <EndProperty Name="order">
         <ScalarProperty Name="order_id" ColumnName="order_order_id" />
       </EndProperty>
@@ -195,7 +230,7 @@
         <ScalarProperty Name="weight_weight_id" ColumnName="store_has_product_weight_weight_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="users_has_roles" TypeName="Model.users_has_roles" StoreEntitySet="users_has_roles">
+    <AssociationSetMapping Name="users_has_roles" TypeName="DB_A67616_makahighfeedModel.users_has_roles" StoreEntitySet="users_has_roles">
       <EndProperty Name="roles">
         <ScalarProperty Name="rolesId" ColumnName="roles_rolesId" />
       </EndProperty>
@@ -203,11 +238,18 @@
         <ScalarProperty Name="user_id" ColumnName="users_user_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="SP_Customer_Add_New" FunctionName="Model.Store.SP_Customer_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Customer_Delete" FunctionName="Model.Store.SP_Customer_Delete" />
-    <FunctionImportMapping FunctionImportName="SP_Customer_ID" FunctionName="Model.Store.SP_Customer_ID">
+    <FunctionImportMapping FunctionName="DB_A67616_makahighfeedModel.Store.SplitList" FunctionImportName="SplitList">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Customer_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SplitList_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Customer_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Customer_Delete" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Delete" />
+    <FunctionImportMapping FunctionImportName="SP_Customer_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Customer_ID_Result">
           <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -222,9 +264,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Customer_Search" FunctionName="Model.Store.SP_Customer_Search">
+    <FunctionImportMapping FunctionImportName="SP_Customer_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Customer_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Customer_Search_Result">
           <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -239,17 +281,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Customer_To_ComboBox" FunctionName="Model.Store.SP_Customer_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Customer_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Customer_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Customer_To_ComboBox_Result">
           <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Customer_To_DataGrid" FunctionName="Model.Store.SP_Customer_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Customer_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Customer_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Customer_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم_الوكيل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -264,10 +306,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Customer_Update" FunctionName="Model.Store.SP_Customer_Update" />
-    <FunctionImportMapping FunctionImportName="SP_flutter_Customer_Orders_Query" FunctionName="Model.Store.SP_flutter_Customer_Orders_Query">
+    <FunctionImportMapping FunctionImportName="SP_Customer_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Update" />
+    <FunctionImportMapping FunctionImportName="SP_flutter_Customer_Orders_Query" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_Customer_Orders_Query">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_flutter_Customer_Orders_Query_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_Customer_Orders_Query_Result">
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
@@ -281,9 +323,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="Model.Store.SP_flutter_Query_Trans">
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Flutter_Order_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Flutter_Order_van_Update" />
+    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_Query_Trans">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_flutter_Query_Trans_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_Query_Trans_Result">
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
           <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
@@ -294,67 +338,76 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="Model.Store.SP_LOGINSELECT">
+    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_SumQuantity_Orders_Query">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_LOGINSELECT_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="DB_A67616_makahighfeedModel.Store.SP_LOGINSELECT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_LOGINSELECT_Result">
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="password" ColumnName="password" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT_tmp" FunctionName="Model.Store.SP_LOGINSELECT_tmp">
+    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT_tmp" FunctionName="DB_A67616_makahighfeedModel.Store.SP_LOGINSELECT_tmp">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_LOGINSELECT_tmp_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_LOGINSELECT_tmp_Result">
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="password" ColumnName="password" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Measurement_Add_New" FunctionName="Model.Store.SP_Measurement_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Measurement_DELETE" FunctionName="Model.Store.SP_Measurement_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Measurement_ID" FunctionName="Model.Store.SP_Measurement_ID">
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Measurement_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Measurement_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Measurement_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Measurement_ID_Result">
           <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
           <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
           <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Measurement_Search" FunctionName="Model.Store.SP_Measurement_Search">
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Measurement_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Measurement_Search_Result">
           <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
           <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
           <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Measurement_To_ComboBox" FunctionName="Model.Store.SP_Measurement_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Measurement_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Measurement_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Measurement_To_ComboBox_Result">
           <ScalarProperty Name="measure_id" ColumnName="measure_id" />
           <ScalarProperty Name="measre_name" ColumnName="measre_name" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Measurement_To_DataGrid" FunctionName="Model.Store.SP_Measurement_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Measurement_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Measurement_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Measurement_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
           <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
           <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Measurement_Update" FunctionName="Model.Store.SP_Measurement_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Add_New" FunctionName="Model.Store.SP_Order_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Order_DELETE" FunctionName="Model.Store.SP_Order_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Order_ID" FunctionName="Model.Store.SP_Order_ID">
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Measurement_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_ID_Result">
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -365,11 +418,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Items_Add_New" FunctionName="Model.Store.SP_Order_Items_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Items_DELETE" FunctionName="Model.Store.SP_Order_Items_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Items_ID" FunctionName="Model.Store.SP_Order_Items_ID">
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Items_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Items_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Items_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_Items_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_Items_ID_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
           <ScalarProperty Name="اسم_العميل" ColumnName="اسم_العميل" />
           <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
@@ -385,9 +438,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Items_To_DataGrid" FunctionName="Model.Store.SP_Order_Items_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Items_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_Items_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_Items_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
           <ScalarProperty Name="اسم_العميل" ColumnName="اسم_العميل" />
           <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
@@ -403,10 +456,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Items_Update" FunctionName="Model.Store.SP_Order_Items_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Search" FunctionName="Model.Store.SP_Order_Search">
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Items_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_Search_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم الطلبية" />
           <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
           <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم الوكيل" />
@@ -417,9 +470,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_To_DataGrid" FunctionName="Model.Store.SP_Order_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Order_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم الطلبية" />
           <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
           <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم الوكيل" />
@@ -430,11 +483,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Add_New" FunctionName="Model.Store.SP_Order_Trans_Vin_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_DELETE" FunctionName="Model.Store.SP_Order_Trans_Vin_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_ID" FunctionName="Model.Store.SP_Order_Trans_Vin_ID">
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Trans_Vin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Trans_Vin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Trans_Vin_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_Trans_Vin_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_Trans_Vin_ID_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
           <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
           <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
@@ -444,9 +497,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_To_DataGrid" FunctionName="Model.Store.SP_Order_Trans_Vin_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Trans_Vin_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Order_Trans_Vin_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Order_Trans_Vin_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
           <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
           <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
@@ -456,47 +509,49 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Update" FunctionName="Model.Store.SP_Order_Trans_Vin_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Order_Update" FunctionName="Model.Store.SP_Order_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Product_Add_New" FunctionName="Model.Store.SP_Product_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Product_DELETE" FunctionName="Model.Store.SP_Product_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Product_ID" FunctionName="Model.Store.SP_Product_ID">
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Trans_Vin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Order_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Product_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Product_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Product_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Product_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Product_ID_Result">
           <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
           <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Product_Search" FunctionName="Model.Store.SP_Product_Search">
+    <FunctionImportMapping FunctionImportName="SP_Product_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Product_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Product_Search_Result">
           <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
           <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
+          <ScalarProperty Name="السعر" ColumnName="السعر" />
+          <ScalarProperty Name="اخر_تحديث_للسعر" ColumnName="اخر تحديث للسعر" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Product_To_ComboBox" FunctionName="Model.Store.SP_Product_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Product_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Product_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Product_To_ComboBox_Result">
           <ScalarProperty Name="product_id" ColumnName="product_id" />
           <ScalarProperty Name="productName" ColumnName="productName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Product_To_DataGrid" FunctionName="Model.Store.SP_Product_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Product_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Product_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Product_To_DataGrid_Result">
           <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
           <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="Model.Store.SP_Product_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="Model.Store.SP_Sales_BarCode" />
-    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="Model.Store.SP_Sales_BarCode_Check">
+    <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode" />
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Sales_BarCode_Check_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
           <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
           <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
           <ScalarProperty Name="shiftName" ColumnName="shiftName" />
@@ -511,9 +566,19 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_Load" FunctionName="Model.Store.SP_Sales_Order_Trans_Vin_Load">
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_display">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Sales_Order_Trans_Vin_Load_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result">
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_Load" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_Load">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_Load_Result">
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -527,11 +592,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Add_New" FunctionName="Model.Store.SP_Shift_Admin_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_DELETE" FunctionName="Model.Store.SP_Shift_Admin_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_ID" FunctionName="Model.Store.SP_Shift_Admin_ID">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Admin_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Admin_ID_Result">
           <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -546,9 +611,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_SEARCH" FunctionName="Model.Store.SP_Shift_Admin_SEARCH">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_SEARCH" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_SEARCH">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Admin_SEARCH_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Admin_SEARCH_Result">
           <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -563,17 +628,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_ComboBox" FunctionName="Model.Store.SP_Shift_Admin_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Admin_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Admin_To_ComboBox_Result">
           <ScalarProperty Name="shiftAdmin_id" ColumnName="shiftAdmin_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_DataGrid" FunctionName="Model.Store.SP_Shift_Admin_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Admin_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Admin_To_DataGrid_Result">
           <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -588,12 +653,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Update" FunctionName="Model.Store.SP_Shift_Admin_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Add_New" FunctionName="Model.Store.SP_Shift_Main_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_DELETE" FunctionName="Model.Store.SP_Shift_Main_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_ID" FunctionName="Model.Store.SP_Shift_Main_ID">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Admin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Main_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Main_ID_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
           <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
@@ -601,9 +666,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Search" FunctionName="Model.Store.SP_Shift_Main_Search">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Main_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Main_Search_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
           <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
@@ -611,17 +676,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_ComboBox" FunctionName="Model.Store.SP_Shift_Main_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Main_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Main_To_ComboBox_Result">
           <ScalarProperty Name="shift_id" ColumnName="shift_id" />
           <ScalarProperty Name="shiftName" ColumnName="shiftName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_DataGrid" FunctionName="Model.Store.SP_Shift_Main_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Main_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Main_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
           <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
@@ -629,49 +694,49 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Update" FunctionName="Model.Store.SP_Shift_Main_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Add_New" FunctionName="Model.Store.SP_Shift_Worker_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_DELETE" FunctionName="Model.Store.SP_Shift_Worker_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_ID" FunctionName="Model.Store.SP_Shift_Worker_ID">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Main_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Worker_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Worker_ID_Result">
           <ScalarProperty Name="shift_shift_id" ColumnName="shift_shift_id" />
           <ScalarProperty Name="workers_worker_id" ColumnName="workers_worker_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Search" FunctionName="Model.Store.SP_Shift_Worker_Search">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Worker_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Worker_Search_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid" FunctionName="Model.Store.SP_Shift_Worker_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Worker_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Worker_To_DataGrid_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid_All" FunctionName="Model.Store.SP_Shift_Worker_To_DataGrid_All">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid_All" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_To_DataGrid_All">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Shift_Worker_To_DataGrid_All_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Shift_Worker_To_DataGrid_All_Result">
           <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Update" FunctionName="Model.Store.SP_Shift_Worker_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Store_Add_New" FunctionName="Model.Store.SP_Store_Add_New">
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Shift_Worker_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Store_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_Add_New">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_Add_New_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_Add_New_Result">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
@@ -679,10 +744,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_Delete" FunctionName="Model.Store.SP_Store_Delete" />
-    <FunctionImportMapping FunctionImportName="SP_Store_ID" FunctionName="Model.Store.SP_Store_ID">
+    <FunctionImportMapping FunctionImportName="SP_Store_Delete" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_Delete" />
+    <FunctionImportMapping FunctionImportName="SP_Store_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_ID_Result">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
@@ -690,10 +755,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_Product_Add_New" FunctionName="Model.Store.SP_Store_Product_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Store_Search" FunctionName="Model.Store.SP_Store_Search">
+    <FunctionImportMapping FunctionImportName="SP_Store_Product_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_Product_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Store_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_Search_Result">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
@@ -701,17 +766,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_To_ComboBox" FunctionName="Model.Store.SP_Store_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Store_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_To_ComboBox_Result">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid" FunctionName="Model.Store.SP_Store_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_To_DataGrid_Result">
           <ScalarProperty Name="store_id" ColumnName="store_id" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
@@ -719,9 +784,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid_tmp" FunctionName="Model.Store.SP_Store_To_DataGrid_tmp">
+    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid_tmp" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_To_DataGrid_tmp">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Store_To_DataGrid_tmp_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Store_To_DataGrid_tmp_Result">
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="shiftName" ColumnName="shiftName" />
           <ScalarProperty Name="productName" ColumnName="productName" />
@@ -731,12 +796,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Store_Update" FunctionName="Model.Store.SP_Store_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_Add_New" FunctionName="Model.Store.SP_Trans_Vin_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_DELETE" FunctionName="Model.Store.SP_Trans_Vin_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_ID" FunctionName="Model.Store.SP_Trans_Vin_ID">
+    <FunctionImportMapping FunctionImportName="SP_Store_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Store_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_Vin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_Vin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_Vin_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Trans_Vin_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Trans_Vin_ID_Result">
           <ScalarProperty Name="الرقم" ColumnName="الرقم" />
           <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
           <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
@@ -749,9 +814,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_TRANS_VIN_Search" FunctionName="Model.Store.SP_TRANS_VIN_Search">
+    <FunctionImportMapping FunctionImportName="SP_TRANS_VIN_Search" FunctionName="DB_A67616_makahighfeedModel.Store.SP_TRANS_VIN_Search">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_TRANS_VIN_Search_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_TRANS_VIN_Search_Result">
           <ScalarProperty Name="الرقم" ColumnName="الرقم" />
           <ScalarProperty Name="اسم_السائق" ColumnName="اسم السائق" />
           <ScalarProperty Name="رقم_العربية" ColumnName="رقم العربية" />
@@ -764,17 +829,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_ComboBox" FunctionName="Model.Store.SP_Trans_Vin_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_Vin_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Trans_Vin_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Trans_Vin_To_ComboBox_Result">
           <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
           <ScalarProperty Name="v_id" ColumnName="v_id" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_DataGrid" FunctionName="Model.Store.SP_Trans_Vin_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_Vin_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Trans_Vin_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Trans_Vin_To_DataGrid_Result">
           <ScalarProperty Name="الرقم" ColumnName="الرقم" />
           <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
           <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
@@ -787,11 +852,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Trans_vin_Update" FunctionName="Model.Store.SP_Trans_vin_Update" />
-    <FunctionImportMapping FunctionImportName="SP_User_Add_New" FunctionName="Model.Store.SP_User_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_User_To_DataGrid" FunctionName="Model.Store.SP_User_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Trans_vin_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Trans_vin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Update_Product_Price" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Update_Product_Price" />
+    <FunctionImportMapping FunctionImportName="SP_User_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_User_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_User_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_User_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_User_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_User_To_DataGrid_Result">
           <ScalarProperty Name="رقم_المستخدم" ColumnName="رقم_المستخدم" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -807,19 +873,19 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_weight_To_ComboBox" FunctionName="Model.Store.SP_weight_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_weight_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_weight_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_weight_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_weight_To_ComboBox_Result">
           <ScalarProperty Name="weight_id" ColumnName="weight_id" />
           <ScalarProperty Name="weight_net" ColumnName="weight_net" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Worker_Add_New" FunctionName="Model.Store.SP_Worker_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Worker_DELETE" FunctionName="Model.Store.SP_Worker_DELETE" />
-    <FunctionImportMapping FunctionImportName="SP_Worker_ID" FunctionName="Model.Store.SP_Worker_ID">
+    <FunctionImportMapping FunctionImportName="SP_Worker_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Worker_DELETE" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Worker_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_ID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Worker_ID_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Worker_ID_Result">
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -834,9 +900,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Worker_SEARCH" FunctionName="Model.Store.SP_Worker_SEARCH">
+    <FunctionImportMapping FunctionImportName="SP_Worker_SEARCH" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_SEARCH">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Worker_SEARCH_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Worker_SEARCH_Result">
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -851,18 +917,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Worker_To_ComboBox" FunctionName="Model.Store.SP_Worker_To_ComboBox">
+    <FunctionImportMapping FunctionImportName="SP_Worker_To_ComboBox" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_To_ComboBox">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Worker_To_ComboBox_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Worker_To_ComboBox_Result">
           <ScalarProperty Name="worker_id" ColumnName="worker_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Worker_Update" FunctionName="Model.Store.SP_Worker_Update" />
-    <FunctionImportMapping FunctionImportName="SP_Workers_To_DataGrid" FunctionName="Model.Store.SP_Workers_To_DataGrid">
+    <FunctionImportMapping FunctionImportName="SP_Worker_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Worker_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Workers_To_DataGrid" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Workers_To_DataGrid">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_Workers_To_DataGrid_Result">
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Workers_To_DataGrid_Result">
           <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
           <ScalarProperty Name="معرف" ColumnName="معرف" />
           <ScalarProperty Name="الاسم" ColumnName="الاسم" />
@@ -877,51 +943,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="Model.Store.SP_flutter_SumQuantity_Orders_Query">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.SP_flutter_SumQuantity_Orders_Query_Result">
-          <ScalarProperty Name="productName" ColumnName="productName" />
-          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
-          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="order_has_product">
-      <EntityTypeMapping TypeName="Model.order_has_product">
-        <MappingFragment StoreEntitySet="order_has_product">
-          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
-          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
-          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
-          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
-          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
-          <ScalarProperty Name="measurement_measure_id" ColumnName="measurement_measure_id" />
-          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
-          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
-          <ScalarProperty Name="order_has_product_Id" ColumnName="order_has_product_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="Model.Store.SP_Flutter_Order_Add_New" />
-    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="Model.Store.SP_Flutter_Order_van_Update" />
-    <EntitySetMapping Name="products">
-      <EntityTypeMapping TypeName="Model.product">
-        <MappingFragment StoreEntitySet="product">
-          <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
-          <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
-          <ScalarProperty Name="productName" ColumnName="productName" />
-          <ScalarProperty Name="product_id" ColumnName="product_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="product_has_weight" TypeName="Model.product_has_weight" StoreEntitySet="product_has_weight">
-      <EndProperty Name="weight">
-        <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
-      </EndProperty>
-      <EndProperty Name="product">
-        <ScalarProperty Name="product_id" ColumnName="product_product_id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

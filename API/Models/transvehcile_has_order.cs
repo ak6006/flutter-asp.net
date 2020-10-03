@@ -14,12 +14,12 @@ namespace API.Models
     
     public partial class transvehcile_has_order
     {
+        public int transVehcile_has_order_Id { get; set; }
         public int transVehcile_v_id { get; set; }
         public int order_order_id { get; set; }
         public Nullable<int> transVehcile_has_order_state { get; set; }
         public Nullable<System.DateTime> trans_in_date { get; set; }
         public Nullable<System.DateTime> trans_out_date { get; set; }
-        public int transVehcile_has_order_Id { get; set; }
     
         public virtual order order { get; set; }
     }

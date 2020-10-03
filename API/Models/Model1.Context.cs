@@ -33,6 +33,8 @@ namespace API.Models
         public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<measurement> measurements { get; set; }
         public virtual DbSet<order> orders { get; set; }
+        public virtual DbSet<order_has_product> order_has_product { get; set; }
+        public virtual DbSet<product> products { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<shift> shifts { get; set; }
         public virtual DbSet<shiftadmin> shiftadmins { get; set; }
@@ -43,8 +45,20 @@ namespace API.Models
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<weight> weights { get; set; }
         public virtual DbSet<worker> workers { get; set; }
-        public virtual DbSet<order_has_product> order_has_product { get; set; }
-        public virtual DbSet<product> products { get; set; }
+    
+        [DbFunction("Entities", "SplitList")]
+        public virtual IQueryable<SplitList_Result> SplitList(string list, string separator)
+        {
+            var listParameter = list != null ?
+                new ObjectParameter("list", list) :
+                new ObjectParameter("list", typeof(string));
+    
+            var separatorParameter = separator != null ?
+                new ObjectParameter("separator", separator) :
+                new ObjectParameter("separator", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SplitList_Result>("[Entities].[SplitList](@list, @separator)", listParameter, separatorParameter);
+        }
     
         public virtual ObjectResult<string> SP_Customer_Add_New(string a_Name, string a_Country, string a_City, string a_State, string a_Phone, string a_Fax, string a_Email, string aDRESS, ObjectParameter new_identity, ObjectParameter rec_found)
         {
@@ -174,6 +188,84 @@ namespace API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Customer_Orders_Query_Result>("SP_flutter_Customer_Orders_Query", custmerPhoneParameter);
         }
     
+        public virtual int SP_Flutter_Order_Add_New(Nullable<int> customerId, Nullable<int> storeId, Nullable<System.DateTime> orderDate, string orderNote, Nullable<int> productId, Nullable<int> measureId, Nullable<int> weightId, Nullable<int> quantity, string listOfvan)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            var storeIdParameter = storeId.HasValue ?
+                new ObjectParameter("StoreId", storeId) :
+                new ObjectParameter("StoreId", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var orderNoteParameter = orderNote != null ?
+                new ObjectParameter("OrderNote", orderNote) :
+                new ObjectParameter("OrderNote", typeof(string));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var measureIdParameter = measureId.HasValue ?
+                new ObjectParameter("measureId", measureId) :
+                new ObjectParameter("measureId", typeof(int));
+    
+            var weightIdParameter = weightId.HasValue ?
+                new ObjectParameter("weightId", weightId) :
+                new ObjectParameter("weightId", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(int));
+    
+            var listOfvanParameter = listOfvan != null ?
+                new ObjectParameter("listOfvan", listOfvan) :
+                new ObjectParameter("listOfvan", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_Add_New", customerIdParameter, storeIdParameter, orderDateParameter, orderNoteParameter, productIdParameter, measureIdParameter, weightIdParameter, quantityParameter, listOfvanParameter);
+        }
+    
+        public virtual int SP_Flutter_Order_van_Update(Nullable<int> orderId, Nullable<int> orderHasProductId, Nullable<System.DateTime> orderDate, Nullable<int> productId, Nullable<int> wieghtId, Nullable<int> measureId, Nullable<int> quantity, string listOfvan)
+        {
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("OrderId", orderId) :
+                new ObjectParameter("OrderId", typeof(int));
+    
+            var orderHasProductIdParameter = orderHasProductId.HasValue ?
+                new ObjectParameter("OrderHasProductId", orderHasProductId) :
+                new ObjectParameter("OrderHasProductId", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var wieghtIdParameter = wieghtId.HasValue ?
+                new ObjectParameter("WieghtId", wieghtId) :
+                new ObjectParameter("WieghtId", typeof(int));
+    
+            var measureIdParameter = measureId.HasValue ?
+                new ObjectParameter("MeasureId", measureId) :
+                new ObjectParameter("MeasureId", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var listOfvanParameter = listOfvan != null ?
+                new ObjectParameter("listOfvan", listOfvan) :
+                new ObjectParameter("listOfvan", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_van_Update", orderIdParameter, orderHasProductIdParameter, orderDateParameter, productIdParameter, wieghtIdParameter, measureIdParameter, quantityParameter, listOfvanParameter);
+        }
+    
         public virtual ObjectResult<SP_flutter_Query_Trans_Result> SP_flutter_Query_Trans(string custmerPhone)
         {
             var custmerPhoneParameter = custmerPhone != null ?
@@ -181,6 +273,23 @@ namespace API.Models
                 new ObjectParameter("CustmerPhone", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_Query_Trans_Result>("SP_flutter_Query_Trans", custmerPhoneParameter);
+        }
+    
+        public virtual ObjectResult<SP_flutter_SumQuantity_Orders_Query_Result> SP_flutter_SumQuantity_Orders_Query(string custmerPhone, Nullable<System.DateTime> beginDate, Nullable<System.DateTime> endDate)
+        {
+            var custmerPhoneParameter = custmerPhone != null ?
+                new ObjectParameter("CustmerPhone", custmerPhone) :
+                new ObjectParameter("CustmerPhone", typeof(string));
+    
+            var beginDateParameter = beginDate.HasValue ?
+                new ObjectParameter("BeginDate", beginDate) :
+                new ObjectParameter("BeginDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_SumQuantity_Orders_Query_Result>("SP_flutter_SumQuantity_Orders_Query", custmerPhoneParameter, beginDateParameter, endDateParameter);
         }
     
         public virtual ObjectResult<SP_LOGINSELECT_Result> SP_LOGINSELECT(string username, string password, ObjectParameter rec_found, ObjectParameter rolesName)
@@ -627,6 +736,11 @@ namespace API.Models
                 new ObjectParameter("Barcode", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Sales_BarCode_Check_Result>("SP_Sales_BarCode_Check", barcodeParameter, rec_found);
+        }
+    
+        public virtual ObjectResult<SP_Sales_Order_Trans_Vin_display_Result> SP_Sales_Order_Trans_Vin_display()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Sales_Order_Trans_Vin_display_Result>("SP_Sales_Order_Trans_Vin_display");
         }
     
         public virtual ObjectResult<SP_Sales_Order_Trans_Vin_Load_Result> SP_Sales_Order_Trans_Vin_Load(string transVehcileSerial)
@@ -1135,6 +1249,23 @@ namespace API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Trans_vin_Update", vinNoParameter, txtDivernameParameter, txtVinNumParameter, txtModelParameter, txtPhoneParameter, txtCustomerIdParameter, txtAddressParameter, txtSerialParameter, rec_found);
         }
     
+        public virtual int SP_Update_Product_Price(Nullable<int> productId, string productName, Nullable<double> productPrice)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var productNameParameter = productName != null ?
+                new ObjectParameter("ProductName", productName) :
+                new ObjectParameter("ProductName", typeof(string));
+    
+            var productPriceParameter = productPrice.HasValue ?
+                new ObjectParameter("ProductPrice", productPrice) :
+                new ObjectParameter("ProductPrice", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Update_Product_Price", productIdParameter, productNameParameter, productPriceParameter);
+        }
+    
         public virtual ObjectResult<string> SP_User_Add_New(string userName, string userPassword, Nullable<int> userRole, string a_Name, string a_Country, string a_City, string a_State, string a_Phone, string a_Fax, string a_Email, string aDRESS, ObjectParameter rec_found)
         {
             var userNameParameter = userName != null ?
@@ -1311,101 +1442,6 @@ namespace API.Models
         public virtual ObjectResult<SP_Workers_To_DataGrid_Result> SP_Workers_To_DataGrid()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Workers_To_DataGrid_Result>("SP_Workers_To_DataGrid");
-        }
-    
-        public virtual ObjectResult<SP_flutter_SumQuantity_Orders_Query_Result> SP_flutter_SumQuantity_Orders_Query(string custmerPhone, Nullable<System.DateTime> beginDate, Nullable<System.DateTime> endDate)
-        {
-            var custmerPhoneParameter = custmerPhone != null ?
-                new ObjectParameter("CustmerPhone", custmerPhone) :
-                new ObjectParameter("CustmerPhone", typeof(string));
-    
-            var beginDateParameter = beginDate.HasValue ?
-                new ObjectParameter("BeginDate", beginDate) :
-                new ObjectParameter("BeginDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("EndDate", endDate) :
-                new ObjectParameter("EndDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_flutter_SumQuantity_Orders_Query_Result>("SP_flutter_SumQuantity_Orders_Query", custmerPhoneParameter, beginDateParameter, endDateParameter);
-        }
-    
-        public virtual int SP_Flutter_Order_Add_New(Nullable<int> customerId, Nullable<int> storeId, Nullable<System.DateTime> orderDate, string orderNote, Nullable<int> productId, Nullable<int> measureId, Nullable<int> weightId, Nullable<int> quantity, string listOfvan)
-        {
-            var customerIdParameter = customerId.HasValue ?
-                new ObjectParameter("CustomerId", customerId) :
-                new ObjectParameter("CustomerId", typeof(int));
-    
-            var storeIdParameter = storeId.HasValue ?
-                new ObjectParameter("StoreId", storeId) :
-                new ObjectParameter("StoreId", typeof(int));
-    
-            var orderDateParameter = orderDate.HasValue ?
-                new ObjectParameter("OrderDate", orderDate) :
-                new ObjectParameter("OrderDate", typeof(System.DateTime));
-    
-            var orderNoteParameter = orderNote != null ?
-                new ObjectParameter("OrderNote", orderNote) :
-                new ObjectParameter("OrderNote", typeof(string));
-    
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            var measureIdParameter = measureId.HasValue ?
-                new ObjectParameter("measureId", measureId) :
-                new ObjectParameter("measureId", typeof(int));
-    
-            var weightIdParameter = weightId.HasValue ?
-                new ObjectParameter("weightId", weightId) :
-                new ObjectParameter("weightId", typeof(int));
-    
-            var quantityParameter = quantity.HasValue ?
-                new ObjectParameter("Quantity", quantity) :
-                new ObjectParameter("Quantity", typeof(int));
-    
-            var listOfvanParameter = listOfvan != null ?
-                new ObjectParameter("listOfvan", listOfvan) :
-                new ObjectParameter("listOfvan", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_Add_New", customerIdParameter, storeIdParameter, orderDateParameter, orderNoteParameter, productIdParameter, measureIdParameter, weightIdParameter, quantityParameter, listOfvanParameter);
-        }
-    
-        public virtual int SP_Flutter_Order_van_Update(Nullable<int> orderId, Nullable<int> orderHasProductId, Nullable<System.DateTime> orderDate, Nullable<int> productId, Nullable<int> wieghtId, Nullable<int> measureId, Nullable<int> quantity, string listOfvan)
-        {
-            var orderIdParameter = orderId.HasValue ?
-                new ObjectParameter("OrderId", orderId) :
-                new ObjectParameter("OrderId", typeof(int));
-    
-            var orderHasProductIdParameter = orderHasProductId.HasValue ?
-                new ObjectParameter("OrderHasProductId", orderHasProductId) :
-                new ObjectParameter("OrderHasProductId", typeof(int));
-    
-            var orderDateParameter = orderDate.HasValue ?
-                new ObjectParameter("OrderDate", orderDate) :
-                new ObjectParameter("OrderDate", typeof(System.DateTime));
-    
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            var wieghtIdParameter = wieghtId.HasValue ?
-                new ObjectParameter("WieghtId", wieghtId) :
-                new ObjectParameter("WieghtId", typeof(int));
-    
-            var measureIdParameter = measureId.HasValue ?
-                new ObjectParameter("MeasureId", measureId) :
-                new ObjectParameter("MeasureId", typeof(int));
-    
-            var quantityParameter = quantity.HasValue ?
-                new ObjectParameter("quantity", quantity) :
-                new ObjectParameter("quantity", typeof(int));
-    
-            var listOfvanParameter = listOfvan != null ?
-                new ObjectParameter("listOfvan", listOfvan) :
-                new ObjectParameter("listOfvan", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Flutter_Order_van_Update", orderIdParameter, orderHasProductIdParameter, orderDateParameter, productIdParameter, wieghtIdParameter, measureIdParameter, quantityParameter, listOfvanParameter);
         }
     }
 }

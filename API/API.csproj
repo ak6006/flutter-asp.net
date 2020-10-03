@@ -343,6 +343,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\TransController.cs" />
     <Compile Include="Controllers\TransHistoryController.cs" />
+    <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\UpdateUserTokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
@@ -409,6 +410,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\shiftadmin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SplitList_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Customer_ID_Result.cs">
@@ -484,6 +488,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Sales_BarCode_Check_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_Sales_Order_Trans_Vin_display_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Sales_Order_Trans_Vin_Load_Result.cs">

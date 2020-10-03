@@ -28,7 +28,7 @@ namespace API.Models
     
         public virtual measurement measurement { get; set; }
         public virtual order order { get; set; }
-        public virtual weight weight { get; set; }
         public virtual product product { get; set; }
+        public virtual weight weight { get; set; }
     }
 }

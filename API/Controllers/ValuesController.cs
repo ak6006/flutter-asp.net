@@ -64,7 +64,11 @@ namespace API.Controllers
                     VehiclesData VData = new VehiclesData()
                     {
                         VehicleId = item.v_id,
-                        DriverName = item.transVehcile_driver_name
+                        DriverName = item.transVehcile_driver_name,
+                        Model = item.transVehcile_model,
+                        Number = item.transVehcile_num,
+                        Phone = item.transVehcile_phone,
+                        Serial = item.transVehcile_serial
                     };
                     vehiclesData.Add(VData);
                 }
