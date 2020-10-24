@@ -25,6 +25,8 @@ namespace API.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        private Entities db = new Entities();
+        private ApplicationDBContext AuthDB = new ApplicationDBContext();
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -184,11 +186,102 @@ namespace API.Controllers
         //    return Ok();
         //}
 
+
+        // POST api/Account/PasswordCode
+        [AllowAnonymous]
+        [Route("PasswordCode")]
+        public IHttpActionResult PasswordCode(string PhoneNumber)
+        {
+            var UserExist = AuthDB.Users.Where(u => u.PhoneNumber == PhoneNumber).FirstOrDefault();
+            if(UserExist == null)
+            {
+                return BadRequest("invalid Phone Number");
+            }
+            var oldCode = db.PasswordCodes.Where(c => c.Phone == PhoneNumber);
+            if(oldCode != null)
+            {
+                foreach (var item in oldCode)
+                {
+                    db.PasswordCodes.Remove(item);
+                }
+            }
+            var deviceId = UserExist.DeviceToken;
+            Random _rdm = new Random();
+            var Code = _rdm.Next(1000, 9999);
+            var input = new NotificationViewModel()
+            {
+                Msg = "يرجى استخدام كود : "+ Code
+            };
+            try
+            {
+                var PasswordCode = new PasswordCode()
+                {
+                    Code = Code.ToString(),
+                    Phone = PhoneNumber,
+                    Time = DateTime.Now
+                };
+                db.PasswordCodes.Add(PasswordCode);
+                db.SaveChanges();
+                PushNotification p = new PushNotification(input, deviceId);
+                return Ok("Done");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        // POST api/Account/ChangePassword
+        [AllowAnonymous]
+        [Route("ChangePassword")]
+        public IHttpActionResult ChangePassword(ChangePasswordModel model)
+        {
+            var UserExist = db.PasswordCodes.Where(u => u.Phone == model.Phone && u.Code == model.Code ).FirstOrDefault();
+            if (UserExist == null)
+            {
+                return BadRequest("Invalid Phone number");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            TimeSpan t = DateTime.Now - UserExist.Time;
+            if(t.TotalMinutes>30)
+            {
+                return BadRequest("This code is expired");
+            }
+            var user = AuthDB.Users.Where(u => u.PhoneNumber == model.Phone).FirstOrDefault();
+            try
+            {
+
+                UserStore<ApplicationUser> store =
+                            new UserStore<ApplicationUser>(new ApplicationDBContext());
+                UserManager<ApplicationUser> manager =
+                   new UserManager<ApplicationUser>(store);
+                var newPasswordHash = manager.PasswordHasher.HashPassword(model.Password);
+
+                store.SetPasswordHashAsync(user, newPasswordHash);
+                //UserExist.FirstOrDefault().PasswordHash = newPasswordHash;
+                AuthDB.SaveChanges();
+                return Ok("Done");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            var PhoneExist = db.addresses.Where(p => p.phone == model.PhoneNumber).ToList();
+            if (PhoneExist.Count == 0)
+            {
+                return BadRequest("Phone number not found in Mecca High feed");
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -204,7 +297,7 @@ namespace API.Controllers
                 user.UserName = model.UserName;
                 user.PasswordHash = model.Password;
                 user.PhoneNumber = model.PhoneNumber;
-                user.Email = model.UserName+"@gmail.com";
+                user.Email = model.UserName + "@gmail.com";
 
                 IdentityResult result = await manager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

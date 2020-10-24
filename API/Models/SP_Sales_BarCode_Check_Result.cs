@@ -16,7 +16,7 @@ namespace API.Models
         public int store_store_id { get; set; }
         public Nullable<System.DateTime> store_has_productDate { get; set; }
         public string shiftName { get; set; }
-        public string Shift_Name { get; set; }
+        public string Shift_admin_Name { get; set; }
         public string Customer_Name { get; set; }
         public string transVehcile_num { get; set; }
         public string transVehcile_driver_name { get; set; }
@@ -24,5 +24,7 @@ namespace API.Models
         public string productName { get; set; }
         public Nullable<int> weight_net { get; set; }
         public string barcode_serialNumber { get; set; }
+        public string Quantity { get; set; }
+        public string measre_name { get; set; }
     }
 }

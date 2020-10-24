@@ -48,6 +48,8 @@
         <AssociationConnector Association="DB_A67616_makahighfeedModel.shift_has_workers" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A67616_makahighfeedModel.store_has_product_has_order" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A67616_makahighfeedModel.users_has_roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A67616_makahighfeedModel.gift" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A67616_makahighfeedModel.PasswordCode" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

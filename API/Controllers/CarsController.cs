@@ -87,7 +87,7 @@ namespace API.Controllers
             ObjectParameter RecFound = new ObjectParameter("rec_found", typeof(int));
             ObjectParameter NewIdentity = new ObjectParameter("new_identity", typeof(int));
             db.SP_Trans_Vin_Add_New(NewCar.DriverName, NewCar.Number, NewCar.Model, NewCar.Phone, CustomerId,
-                "", NewCar.Serial, NewIdentity, RecFound).ToList();
+                "", "", NewIdentity, RecFound).ToList();
             await db.SaveChangesAsync();
             if ((int)RecFound.Value == 0)
             {

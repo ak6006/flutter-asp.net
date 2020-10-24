@@ -18,7 +18,12 @@
     <Property Name="phone" Type="nvarchar" MaxLength="45" />
     <Property Name="tel" Type="nvarchar" MaxLength="45" />
     <Property Name="fax" Type="nvarchar" MaxLength="45" />
-    <Property Name="addresscol" Type="nvarchar" MaxLength="45" />
+    <Property Name="id_card_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_name_person_A" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_phone_person_A" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_name_person_B" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_phone_person_B" Type="nvarchar" MaxLength="50" />
+    <Property Name="addresscol" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="addresstype">
     <Key>
@@ -39,6 +44,15 @@
     </Key>
     <Property Name="Customers_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="address_add_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gift">
+    <Key>
+      <PropertyRef Name="giftid" />
+    </Key>
+    <Property Name="giftid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="giftname" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="giftBagsCount" Type="int" Nullable="false" />
+    <Property Name="giftimg" Type="image" />
   </EntityType>
   <EntityType Name="measurement">
     <Key>
@@ -86,6 +100,15 @@
     <Property Name="order_order_id" Type="int" Nullable="false" />
     <Property Name="barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="PasswordCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="45" Nullable="false" />
+    <Property Name="Code" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="product">
     <Key>
       <PropertyRef Name="product_id" />
@@ -94,6 +117,7 @@
     <Property Name="productName" Type="nvarchar" MaxLength="45" />
     <Property Name="TodayPrice" Type="float" />
     <Property Name="PriceUpdateTime" Type="datetime" />
+    <Property Name="PrductImg" Type="image" />
   </EntityType>
   <EntityType Name="product_has_weight">
     <Key>
@@ -173,6 +197,7 @@
     <Property Name="store_has_product_barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="store_has_product_weight_weight_id" Type="int" Nullable="false" />
     <Property Name="order_order_id" Type="int" Nullable="false" />
+    <Property Name="v_id" Type="int" />
   </EntityType>
   <EntityType Name="transvehcile">
     <Key>
@@ -608,6 +633,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -633,6 +663,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -642,7 +677,7 @@
   <Function Name="SP_Flutter_Order_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CustomerId" Type="int" Mode="In" />
     <Parameter Name="StoreId" Type="int" Mode="In" />
-    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="OrderDate" Type="datetime" Mode="In" />
     <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
     <Parameter Name="ProductId" Type="int" Mode="In" />
     <Parameter Name="measureId" Type="int" Mode="In" />
@@ -776,7 +811,7 @@
     <Parameter Name="OrderId" Type="int" Mode="In" />
     <Parameter Name="CustomerId" Type="int" Mode="In" />
     <Parameter Name="StoreId" Type="int" Mode="In" />
-    <Parameter Name="OrderDate" Type="date" Mode="In" />
+    <Parameter Name="OrderDate" Type="datetime" Mode="In" />
     <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -806,6 +841,7 @@
     <Parameter Name="OrderId" Type="nvarchar" Mode="In" />
     <Parameter Name="ProdductId" Type="nvarchar" Mode="In" />
     <Parameter Name="weightId" Type="nvarchar" Mode="In" />
+    <Parameter Name="v_id" Type="int" Mode="In" />
     <Parameter Name="Serial_found" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
     <Parameter Name="NetCounter" Type="int" Mode="InOut" />
@@ -827,6 +863,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -852,6 +893,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -1007,6 +1053,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -1031,6 +1082,11 @@
     <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
     <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -1051,10 +1107,12 @@
     <EntitySet Name="addresstype" EntityType="Self.addresstype" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="barcode" EntityType="Self.barcode" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="customers" EntityType="Self.customers" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="gift" EntityType="Self.gift" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="measurement" EntityType="Self.measurement" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="order" EntityType="Self.order" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="order_has_product" EntityType="Self.order_has_product" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="orderserial" EntityType="Self.orderserial" Schema="makahighfeed.v.0" store:Type="Tables" />
+    <EntitySet Name="PasswordCode" EntityType="Self.PasswordCode" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="product" EntityType="Self.product" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="product_has_weight" EntityType="Self.product_has_weight" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="roles" EntityType="Self.roles" Schema="makahighfeed.v.0" store:Type="Tables" />

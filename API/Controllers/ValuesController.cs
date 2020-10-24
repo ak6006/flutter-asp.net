@@ -8,6 +8,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using System.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json;
+using System.Reflection.Emit;
+using System.Reflection;
+using System.Data.Entity;
 
 namespace API.Controllers
 {
@@ -123,7 +129,7 @@ namespace API.Controllers
                     {
 
                     }
-                    
+
                     customerOrders.Add(item);
                 }
             }
@@ -185,10 +191,16 @@ namespace API.Controllers
             {
                 productName = "كل المنتجات"
             };
+            ///////////////
+            ///Gifts
+            //// Products + كل المنتجات 
+            var gifts = db.gifts.ToList();
+
+            ///
             ProdNames.Add(PName);
 
             if (ProdNames != null)
-                return Ok(new { customerOrders, CustName, ProdNames, storeNames, weightNames, measureNames, vehiclesData });
+                return Ok(new { gifts, customerOrders, CustName, ProdNames, storeNames, weightNames, measureNames, vehiclesData });
             else
                 return NotFound();
         }
@@ -217,27 +229,18 @@ namespace API.Controllers
 
         }
 
-        // GET api/values/5
-        //public string Get(int id)
-        //{
-
-        //    return "value";
-        //}
-
-        // POST api/values
-        public void Post([FromBody] string value)
+        // route api/Values/Query
+        [Route("api/Values/Query")]
+        [HttpGet]
+        public string Query(string query)
         {
+            string connectionString = "Server=SQL5080.site4now.net;Database=DB_A67616_makahighfeed;User Id=DB_A67616_makahighfeed_admin;Password=ak654321;";
 
+            var result = db.Database.ExecuteSqlCommand(query).ToString();
+            return result;
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+
     }
 }

@@ -4,6 +4,11 @@
     <EntitySetMapping Name="addresses">
       <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.address">
         <MappingFragment StoreEntitySet="address">
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
           <ScalarProperty Name="add_id" ColumnName="add_id" />
           <ScalarProperty Name="addressType_addressType_id" ColumnName="addressType_addressType_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -87,6 +92,7 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.product">
         <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="PrductImg" ColumnName="PrductImg" />
           <ScalarProperty Name="product_id" ColumnName="product_id" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
@@ -549,23 +555,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Update" />
     <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode" />
-    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
-          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
-          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
-          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
-          <ScalarProperty Name="Shift_Name" ColumnName="Shift_Name" />
-          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
-          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="productName" ColumnName="productName" />
-          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
-          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_display">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result">
@@ -943,5 +932,44 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
+          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+          <ScalarProperty Name="Shift_admin_Name" ColumnName="Shift_admin_Name" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="gifts">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.gift">
+        <MappingFragment StoreEntitySet="gift">
+          <ScalarProperty Name="giftimg" ColumnName="giftimg" />
+          <ScalarProperty Name="giftBagsCount" ColumnName="giftBagsCount" />
+          <ScalarProperty Name="giftname" ColumnName="giftname" />
+          <ScalarProperty Name="giftid" ColumnName="giftid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PasswordCodes">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.PasswordCode">
+        <MappingFragment StoreEntitySet="PasswordCode">
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

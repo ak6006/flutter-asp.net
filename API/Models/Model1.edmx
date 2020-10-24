@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_A67616_makahighfeedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_A67616_makahighfeedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="address">
           <Key>
             <PropertyRef Name="add_id" />
@@ -23,7 +23,12 @@
           <Property Name="phone" Type="nvarchar" MaxLength="45" />
           <Property Name="tel" Type="nvarchar" MaxLength="45" />
           <Property Name="fax" Type="nvarchar" MaxLength="45" />
-          <Property Name="addresscol" Type="nvarchar" MaxLength="45" />
+          <Property Name="id_card_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="relative_name_person_A" Type="nvarchar" MaxLength="50" />
+          <Property Name="relative_phone_person_A" Type="nvarchar" MaxLength="50" />
+          <Property Name="relative_name_person_B" Type="nvarchar" MaxLength="50" />
+          <Property Name="relative_phone_person_B" Type="nvarchar" MaxLength="50" />
+          <Property Name="addresscol" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="addresstype">
           <Key>
@@ -44,6 +49,15 @@
           </Key>
           <Property Name="Customers_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="address_add_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gift">
+          <Key>
+            <PropertyRef Name="giftid" />
+          </Key>
+          <Property Name="giftid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="giftname" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="giftBagsCount" Type="int" Nullable="false" />
+          <Property Name="giftimg" Type="image" />
         </EntityType>
         <EntityType Name="measurement">
           <Key>
@@ -91,6 +105,15 @@
           <Property Name="order_order_id" Type="int" Nullable="false" />
           <Property Name="barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="PasswordCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="Code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="product">
           <Key>
             <PropertyRef Name="product_id" />
@@ -99,6 +122,7 @@
           <Property Name="productName" Type="nvarchar" MaxLength="45" />
           <Property Name="TodayPrice" Type="float" />
           <Property Name="PriceUpdateTime" Type="datetime" />
+          <Property Name="PrductImg" Type="image" />
         </EntityType>
         <EntityType Name="product_has_weight">
           <Key>
@@ -178,6 +202,7 @@
           <Property Name="store_has_product_barcode_serialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="store_has_product_weight_weight_id" Type="int" Nullable="false" />
           <Property Name="order_order_id" Type="int" Nullable="false" />
+          <Property Name="v_id" Type="int" />
         </EntityType>
         <EntityType Name="transvehcile">
           <Key>
@@ -613,6 +638,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -638,6 +668,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -647,7 +682,7 @@
         <Function Name="SP_Flutter_Order_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CustomerId" Type="int" Mode="In" />
           <Parameter Name="StoreId" Type="int" Mode="In" />
-          <Parameter Name="OrderDate" Type="date" Mode="In" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
           <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
           <Parameter Name="ProductId" Type="int" Mode="In" />
           <Parameter Name="measureId" Type="int" Mode="In" />
@@ -781,7 +816,7 @@
           <Parameter Name="OrderId" Type="int" Mode="In" />
           <Parameter Name="CustomerId" Type="int" Mode="In" />
           <Parameter Name="StoreId" Type="int" Mode="In" />
-          <Parameter Name="OrderDate" Type="date" Mode="In" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
           <Parameter Name="OrderNote" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_Product_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -811,6 +846,7 @@
           <Parameter Name="OrderId" Type="nvarchar" Mode="In" />
           <Parameter Name="ProdductId" Type="nvarchar" Mode="In" />
           <Parameter Name="weightId" Type="nvarchar" Mode="In" />
+          <Parameter Name="v_id" Type="int" Mode="In" />
           <Parameter Name="Serial_found" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
           <Parameter Name="NetCounter" Type="int" Mode="InOut" />
@@ -832,6 +868,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -857,6 +898,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -1012,6 +1058,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -1036,6 +1087,11 @@
           <Parameter Name="A_Fax" Type="nvarchar" Mode="In" />
           <Parameter Name="A_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="ADRESS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="id_card_number" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
+          <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
           <Parameter Name="rec_found" Type="int" Mode="InOut" />
         </Function>
@@ -1056,10 +1112,12 @@
           <EntitySet Name="addresstype" EntityType="Self.addresstype" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="barcode" EntityType="Self.barcode" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="makahighfeed.v.0" store:Type="Tables" />
+          <EntitySet Name="gift" EntityType="Self.gift" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="measurement" EntityType="Self.measurement" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="order_has_product" EntityType="Self.order_has_product" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="orderserial" EntityType="Self.orderserial" Schema="makahighfeed.v.0" store:Type="Tables" />
+          <EntitySet Name="PasswordCode" EntityType="Self.PasswordCode" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="product_has_weight" EntityType="Self.product_has_weight" Schema="makahighfeed.v.0" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="makahighfeed.v.0" store:Type="Tables" />
@@ -1196,8 +1254,7 @@
             <End Role="workers" EntitySet="workers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A67616_makahighfeedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1222,12 +1279,17 @@
           <Property Name="phone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="tel" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="fax" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="addresscol" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="addresscol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="addresstype" Relationship="Self.address_fk_address_addressType1" FromRole="address" ToRole="addresstype" />
           <NavigationProperty Name="customers" Relationship="Self.customers_fk_customers_address" FromRole="address" ToRole="customers" />
           <NavigationProperty Name="shiftadmins" Relationship="Self.shiftadmin_fk_shiftAdmin_address1" FromRole="address" ToRole="shiftadmin" />
           <NavigationProperty Name="users" Relationship="Self.users_fk_users_address1" FromRole="address" ToRole="users" />
           <NavigationProperty Name="workers" Relationship="Self.workers_fk_workers_address1" FromRole="address" ToRole="workers" />
+          <Property Name="id_card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="relative_name_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="relative_phone_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="relative_name_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="relative_phone_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="addresstype">
           <Key>
@@ -1316,6 +1378,7 @@
           <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="product" ToRole="order_has_product" />
           <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="product" ToRole="store_has_product" />
           <NavigationProperty Name="weights" Relationship="Self.product_has_weight" FromRole="product" ToRole="weight" />
+          <Property Name="PrductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -1829,6 +1892,11 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -1837,10 +1905,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Customer_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Customer_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Customer_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Customer_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Customer_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Customer_To_DataGrid_Result)" />
@@ -1854,11 +1922,16 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_flutter_Customer_Orders_Query" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_Customer_Orders_Query_Result)">
-            <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+          <Parameter Name="CustmerPhone" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Flutter_Order_Add_New">
             <Parameter Name="CustomerId" Mode="In" Type="Int32" />
@@ -1882,7 +1955,7 @@
             <Parameter Name="listOfvan" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_Query_Trans_Result)">
-            <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+          <Parameter Name="CustmerPhone" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result)">
             <Parameter Name="CustmerPhone" Mode="In" Type="String" />
@@ -1908,13 +1981,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_DELETE">
-            <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
+          <Parameter Name="MeasurementId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Measurement_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Measurement_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Measurement_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Measurement_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Measurement_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Measurement_To_DataGrid_Result)" />
@@ -1931,10 +2004,10 @@
             <Parameter Name="OrderNote" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_DELETE">
-            <Parameter Name="OrderId" Mode="In" Type="Int32" />
+          <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_Add_New">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -1956,7 +2029,7 @@
             <Parameter Name="weightId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_Items_To_DataGrid_Result)">
-            <Parameter Name="OrderId" Mode="In" Type="Int32" />
+          <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Items_Update">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -1969,7 +2042,7 @@
             <Parameter Name="NewQuantity" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_To_DataGrid_Result)" />
           <FunctionImport Name="SP_Order_Trans_Vin_Add_New">
@@ -1985,7 +2058,7 @@
             <Parameter Name="transvehcileID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Trans_Vin_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_Trans_Vin_To_DataGrid_Result)">
-            <Parameter Name="OrderId" Mode="In" Type="Int32" />
+          <Parameter Name="OrderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Order_Trans_Vin_Update">
             <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -2007,13 +2080,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_DELETE">
-            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Product_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Product_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Product_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Product_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Product_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Product_To_DataGrid_Result)" />
@@ -2027,17 +2100,15 @@
             <Parameter Name="OrderId" Mode="In" Type="String" />
             <Parameter Name="ProdductId" Mode="In" Type="String" />
             <Parameter Name="weightId" Mode="In" Type="String" />
+            <Parameter Name="v_id" Mode="In" Type="Int32" />
             <Parameter Name="Serial_found" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
             <Parameter Name="NetCounter" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_Sales_BarCode_Check" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result)">
-            <Parameter Name="Barcode" Mode="In" Type="String" />
-            <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
-          </FunctionImport>
+         
           <FunctionImport Name="SP_Sales_Order_Trans_Vin_display" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result)" />
           <FunctionImport Name="SP_Sales_Order_Trans_Vin_Load" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_Load_Result)">
-            <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
+          <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_Add_New" ReturnType="Collection(String)">
             <Parameter Name="A_Name" Mode="In" Type="String" />
@@ -2048,6 +2119,11 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -2056,10 +2132,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Admin_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="String" />
+          <Parameter Name="ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_SEARCH" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Admin_SEARCH_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Admin_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Admin_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Shift_Admin_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Admin_To_DataGrid_Result)" />
@@ -2073,6 +2149,11 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -2083,13 +2164,13 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_DELETE">
-            <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+          <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Main_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="String" />
+          <Parameter Name="ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Main_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Main_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Main_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Shift_Main_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Main_To_DataGrid_Result)" />
@@ -2118,7 +2199,7 @@
             <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Worker_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Worker_To_DataGrid_Result)">
-            <Parameter Name="ShiftId" Mode="In" Type="Int32" />
+          <Parameter Name="ShiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Shift_Worker_To_DataGrid_All" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Shift_Worker_To_DataGrid_All_Result)" />
           <FunctionImport Name="SP_Shift_Worker_Update">
@@ -2135,10 +2216,10 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Delete">
-            <Parameter Name="Store_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Store_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Store_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Product_Add_New" ReturnType="Collection(String)">
             <Parameter Name="ShiftId" Mode="In" Type="Int32" />
@@ -2151,7 +2232,7 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Store_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Store_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Store_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Store_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Store_To_DataGrid_Result)" />
@@ -2175,16 +2256,16 @@
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_DELETE">
-            <Parameter Name="VinNo" Mode="In" Type="Int32" />
+          <Parameter Name="VinNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Trans_Vin_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_TRANS_VIN_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_TRANS_VIN_Search_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Trans_Vin_To_ComboBox_Result)">
-            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Trans_Vin_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Trans_Vin_To_DataGrid_Result)" />
           <FunctionImport Name="SP_Trans_vin_Update">
@@ -2228,6 +2309,11 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -2236,10 +2322,10 @@
             <Parameter Name="ADD_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_ID" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Worker_ID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_SEARCH" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Worker_SEARCH_Result)">
-            <Parameter Name="SEARCH" Mode="In" Type="String" />
+          <Parameter Name="SEARCH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Worker_To_ComboBox" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Worker_To_ComboBox_Result)" />
           <FunctionImport Name="SP_Worker_Update">
@@ -2252,10 +2338,22 @@
             <Parameter Name="A_Fax" Mode="In" Type="String" />
             <Parameter Name="A_Email" Mode="In" Type="String" />
             <Parameter Name="ADRESS" Mode="In" Type="String" />
+            <Parameter Name="id_card_number" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
+            <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
+            <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
             <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Workers_To_DataGrid_Result)" />
+          <FunctionImport Name="SP_Sales_BarCode_Check" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result)">
+            <Parameter Name="Barcode" Mode="In" Type="String" />
+            <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="gifts" EntityType="DB_A67616_makahighfeedModel.gift" />
+          <EntitySet Name="PasswordCodes" EntityType="DB_A67616_makahighfeedModel.PasswordCode" />
+          
         </EntityContainer>
         <ComplexType Name="SP_Customer_ID_Result">
           <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -2444,19 +2542,7 @@
           <Property Type="Int32" Name="رقم_المنتج" Nullable="false" />
           <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
         </ComplexType>
-        <ComplexType Name="SP_Sales_BarCode_Check_Result">
-          <Property Type="Int32" Name="store_store_id" Nullable="false" />
-          <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Shift_Name" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
-          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
-          <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
-          <Property Type="Int32" Name="weight_net" Nullable="true" />
-          <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
-        </ComplexType>
+        
         <ComplexType Name="SP_Sales_Order_Trans_Vin_display_Result">
           <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
           <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
@@ -2694,6 +2780,40 @@
           <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
           <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
         </ComplexType>
+        <ComplexType Name="SP_Sales_BarCode_Check_Result">
+          <Property Type="Int32" Name="store_store_id" Nullable="false" />
+          <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Shift_admin_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+          <Property Type="Int32" Name="weight_net" Nullable="true" />
+          <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+        </ComplexType>
+        <EntityType Name="gift">
+          <Key>
+            <PropertyRef Name="giftid" />
+          </Key>
+          <Property Name="giftid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="giftname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="giftBagsCount" Type="Int32" Nullable="false" />
+          <Property Name="giftimg" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PasswordCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2703,6 +2823,11 @@
           <EntitySetMapping Name="addresses">
             <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.address">
               <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+                <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+                <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+                <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+                <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
                 <ScalarProperty Name="add_id" ColumnName="add_id" />
                 <ScalarProperty Name="addressType_addressType_id" ColumnName="addressType_addressType_id" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -2786,6 +2911,7 @@
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.product">
               <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="PrductImg" ColumnName="PrductImg" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
                 <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
@@ -3248,23 +3374,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Update" />
           <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode" />
-          <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
-                <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
-                <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
-                <ScalarProperty Name="shiftName" ColumnName="shiftName" />
-                <ScalarProperty Name="Shift_Name" ColumnName="Shift_Name" />
-                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
-                <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="productName" ColumnName="productName" />
-                <ScalarProperty Name="weight_net" ColumnName="weight_net" />
-                <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+         
           <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_display">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result">
@@ -3642,7 +3752,46 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
+                <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+                <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+                <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+                <ScalarProperty Name="Shift_admin_Name" ColumnName="Shift_admin_Name" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+                <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+                <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="gifts">
+            <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.gift">
+              <MappingFragment StoreEntitySet="gift">
+                <ScalarProperty Name="giftimg" ColumnName="giftimg" />
+                <ScalarProperty Name="giftBagsCount" ColumnName="giftBagsCount" />
+                <ScalarProperty Name="giftname" ColumnName="giftname" />
+                <ScalarProperty Name="giftid" ColumnName="giftid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PasswordCodes">
+            <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.PasswordCode">
+              <MappingFragment StoreEntitySet="PasswordCode">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -38,6 +38,11 @@ namespace API.Models
         public string tel { get; set; }
         public string fax { get; set; }
         public string addresscol { get; set; }
+        public string id_card_number { get; set; }
+        public string relative_name_person_A { get; set; }
+        public string relative_phone_person_A { get; set; }
+        public string relative_name_person_B { get; set; }
+        public string relative_phone_person_B { get; set; }
     
         public virtual addresstype addresstype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
