@@ -15,6 +15,6 @@ namespace API.Models
     {
         public string productName { get; set; }
         public string measre_name { get; set; }
-        public Nullable<int> sumQuantity { get; set; }
+        public Nullable<double> sumQuantity { get; set; }
     }
 }

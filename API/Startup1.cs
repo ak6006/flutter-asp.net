@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -19,8 +22,44 @@ namespace API
 {
     public class Startup1
     {
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+
+        public static string PublicClientId { get; private set; }
+        private ApplicationDBContext AuthDB = new ApplicationDBContext();
+        public void CreateRoles()
+        {
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(AuthDB));
+            IdentityRole role;
+            if (!roleManager.RoleExists("Admin"))
+            {
+                role = new IdentityRole
+                {
+                    Name = "Admin"
+                };
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Customer"))
+            {
+                role = new IdentityRole
+                {
+                    Name = "Customer"
+                };
+                roleManager.Create(role);
+            }
+
+        }
         public void Configuration(IAppBuilder app)
         {
+            app.CreatePerOwinContext(ApplicationDBContext.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+
+            PublicClientId = "self";
+
+            CreateRoles();
             app.UseCors(CorsOptions.AllowAll);
             //use middle creat token cookie oauth
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
@@ -31,7 +70,7 @@ namespace API
                 AllowInsecureHttp = true,
                 //how to create token (fields)==>
                 Provider = new TokenCreate()
-            }); 
+            });
             //Check token valid 
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
@@ -66,7 +105,7 @@ namespace API
             UserManager<ApplicationUser> manager =
                 new UserManager<ApplicationUser>(store);
 
-            IdentityUser user = await manager.FindAsync(context.UserName, context.Password);
+            ApplicationUser user = await manager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -76,15 +115,51 @@ namespace API
             {
                 //create token
                 ClaimsIdentity claims = new ClaimsIdentity(context.Options.AuthenticationType);//token beare -jwt cookie
-                //fields 
-                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-                claims.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-                if (manager.IsInRole(user.Id, "Admin"))
-                    claims.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+                                                                                               //fields 
 
-                context.Validated(claims);//card field NAme,image,...role
+
+                ClaimsIdentity oAuthIdentity = await manager.CreateIdentityAsync(user,
+               context.Options.AuthenticationType);
+
+                ClaimsIdentity cookiesIdentity = await manager.CreateIdentityAsync(user,
+                    CookieAuthenticationDefaults.AuthenticationType);
+                List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+                AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
+
+                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+                context.Validated(ticket);
+                context.Request.Context.Authentication.SignIn(cookiesIdentity);
+                //claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                //claims.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                //if (manager.IsInRole(user.Id, "Customer"))
+                //    claims.AddClaim(new Claim(ClaimTypes.Role, "Customer"));
+
+                //context.Validated(claims);//card field NAme,image,...role
+
             }
             //fields Token
+
+        }
+
+        public static AuthenticationProperties CreateProperties(string userName, string Roles)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+        {
+            { "userName", userName },
+            {"roles",Roles}
+        };
+            return new AuthenticationProperties(data);
+        }
+
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+
+            return Task.FromResult<object>(null);
         }
     }
 }

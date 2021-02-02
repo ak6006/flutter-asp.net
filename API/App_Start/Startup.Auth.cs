@@ -21,6 +21,9 @@ namespace API
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            //app.CreatePerOwinContext(ApplicationDBContext.Create);
+            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            ConfigureAuth(app);
             app.CreatePerOwinContext(ApplicationDBContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 

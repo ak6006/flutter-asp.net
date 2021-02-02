@@ -30,6 +30,7 @@ namespace API.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
+
         public AccountController()
         {
         }
@@ -40,6 +41,8 @@ namespace API.Controllers
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
         }
+
+       
 
         public ApplicationUserManager UserManager
         {
@@ -55,20 +58,7 @@ namespace API.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        //// GET api/Account/UserInfo
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //[Route("UserInfo")]
-        //public UserInfoViewModel GetUserInfo()
-        //{
-        //    ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
-        //    return new UserInfoViewModel
-        //    {
-        //        Email = User.Identity.GetUserName(),
-        //        HasRegistered = externalLogin == null,
-        //        LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-        //    };
-        //}
+       
 
         // POST api/Account/Logout
         [Route("Logout")]
@@ -77,114 +67,6 @@ namespace API.Controllers
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
-
-
-
-        //// POST api/Account/ChangePassword
-        //[Route("ChangePassword")]
-        //public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-        //        model.NewPassword);
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
-
-        //// POST api/Account/SetPassword
-        //[Route("SetPassword")]
-        //public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
-
-        //// POST api/Account/AddExternalLogin
-        //[Route("AddExternalLogin")]
-        //public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-
-        //    AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
-
-        //    if (ticket == null || ticket.Identity == null || (ticket.Properties != null
-        //        && ticket.Properties.ExpiresUtc.HasValue
-        //        && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
-        //    {
-        //        return BadRequest("External login failure.");
-        //    }
-
-        //    ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
-
-        //    if (externalData == null)
-        //    {
-        //        return BadRequest("The external login is already associated with an account.");
-        //    }
-
-        //    IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
-        //        new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
-
-        //// POST api/Account/RemoveLogin
-        //[Route("RemoveLogin")]
-        //public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    IdentityResult result;
-
-        //    if (model.LoginProvider == LocalLoginProvider)
-        //    {
-        //        result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
-        //    }
-        //    else
-        //    {
-        //        result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
-        //            new UserLoginInfo(model.LoginProvider, model.ProviderKey));
-        //    }
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
 
 
         // POST api/Account/PasswordCode
@@ -210,7 +92,8 @@ namespace API.Controllers
             var Code = _rdm.Next(1000, 9999);
             var input = new NotificationViewModel()
             {
-                Msg = "يرجى استخدام كود : "+ Code
+                Title = "يرجى استخدام كود التفعيل",
+                Msg = Code.ToString()
             };
             try
             {
@@ -223,7 +106,7 @@ namespace API.Controllers
                 db.PasswordCodes.Add(PasswordCode);
                 db.SaveChanges();
                 PushNotification p = new PushNotification(input, deviceId);
-                return Ok("Done");
+                return Ok(Code);
             }
             catch(Exception e)
             {
@@ -237,7 +120,7 @@ namespace API.Controllers
         [Route("ChangePassword")]
         public IHttpActionResult ChangePassword(ChangePasswordModel model)
         {
-            var UserExist = db.PasswordCodes.Where(u => u.Phone == model.Phone && u.Code == model.Code ).FirstOrDefault();
+            var UserExist = AuthDB.Users.Where(u => u.PhoneNumber == model.Phone ).FirstOrDefault();
             if (UserExist == null)
             {
                 return BadRequest("Invalid Phone number");
@@ -246,7 +129,12 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            TimeSpan t = DateTime.Now - UserExist.Time;
+            PasswordCode passwordCode = db.PasswordCodes.Where(p => p.Code == model.Code && p.Phone == model.Phone).FirstOrDefault();
+            if (passwordCode == null)
+            {
+                return BadRequest("Invalid Code");
+            }
+            TimeSpan t = DateTime.Now - passwordCode.Time;
             if(t.TotalMinutes>30)
             {
                 return BadRequest("This code is expired");
@@ -277,31 +165,36 @@ namespace API.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            var PhoneExist = db.addresses.Where(p => p.phone == model.PhoneNumber).ToList();
-            if (PhoneExist.Count == 0)
+            var UserExist = AuthDB.Users.Where(u => u.PhoneNumber == model.PhoneNumber).FirstOrDefault();
+            if(UserExist!=null)
             {
-                return BadRequest("Phone number not found in Mecca High feed");
+                return BadRequest("Phone number has been used before");
             }
+            var PhoneExist = db.addresses.Where(p => p.phone == model.PhoneNumber).ToList();
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                UserStore<ApplicationUser> store =
-                    new UserStore<ApplicationUser>(new ApplicationDBContext());
+   
+                var user = new ApplicationUser()
+                {
+                    UserName = model.UserName,
+                    PhoneNumber = model.PhoneNumber,
+                    Email = model.UserName + "@gmail.com"
+                };
 
-                UserManager<ApplicationUser> manager =
-                    new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser();
-                user.UserName = model.UserName;
-                user.PasswordHash = model.Password;
-                user.PhoneNumber = model.PhoneNumber;
-                user.Email = model.UserName + "@gmail.com";
 
-                IdentityResult result = await manager.CreateAsync(user, model.Password);
+
+                var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (PhoneExist.Count != 0)
+                    {
+                        UserManager.AddToRole(user.Id, "Customer");
+                    }
                     //string locat = Url.Link("DefaultApi", new { })
                     return Created("", "register Sucess " + user.UserName);
                 }
@@ -312,71 +205,10 @@ namespace API.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            //var user = new ApplicationUser() 
-            //{
-            //    UserName = model.UserName,
-            //    PhoneNumber = model.PhoneNumber,
-            //    Email = model.UserName+"@gmail.com"
-            //};
-
-            //IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            //if (!result.Succeeded)
-            //{
-            //    return GetErrorResult(result);
-            //}
-
-            //return Ok();
+           
         }
 
-        // POST api/Account/RegisterExternal
-        //[OverrideAuthentication]
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //[Route("RegisterExternal")]
-        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var info = await Authentication.GetExternalLoginInfoAsync();
-        //    if (info == null)
-        //    {
-        //        return InternalServerError();
-        //    }
-
-        //    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-        //    IdentityResult result = await UserManager.CreateAsync(user);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-        //    return Ok();
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing && _userManager != null)
-        //    {
-        //        _userManager.Dispose();
-        //        _userManager = null;
-        //    }
-
-        //    base.Dispose(disposing);
-        //}
+       
 
         #region Helpers
 

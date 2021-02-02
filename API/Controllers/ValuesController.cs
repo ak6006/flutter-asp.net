@@ -57,6 +57,7 @@ namespace API.Controllers
             }
             catch
             {
+                CustName.custName = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault().UserName;
             }
             //// customer cars
             List<VehiclesData> vehiclesData = new List<VehiclesData>();
@@ -234,7 +235,7 @@ namespace API.Controllers
         [HttpGet]
         public string Query(string query)
         {
-            string connectionString = "Server=SQL5080.site4now.net;Database=DB_A67616_makahighfeed;User Id=DB_A67616_makahighfeed_admin;Password=ak654321;";
+            //string connectionString = "Server=SQL5080.site4now.net;Database=DB_A67616_makahighfeed;User Id=DB_A67616_makahighfeed_admin;Password=ak654321;";
 
             var result = db.Database.ExecuteSqlCommand(query).ToString();
             return result;

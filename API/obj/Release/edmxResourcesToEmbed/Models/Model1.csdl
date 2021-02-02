@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DB_A67616_makahighfeedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <ComplexType Name="SplitList_Result">
-    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </ComplexType>
   <EntityType Name="address">
     <Key>
       <PropertyRef Name="add_id" />
@@ -21,17 +18,20 @@
     <Property Name="phone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <Property Name="tel" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <Property Name="fax" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="id_card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_name_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_phone_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_name_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_phone_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_casen_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="relative_casen_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="job_titel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="addresscol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="addresstype" Relationship="Self.address_fk_address_addressType1" FromRole="address" ToRole="addresstype" />
     <NavigationProperty Name="customers" Relationship="Self.customers_fk_customers_address" FromRole="address" ToRole="customers" />
     <NavigationProperty Name="shiftadmins" Relationship="Self.shiftadmin_fk_shiftAdmin_address1" FromRole="address" ToRole="shiftadmin" />
     <NavigationProperty Name="users" Relationship="Self.users_fk_users_address1" FromRole="address" ToRole="users" />
     <NavigationProperty Name="workers" Relationship="Self.workers_fk_workers_address1" FromRole="address" ToRole="workers" />
-    <Property Name="id_card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="relative_name_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="relative_phone_person_A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="relative_name_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="relative_phone_person_B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="addresstype">
     <Key>
@@ -59,6 +59,15 @@
     <NavigationProperty Name="orders" Relationship="Self.order_fk_order_customers1" FromRole="customers" ToRole="order" />
     <NavigationProperty Name="transvehciles" Relationship="Self.transvehcile_fk_transVehcile_customers1" FromRole="customers" ToRole="transvehcile" />
   </EntityType>
+  <EntityType Name="gift">
+    <Key>
+      <PropertyRef Name="giftid" />
+    </Key>
+    <Property Name="giftid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="giftname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="giftBagsCount" Type="Int32" Nullable="false" />
+    <Property Name="giftimg" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="measurement">
     <Key>
       <PropertyRef Name="measure_id" />
@@ -83,9 +92,9 @@
     <NavigationProperty Name="store" Relationship="Self.order_fk_order_store1" FromRole="order" ToRole="store" />
     <NavigationProperty Name="user" Relationship="Self.order_fk_order_users1" FromRole="order" ToRole="users" />
     <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_order1" FromRole="order" ToRole="order_has_product" />
+    <NavigationProperty Name="store_has_product_has_order" Relationship="Self.store_has_product_has_order_fk_store_has_product_has_order_order1" FromRole="order" ToRole="store_has_product_has_order" />
     <NavigationProperty Name="transvehcile_has_order" Relationship="Self.transvehcile_has_order_fk_transVehcile_has_order_order1" FromRole="order" ToRole="transvehcile_has_order" />
     <NavigationProperty Name="barcodes" Relationship="Self.orderserial" FromRole="order" ToRole="barcode" />
-    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_has_order" FromRole="order" ToRole="store_has_product" />
   </EntityType>
   <EntityType Name="order_has_product">
     <Key>
@@ -98,7 +107,7 @@
     <Property Name="product_product_id" Type="Int32" Nullable="false" />
     <Property Name="measurement_measure_id" Type="Int32" Nullable="false" />
     <Property Name="weight_weight_id" Type="Int32" Nullable="false" />
-    <Property Name="Quantity" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
     <Property Name="order_has_product_Pages_Count" Type="Int32" />
     <Property Name="order_has_product_dept_count" Type="Int32" />
     <Property Name="order_has_product_state" Type="Int32" />
@@ -109,6 +118,15 @@
     <NavigationProperty Name="product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="order_has_product" ToRole="product" />
     <NavigationProperty Name="weight" Relationship="Self.order_has_product_fk_order_has_product_weight1" FromRole="order_has_product" ToRole="weight" />
   </EntityType>
+  <EntityType Name="PasswordCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Phone" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
   <EntityType Name="product">
     <Key>
       <PropertyRef Name="product_id" />
@@ -117,10 +135,10 @@
     <Property Name="productName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <Property Name="TodayPrice" Type="Double" />
     <Property Name="PriceUpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="PrductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="order_has_product" Relationship="Self.order_has_product_fk_order_has_product_product1" FromRole="product" ToRole="order_has_product" />
     <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_fk_store_has_product_product1" FromRole="product" ToRole="store_has_product" />
     <NavigationProperty Name="weights" Relationship="Self.product_has_weight" FromRole="product" ToRole="weight" />
-    <Property Name="PrductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="role">
     <Key>
@@ -181,7 +199,26 @@
     <NavigationProperty Name="shift" Relationship="Self.store_has_product_fk_store_has_product_shift1" FromRole="store_has_product" ToRole="shift" />
     <NavigationProperty Name="store" Relationship="Self.store_has_product_fk_store_has_product_store1" FromRole="store_has_product" ToRole="store" />
     <NavigationProperty Name="weight" Relationship="Self.store_has_product_fk_store_has_product_weight1" FromRole="store_has_product" ToRole="weight" />
-    <NavigationProperty Name="orders" Relationship="Self.store_has_product_has_order" FromRole="store_has_product" ToRole="order" />
+    <NavigationProperty Name="store_has_product_has_order" Relationship="Self.store_has_product_has_order_fk_store_has_product_has_order_store_has_product1" FromRole="store_has_product" ToRole="store_has_product_has_order" />
+  </EntityType>
+  <EntityType Name="store_has_product_has_order">
+    <Key>
+      <PropertyRef Name="store_has_product_store_store_id" />
+      <PropertyRef Name="store_has_product_product_product_id" />
+      <PropertyRef Name="store_has_product_shift_shift_id" />
+      <PropertyRef Name="store_has_product_barcode_serialNumber" />
+      <PropertyRef Name="store_has_product_weight_weight_id" />
+      <PropertyRef Name="order_order_id" />
+    </Key>
+    <Property Name="store_has_product_store_store_id" Type="Int32" Nullable="false" />
+    <Property Name="store_has_product_product_product_id" Type="Int32" Nullable="false" />
+    <Property Name="store_has_product_shift_shift_id" Type="Int32" Nullable="false" />
+    <Property Name="store_has_product_barcode_serialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="store_has_product_weight_weight_id" Type="Int32" Nullable="false" />
+    <Property Name="order_order_id" Type="Int32" Nullable="false" />
+    <Property Name="v_id" Type="Int32" />
+    <NavigationProperty Name="order" Relationship="Self.store_has_product_has_order_fk_store_has_product_has_order_order1" FromRole="store_has_product_has_order" ToRole="order" />
+    <NavigationProperty Name="store_has_product" Relationship="Self.store_has_product_has_order_fk_store_has_product_has_order_store_has_product1" FromRole="store_has_product_has_order" ToRole="store_has_product" />
   </EntityType>
   <EntityType Name="transvehcile">
     <Key>
@@ -386,6 +423,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="store_has_product_has_order_fk_store_has_product_has_order_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="store_has_product_has_order" Type="Self.store_has_product_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="store_has_product_has_order">
+        <PropertyRef Name="order_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="transvehcile_has_order_fk_transVehcile_has_order_order1">
     <End Role="order" Type="Self.order" Multiplicity="1" />
     <End Role="transvehcile_has_order" Type="Self.transvehcile_has_order" Multiplicity="*" />
@@ -482,6 +531,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="store_has_product_has_order_fk_store_has_product_has_order_store_has_product1">
+    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="1" />
+    <End Role="store_has_product_has_order" Type="Self.store_has_product_has_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store_has_product">
+        <PropertyRef Name="store_store_id" />
+        <PropertyRef Name="product_product_id" />
+        <PropertyRef Name="shift_shift_id" />
+        <PropertyRef Name="barcode_serialNumber" />
+        <PropertyRef Name="weight_weight_id" />
+      </Principal>
+      <Dependent Role="store_has_product_has_order">
+        <PropertyRef Name="store_has_product_store_store_id" />
+        <PropertyRef Name="store_has_product_product_product_id" />
+        <PropertyRef Name="store_has_product_shift_shift_id" />
+        <PropertyRef Name="store_has_product_barcode_serialNumber" />
+        <PropertyRef Name="store_has_product_weight_weight_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="orderserial">
     <End Role="barcode" Type="Self.barcode" Multiplicity="*" />
     <End Role="order" Type="Self.order" Multiplicity="*" />
@@ -494,10 +563,6 @@
     <End Role="shift" Type="Self.shift" Multiplicity="*" />
     <End Role="workers" Type="Self.worker" Multiplicity="*" />
   </Association>
-  <Association Name="store_has_product_has_order">
-    <End Role="order" Type="Self.order" Multiplicity="*" />
-    <End Role="store_has_product" Type="Self.store_has_product" Multiplicity="*" />
-  </Association>
   <Association Name="users_has_roles">
     <End Role="roles" Type="Self.role" Multiplicity="*" />
     <End Role="users" Type="Self.user" Multiplicity="*" />
@@ -507,15 +572,18 @@
     <EntitySet Name="addresstypes" EntityType="Self.addresstype" />
     <EntitySet Name="barcodes" EntityType="Self.barcode" />
     <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="gifts" EntityType="Self.gift" />
     <EntitySet Name="measurements" EntityType="Self.measurement" />
     <EntitySet Name="orders" EntityType="Self.order" />
     <EntitySet Name="order_has_product" EntityType="Self.order_has_product" />
+    <EntitySet Name="PasswordCodes" EntityType="Self.PasswordCode" />
     <EntitySet Name="products" EntityType="Self.product" />
     <EntitySet Name="roles" EntityType="Self.role" />
     <EntitySet Name="shifts" EntityType="Self.shift" />
     <EntitySet Name="shiftadmins" EntityType="Self.shiftadmin" />
     <EntitySet Name="stores" EntityType="Self.store" />
     <EntitySet Name="store_has_product" EntityType="Self.store_has_product" />
+    <EntitySet Name="store_has_product_has_order" EntityType="Self.store_has_product_has_order" />
     <EntitySet Name="transvehciles" EntityType="Self.transvehcile" />
     <EntitySet Name="transvehcile_has_order" EntityType="Self.transvehcile_has_order" />
     <EntitySet Name="users" EntityType="Self.user" />
@@ -569,6 +637,10 @@
       <End Role="order" EntitySet="orders" />
       <End Role="order_has_product" EntitySet="order_has_product" />
     </AssociationSet>
+    <AssociationSet Name="store_has_product_has_order_fk_store_has_product_has_order_order1" Association="Self.store_has_product_has_order_fk_store_has_product_has_order_order1">
+      <End Role="order" EntitySet="orders" />
+      <End Role="store_has_product_has_order" EntitySet="store_has_product_has_order" />
+    </AssociationSet>
     <AssociationSet Name="transvehcile_has_order_fk_transVehcile_has_order_order1" Association="Self.transvehcile_has_order_fk_transVehcile_has_order_order1">
       <End Role="order" EntitySet="orders" />
       <End Role="transvehcile_has_order" EntitySet="transvehcile_has_order" />
@@ -601,6 +673,10 @@
       <End Role="weight" EntitySet="weights" />
       <End Role="store_has_product" EntitySet="store_has_product" />
     </AssociationSet>
+    <AssociationSet Name="store_has_product_has_order_fk_store_has_product_has_order_store_has_product1" Association="Self.store_has_product_has_order_fk_store_has_product_has_order_store_has_product1">
+      <End Role="store_has_product" EntitySet="store_has_product" />
+      <End Role="store_has_product_has_order" EntitySet="store_has_product_has_order" />
+    </AssociationSet>
     <AssociationSet Name="orderserial" Association="Self.orderserial">
       <End Role="barcode" EntitySet="barcodes" />
       <End Role="order" EntitySet="orders" />
@@ -613,18 +689,10 @@
       <End Role="shift" EntitySet="shifts" />
       <End Role="workers" EntitySet="workers" />
     </AssociationSet>
-    <AssociationSet Name="store_has_product_has_order" Association="Self.store_has_product_has_order">
-      <End Role="order" EntitySet="orders" />
-      <End Role="store_has_product" EntitySet="store_has_product" />
-    </AssociationSet>
     <AssociationSet Name="users_has_roles" Association="Self.users_has_roles">
       <End Role="roles" EntitySet="roles" />
       <End Role="users" EntitySet="users" />
     </AssociationSet>
-    <FunctionImport Name="SplitList" IsComposable="true" ReturnType="Collection(DB_A67616_makahighfeedModel.SplitList_Result)">
-      <Parameter Name="list" Mode="In" Type="String" />
-      <Parameter Name="separator" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="SP_Customer_Add_New" ReturnType="Collection(String)">
       <Parameter Name="A_Name" Mode="In" Type="String" />
       <Parameter Name="A_Country" Mode="In" Type="String" />
@@ -639,6 +707,9 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
@@ -669,6 +740,9 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
@@ -683,7 +757,7 @@
       <Parameter Name="ProductId" Mode="In" Type="Int32" />
       <Parameter Name="measureId" Mode="In" Type="Int32" />
       <Parameter Name="weightId" Mode="In" Type="Int32" />
-      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
       <Parameter Name="listOfvan" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SP_Flutter_Order_van_Update">
@@ -693,28 +767,15 @@
       <Parameter Name="ProductId" Mode="In" Type="Int32" />
       <Parameter Name="WieghtId" Mode="In" Type="Int32" />
       <Parameter Name="MeasureId" Mode="In" Type="Int32" />
-      <Parameter Name="quantity" Mode="In" Type="Int32" />
+      <Parameter Name="quantity" Mode="In" Type="Double" />
       <Parameter Name="listOfvan" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_Query_Trans_Result)">
-      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result)">
-      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+    <FunctionImport Name="SP_Flutter_product_prouction" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Flutter_product_prouction_Result)">
       <Parameter Name="BeginDate" Mode="In" Type="DateTime" />
       <Parameter Name="EndDate" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="SP_LOGINSELECT" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_LOGINSELECT_Result)">
-      <Parameter Name="username" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
-      <Parameter Name="rolesName" Mode="InOut" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SP_LOGINSELECT_tmp" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_LOGINSELECT_tmp_Result)">
-      <Parameter Name="username" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
-      <Parameter Name="rolesName" Mode="InOut" Type="String" />
+    <FunctionImport Name="SP_flutter_Query_Trans" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_Query_Trans_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SP_Measurement_Add_New" ReturnType="Collection(String)">
       <Parameter Name="MeasurementName" Mode="In" Type="String" />
@@ -756,7 +817,7 @@
       <Parameter Name="ProductId" Mode="In" Type="Int32" />
       <Parameter Name="measureId" Mode="In" Type="Int32" />
       <Parameter Name="weightId" Mode="In" Type="Int32" />
-      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="SP_Order_Items_DELETE">
       <Parameter Name="OrderId" Mode="In" Type="Int32" />
@@ -781,7 +842,7 @@
       <Parameter Name="NewProductId" Mode="In" Type="Int32" />
       <Parameter Name="NewmeasureId" Mode="In" Type="Int32" />
       <Parameter Name="NewweightId" Mode="In" Type="Int32" />
-      <Parameter Name="NewQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="NewQuantity" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="SP_Order_Search" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Order_Search_Result)">
       <Parameter Name="SEARCH" Mode="In" Type="String" />
@@ -847,7 +908,12 @@
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
       <Parameter Name="NetCounter" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_Sales_BarCode_Check" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result)">
+      <Parameter Name="Barcode" Mode="In" Type="String" />
+      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="SP_Sales_Order_Trans_Vin_display" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result)" />
+    <FunctionImport Name="SP_Sales_Order_Trans_Vin_display_update" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_update_Result)" />
     <FunctionImport Name="SP_Sales_Order_Trans_Vin_Load" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_Load_Result)">
       <Parameter Name="transVehcileSerial" Mode="In" Type="String" />
     </FunctionImport>
@@ -865,6 +931,9 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
@@ -895,6 +964,9 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
@@ -1055,6 +1127,9 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
@@ -1084,16 +1159,18 @@
       <Parameter Name="relative_phone_person_A" Mode="In" Type="String" />
       <Parameter Name="relative_name_person_B" Mode="In" Type="String" />
       <Parameter Name="relative_phone_person_B" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_A" Mode="In" Type="String" />
+      <Parameter Name="relative_casen_person_B" Mode="In" Type="String" />
+      <Parameter Name="job_titel" Mode="In" Type="String" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
       <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_Workers_To_DataGrid" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Workers_To_DataGrid_Result)" />
-    <FunctionImport Name="SP_Sales_BarCode_Check" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result)">
-      <Parameter Name="Barcode" Mode="In" Type="String" />
-      <Parameter Name="rec_found" Mode="InOut" Type="Int32" />
+    <FunctionImport Name="SP_flutter_SumQuantity_Orders_Query" ReturnType="Collection(DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result)">
+      <Parameter Name="CustmerPhone" Mode="In" Type="String" />
+      <Parameter Name="BeginDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <EntitySet Name="gifts" EntityType="DB_A67616_makahighfeedModel.gift" />
-    <EntitySet Name="PasswordCodes" EntityType="DB_A67616_makahighfeedModel.PasswordCode" />
   </EntityContainer>
   <ComplexType Name="SP_Customer_ID_Result">
     <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -1107,6 +1184,14 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_casen_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_casen_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="job_titel" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Customer_Search_Result">
     <Property Type="Int32" Name="رقم_الوكيل" Nullable="false" />
@@ -1120,6 +1205,14 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_casen_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_casen_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="job_titel" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Customer_To_ComboBox_Result">
     <Property Type="Int32" Name="Customers_id" Nullable="false" />
@@ -1137,6 +1230,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_flutter_Customer_Orders_Query_Result">
     <Property Type="Int32" Name="order_id" Nullable="false" />
@@ -1144,11 +1242,16 @@
     <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
     <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="Quantity" Nullable="true" MaxLength="45" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
     <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
     <Property Type="Int32" Name="order_has_product_state" Nullable="true" />
     <Property Type="DateTime" Name="order_has_product_in_date" Nullable="true" Precision="23" />
     <Property Type="DateTime" Name="order_has_product_out_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_Flutter_product_prouction_Result">
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+    <Property Type="Int32" Name="countBages" Nullable="true" />
   </ComplexType>
   <ComplexType Name="SP_flutter_Query_Trans_Result">
     <Property Type="Int32" Name="order_id" Nullable="false" />
@@ -1158,21 +1261,6 @@
     <Property Type="Int32" Name="transVehcile_has_order_state" Nullable="true" />
     <Property Type="DateTime" Name="trans_in_date" Nullable="true" Precision="23" />
     <Property Type="DateTime" Name="trans_out_date" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="SP_flutter_SumQuantity_Orders_Query_Result">
-    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
-    <Property Type="Int32" Name="sumQuantity" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="SP_LOGINSELECT_Result">
-    <Property Type="Int32" Name="user_id" Nullable="false" />
-    <Property Type="String" Name="userName" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="password" Nullable="true" MaxLength="45" />
-  </ComplexType>
-  <ComplexType Name="SP_LOGINSELECT_tmp_Result">
-    <Property Type="Int32" Name="user_id" Nullable="false" />
-    <Property Type="String" Name="userName" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="password" Nullable="true" MaxLength="45" />
   </ComplexType>
   <ComplexType Name="SP_Measurement_ID_Result">
     <Property Type="Int32" Name="رقم_الوحدة" Nullable="false" />
@@ -1208,7 +1296,7 @@
     <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
     <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="وحدة_القياس" Nullable="false" MaxLength="45" />
-    <Property Type="String" Name="الكمية" Nullable="true" MaxLength="45" />
+    <Property Type="Double" Name="الكمية" Nullable="true" />
     <Property Type="Int32" Name="الوزن" Nullable="true" />
     <Property Type="Int32" Name="weight_id" Nullable="false" />
     <Property Type="Int32" Name="product_id" Nullable="false" />
@@ -1222,7 +1310,7 @@
     <Property Type="DateTime" Name="التاريخ" Nullable="true" Precision="23" />
     <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="وحدة_القياس" Nullable="false" MaxLength="45" />
-    <Property Type="String" Name="الكمية" Nullable="true" MaxLength="45" />
+    <Property Type="Double" Name="الكمية" Nullable="true" />
     <Property Type="Int32" Name="الوزن" Nullable="true" />
     <Property Type="Int32" Name="weight_id" Nullable="false" />
     <Property Type="Int32" Name="product_id" Nullable="false" />
@@ -1282,11 +1370,39 @@
     <Property Type="Int32" Name="رقم_المنتج" Nullable="false" />
     <Property Type="String" Name="اسم_المنتج" Nullable="true" MaxLength="45" />
   </ComplexType>
+  <ComplexType Name="SP_Sales_BarCode_Check_Result">
+    <Property Type="Int32" Name="store_store_id" Nullable="false" />
+    <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Shift_admin_Name" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+    <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+  </ComplexType>
   <ComplexType Name="SP_Sales_Order_Trans_Vin_display_Result">
     <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
     <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="transVehcile_model" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_Sales_Order_Trans_Vin_display_update_Result">
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="transVehcile_model" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="firstName" Nullable="true" MaxLength="45" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="weight_net" Nullable="true" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
   </ComplexType>
   <ComplexType Name="SP_Sales_Order_Trans_Vin_Load_Result">
     <Property Type="Int32" Name="order_id" Nullable="false" />
@@ -1312,6 +1428,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Shift_Admin_SEARCH_Result">
     <Property Type="Int32" Name="رقم_المدير" Nullable="false" />
@@ -1325,6 +1446,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Shift_Admin_To_ComboBox_Result">
     <Property Type="Int32" Name="shiftAdmin_id" Nullable="false" />
@@ -1342,6 +1468,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Shift_Main_ID_Result">
     <Property Type="Int32" Name="رقم_الوردية" Nullable="false" />
@@ -1488,6 +1619,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Worker_SEARCH_Result">
     <Property Type="Int32" Name="رقم_العامل" Nullable="false" />
@@ -1501,6 +1637,11 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SP_Worker_To_ComboBox_Result">
     <Property Type="Int32" Name="worker_id" Nullable="false" />
@@ -1518,38 +1659,15 @@
     <Property Type="String" Name="تلفون" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="هاتف" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="فاكس" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="id_card_number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_A" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_name_person_B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="relative_phone_person_B" Nullable="true" MaxLength="50" />
   </ComplexType>
-  <ComplexType Name="SP_Sales_BarCode_Check_Result">
-    <Property Type="Int32" Name="store_store_id" Nullable="false" />
-    <Property Type="DateTime" Name="store_has_productDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="shiftName" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="Shift_admin_Name" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="transVehcile_num" Nullable="true" MaxLength="45" />
-    <Property Type="String" Name="transVehcile_driver_name" Nullable="false" MaxLength="120" />
-    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+  <ComplexType Name="SP_flutter_SumQuantity_Orders_Query_Result">
     <Property Type="String" Name="productName" Nullable="true" MaxLength="45" />
-    <Property Type="Int32" Name="weight_net" Nullable="true" />
-    <Property Type="String" Name="barcode_serialNumber" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Quantity" Nullable="true" MaxLength="45" />
     <Property Type="String" Name="measre_name" Nullable="false" MaxLength="45" />
+    <Property Type="Double" Name="sumQuantity" Nullable="true" />
   </ComplexType>
-  <EntityType Name="gift">
-    <Key>
-      <PropertyRef Name="giftid" />
-    </Key>
-    <Property Name="giftid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="giftname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-    <Property Name="giftBagsCount" Type="Int32" Nullable="false" />
-    <Property Name="giftimg" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="PasswordCode">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Phone" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="true" />
-    <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
 </Schema>

@@ -20,7 +20,7 @@ namespace API.Dto
         public int? WieghtName { get; set; }
         public int MeasureId { get; set; }
         public string MeasureName { get; set; }
-        public string quantity { get; set; }
+        public double? quantity { get; set; }
         public List<OrderCars> orderCars { get; set; }
         public CustomerOrdersDto()
         {

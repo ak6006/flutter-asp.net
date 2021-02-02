@@ -24,5 +24,13 @@ namespace API.Models
         public string تلفون { get; set; }
         public string هاتف { get; set; }
         public string فاكس { get; set; }
+        public string id_card_number { get; set; }
+        public string relative_name_person_A { get; set; }
+        public string relative_phone_person_A { get; set; }
+        public string relative_name_person_B { get; set; }
+        public string relative_phone_person_B { get; set; }
+        public string relative_casen_person_A { get; set; }
+        public string relative_casen_person_B { get; set; }
+        public string job_titel { get; set; }
     }
 }

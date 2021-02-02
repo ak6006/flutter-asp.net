@@ -18,7 +18,7 @@ namespace API.Models
         public Nullable<System.DateTime> التاريخ { get; set; }
         public string اسم_المنتج { get; set; }
         public string وحدة_القياس { get; set; }
-        public string الكمية { get; set; }
+        public Nullable<double> الكمية { get; set; }
         public Nullable<int> الوزن { get; set; }
         public int weight_id { get; set; }
         public int product_id { get; set; }

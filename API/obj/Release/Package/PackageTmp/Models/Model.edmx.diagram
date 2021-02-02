@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c9dfe65f1174ea5bf733317e8af76a1" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.address" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.addresstype" Width="1.5" PointX="1.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.barcode" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.customer" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.gift" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.measurement" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.order" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.order_has_product" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.PasswordCode" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.product" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.role" Width="1.5" PointX="1.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.shift" Width="1.5" PointX="3.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.shiftadmin" Width="1.5" PointX="1.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.store" Width="1.5" PointX="3.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.store_has_product" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.store_has_product_has_order" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.transvehcile" Width="1.5" PointX="3" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.transvehcile_has_order" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.user" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.weight" Width="1.5" PointX="3.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A6A5AC_teamiegyptModel.worker" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.address_fk_address_addressType1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.customers_fk_customers_address" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.shiftadmin_fk_shiftAdmin_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.users_fk_users_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.workers_fk_workers_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_fk_store_has_product_barcode1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_fk_order_customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.transvehcile_fk_transVehcile_customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_has_product_fk_order_has_product_measurement1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_fk_order_store1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_fk_order_users1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_has_product_fk_order_has_product_order1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_has_order_fk_store_has_product_has_order_order1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.transvehcile_has_order_fk_transVehcile_has_order_order1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_has_product_fk_order_has_product_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.order_has_product_fk_order_has_product_weight1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_fk_store_has_product_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.shift_fk_shift_shiftAdmin1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_fk_store_has_product_shift1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_fk_store_has_product_store1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_fk_store_has_product_weight1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.store_has_product_has_order_fk_store_has_product_has_order_store_has_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.orderserial" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.product_has_weight" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.shift_has_workers" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A6A5AC_teamiegyptModel.users_has_roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

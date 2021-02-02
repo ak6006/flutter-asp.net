@@ -37,6 +37,9 @@ namespace API.Models
     {
         public string Phone { get; set; }
         public string Code { get; set; }
+
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
     public class RegisterBindingModel
@@ -47,7 +50,6 @@ namespace API.Models
 
 
         [Required]
-        [Display(Name = "Name")]
         public string UserName { get; set; }
 
         [Required]

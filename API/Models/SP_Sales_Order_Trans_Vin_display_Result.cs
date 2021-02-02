@@ -17,5 +17,6 @@ namespace API.Models
         public string transVehcile_num { get; set; }
         public string transVehcile_model { get; set; }
         public string firstName { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     }
 }

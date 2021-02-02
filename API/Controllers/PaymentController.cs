@@ -22,7 +22,7 @@ namespace API.Controllers
             var UserId = User.Identity.GetUserId();
             var UserData = AuthDB.Users.Where(u => u.Id == UserId).FirstOrDefault();
             var UserPhone = UserData.PhoneNumber;
-            var result = db.SP_flutter_SumQuantity_Orders_Query(UserPhone,beginDate,endDate).ToList();
+            var result = db.SP_flutter_SumQuantity_Orders_Query(UserPhone,beginDate.Date,endDate.Date).ToList();
             if(ProductName == null)
             {
                 if (result != null)

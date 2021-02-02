@@ -43,7 +43,7 @@ namespace API.Models
 
                         body = input.Msg,
 
-                        title = "اشعار جديد",
+                        title = input.Title,
 
                         icon = "myicon"
 
@@ -101,6 +101,7 @@ namespace API.Models
 
     public class NotificationViewModel
     {
+        public string Title { get; set; }
         public string Msg { get; set; }
         public string CustomerPhone { get; set; }
     }

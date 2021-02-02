@@ -23,6 +23,9 @@
     <Property Name="relative_phone_person_A" Type="nvarchar" MaxLength="50" />
     <Property Name="relative_name_person_B" Type="nvarchar" MaxLength="50" />
     <Property Name="relative_phone_person_B" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_casen_person_A" Type="nvarchar" MaxLength="50" />
+    <Property Name="relative_casen_person_B" Type="nvarchar" MaxLength="50" />
+    <Property Name="job_titel" Type="nvarchar" MaxLength="50" />
     <Property Name="addresscol" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="addresstype">
@@ -85,7 +88,7 @@
     <Property Name="product_product_id" Type="int" Nullable="false" />
     <Property Name="measurement_measure_id" Type="int" Nullable="false" />
     <Property Name="weight_weight_id" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="nvarchar" MaxLength="45" />
+    <Property Name="Quantity" Type="float" />
     <Property Name="order_has_product_Pages_Count" Type="int" />
     <Property Name="order_has_product_dept_count" Type="int" />
     <Property Name="order_has_product_state" Type="int" />
@@ -638,6 +641,9 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -668,6 +674,9 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -682,7 +691,7 @@
     <Parameter Name="ProductId" Type="int" Mode="In" />
     <Parameter Name="measureId" Type="int" Mode="In" />
     <Parameter Name="weightId" Type="int" Mode="In" />
-    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="Quantity" Type="float" Mode="In" />
     <Parameter Name="listOfvan" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_Flutter_Order_van_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -692,8 +701,12 @@
     <Parameter Name="ProductId" Type="int" Mode="In" />
     <Parameter Name="WieghtId" Type="int" Mode="In" />
     <Parameter Name="MeasureId" Type="int" Mode="In" />
-    <Parameter Name="quantity" Type="int" Mode="In" />
+    <Parameter Name="quantity" Type="float" Mode="In" />
     <Parameter Name="listOfvan" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Flutter_product_prouction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BeginDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
   </Function>
   <Function Name="SP_flutter_Query_Trans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
@@ -702,18 +715,6 @@
     <Parameter Name="CustmerPhone" Type="nvarchar" Mode="In" />
     <Parameter Name="BeginDate" Type="datetime" Mode="In" />
     <Parameter Name="EndDate" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="SP_LOGINSELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="username" Type="nvarchar" Mode="In" />
-    <Parameter Name="password" Type="nvarchar" Mode="In" />
-    <Parameter Name="rec_found" Type="int" Mode="InOut" />
-    <Parameter Name="rolesName" Type="nvarchar" Mode="InOut" />
-  </Function>
-  <Function Name="SP_LOGINSELECT_tmp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="username" Type="nvarchar" Mode="In" />
-    <Parameter Name="password" Type="nvarchar" Mode="In" />
-    <Parameter Name="rec_found" Type="int" Mode="InOut" />
-    <Parameter Name="rolesName" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="SP_Measurement_Add_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MeasurementName" Type="nvarchar" Mode="In" />
@@ -755,7 +756,7 @@
     <Parameter Name="ProductId" Type="int" Mode="In" />
     <Parameter Name="measureId" Type="int" Mode="In" />
     <Parameter Name="weightId" Type="int" Mode="In" />
-    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="Quantity" Type="float" Mode="In" />
   </Function>
   <Function Name="SP_Order_Items_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="OrderId" Type="int" Mode="In" />
@@ -780,7 +781,7 @@
     <Parameter Name="NewProductId" Type="int" Mode="In" />
     <Parameter Name="NewmeasureId" Type="int" Mode="In" />
     <Parameter Name="NewweightId" Type="int" Mode="In" />
-    <Parameter Name="NewQuantity" Type="int" Mode="In" />
+    <Parameter Name="NewQuantity" Type="float" Mode="In" />
   </Function>
   <Function Name="SP_Order_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SEARCH" Type="nvarchar" Mode="In" />
@@ -851,6 +852,7 @@
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
   <Function Name="SP_Sales_Order_Trans_Vin_display" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_Sales_Order_Trans_Vin_display_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_Sales_Order_Trans_Vin_Load" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="transVehcileSerial" Type="nvarchar" Mode="In" />
   </Function>
@@ -868,6 +870,9 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -898,6 +903,9 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -1058,6 +1066,9 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
@@ -1087,21 +1098,13 @@
     <Parameter Name="relative_phone_person_A" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_name_person_B" Type="nvarchar" Mode="In" />
     <Parameter Name="relative_phone_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_A" Type="nvarchar" Mode="In" />
+    <Parameter Name="relative_casen_person_B" Type="nvarchar" Mode="In" />
+    <Parameter Name="job_titel" Type="nvarchar" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
     <Parameter Name="rec_found" Type="int" Mode="InOut" />
   </Function>
   <Function Name="SP_Workers_To_DataGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="SplitList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="list" Type="varchar(max)" Mode="In" />
-    <Parameter Name="separator" Type="varchar(max)" Mode="In" />
-    <ReturnType>
-      <CollectionType>
-        <RowType>
-          <Property Name="Value" Type="varchar(max)" />
-        </RowType>
-      </CollectionType>
-    </ReturnType>
-  </Function>
   <EntityContainer Name="DB_A67616_makahighfeedModelStoreContainer">
     <EntitySet Name="address" EntityType="Self.address" Schema="makahighfeed.v.0" store:Type="Tables" />
     <EntitySet Name="addresstype" EntityType="Self.addresstype" Schema="makahighfeed.v.0" store:Type="Tables" />

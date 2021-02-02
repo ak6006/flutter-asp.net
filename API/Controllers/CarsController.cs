@@ -59,7 +59,7 @@ namespace API.Controllers
                 ObjectParameter RecFound = new ObjectParameter("rec_found", typeof(int));
                 db.SP_Trans_vin_Update(transvehcile.VehicleId, transvehcile.DriverName, transvehcile.Number,
                     transvehcile.Model, transvehcile.Phone, CustomerId, "",
-                    transvehcile.Serial, RecFound);
+                    transvehcile.Number, RecFound);
                 await db.SaveChangesAsync();
                 return Ok("تم التعديل");
             }
@@ -68,7 +68,6 @@ namespace API.Controllers
                 return BadRequest(e.Message);
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Cars
@@ -87,7 +86,7 @@ namespace API.Controllers
             ObjectParameter RecFound = new ObjectParameter("rec_found", typeof(int));
             ObjectParameter NewIdentity = new ObjectParameter("new_identity", typeof(int));
             db.SP_Trans_Vin_Add_New(NewCar.DriverName, NewCar.Number, NewCar.Model, NewCar.Phone, CustomerId,
-                "", "", NewIdentity, RecFound).ToList();
+                "",NewCar.Number, NewIdentity, RecFound).ToList();
             await db.SaveChangesAsync();
             if ((int)RecFound.Value == 0)
             {

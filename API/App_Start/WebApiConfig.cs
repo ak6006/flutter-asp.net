@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Http;
 
 namespace API
@@ -10,9 +11,17 @@ namespace API
     {
         public static void Register(HttpConfiguration config)
         {
+
+
+
+
             config.Formatters.JsonFormatter
             .SerializerSettings
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+
+
+
             // Web API configuration and services
             //config.SuppressDefaultHostAuthentication();
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));

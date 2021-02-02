@@ -18,7 +18,7 @@ namespace API.Models
         public string transVehcile_driver_name { get; set; }
         public string transVehcile_num { get; set; }
         public string productName { get; set; }
-        public string Quantity { get; set; }
+        public Nullable<double> Quantity { get; set; }
         public string measre_name { get; set; }
         public Nullable<int> order_has_product_state { get; set; }
         public Nullable<System.DateTime> order_has_product_in_date { get; set; }

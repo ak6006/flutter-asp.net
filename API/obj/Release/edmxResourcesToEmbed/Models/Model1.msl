@@ -4,11 +4,6 @@
     <EntitySetMapping Name="addresses">
       <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.address">
         <MappingFragment StoreEntitySet="address">
-          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
-          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
-          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
-          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
-          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
           <ScalarProperty Name="add_id" ColumnName="add_id" />
           <ScalarProperty Name="addressType_addressType_id" ColumnName="addressType_addressType_id" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -23,6 +18,14 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="tel" ColumnName="tel" />
           <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
           <ScalarProperty Name="addresscol" ColumnName="addresscol" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -47,6 +50,16 @@
         <MappingFragment StoreEntitySet="customers">
           <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
           <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gifts">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.gift">
+        <MappingFragment StoreEntitySet="gift">
+          <ScalarProperty Name="giftid" ColumnName="giftid" />
+          <ScalarProperty Name="giftname" ColumnName="giftname" />
+          <ScalarProperty Name="giftBagsCount" ColumnName="giftBagsCount" />
+          <ScalarProperty Name="giftimg" ColumnName="giftimg" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -89,14 +102,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PasswordCodes">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.PasswordCode">
+        <MappingFragment StoreEntitySet="PasswordCode">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.product">
         <MappingFragment StoreEntitySet="product">
-          <ScalarProperty Name="PrductImg" ColumnName="PrductImg" />
           <ScalarProperty Name="product_id" ColumnName="product_id" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
           <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
+          <ScalarProperty Name="PrductImg" ColumnName="PrductImg" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -145,6 +168,19 @@
           <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
           <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
           <ScalarProperty Name="store_has_product_state" ColumnName="store_has_product_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="store_has_product_has_order">
+      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.store_has_product_has_order">
+        <MappingFragment StoreEntitySet="store_has_product_has_order">
+          <ScalarProperty Name="store_has_product_store_store_id" ColumnName="store_has_product_store_store_id" />
+          <ScalarProperty Name="store_has_product_product_product_id" ColumnName="store_has_product_product_product_id" />
+          <ScalarProperty Name="store_has_product_shift_shift_id" ColumnName="store_has_product_shift_shift_id" />
+          <ScalarProperty Name="store_has_product_barcode_serialNumber" ColumnName="store_has_product_barcode_serialNumber" />
+          <ScalarProperty Name="store_has_product_weight_weight_id" ColumnName="store_has_product_weight_weight_id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -224,18 +260,6 @@
         <ScalarProperty Name="worker_id" ColumnName="workers_worker_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="store_has_product_has_order" TypeName="DB_A67616_makahighfeedModel.store_has_product_has_order" StoreEntitySet="store_has_product_has_order">
-      <EndProperty Name="order">
-        <ScalarProperty Name="order_id" ColumnName="order_order_id" />
-      </EndProperty>
-      <EndProperty Name="store_has_product">
-        <ScalarProperty Name="store_store_id" ColumnName="store_has_product_store_store_id" />
-        <ScalarProperty Name="product_product_id" ColumnName="store_has_product_product_product_id" />
-        <ScalarProperty Name="shift_shift_id" ColumnName="store_has_product_shift_shift_id" />
-        <ScalarProperty Name="barcode_serialNumber" ColumnName="store_has_product_barcode_serialNumber" />
-        <ScalarProperty Name="weight_weight_id" ColumnName="store_has_product_weight_weight_id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="users_has_roles" TypeName="DB_A67616_makahighfeedModel.users_has_roles" StoreEntitySet="users_has_roles">
       <EndProperty Name="roles">
         <ScalarProperty Name="rolesId" ColumnName="roles_rolesId" />
@@ -244,13 +268,6 @@
         <ScalarProperty Name="user_id" ColumnName="users_user_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionName="DB_A67616_makahighfeedModel.Store.SplitList" FunctionImportName="SplitList">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SplitList_Result">
-          <ScalarProperty Name="Value" ColumnName="Value" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Customer_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Add_New" />
     <FunctionImportMapping FunctionImportName="SP_Customer_Delete" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_Delete" />
     <FunctionImportMapping FunctionImportName="SP_Customer_ID" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Customer_ID">
@@ -267,6 +284,14 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -284,6 +309,14 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -309,6 +342,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -331,6 +369,15 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Flutter_Order_Add_New" />
     <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Flutter_Order_van_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Flutter_product_prouction" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Flutter_product_prouction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Flutter_product_prouction_Result">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="countBages" ColumnName="countBages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_Query_Trans">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_Query_Trans_Result">
@@ -341,33 +388,6 @@
           <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
           <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
           <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_SumQuantity_Orders_Query">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result">
-          <ScalarProperty Name="productName" ColumnName="productName" />
-          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
-          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="DB_A67616_makahighfeedModel.Store.SP_LOGINSELECT">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_LOGINSELECT_Result">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="password" ColumnName="password" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT_tmp" FunctionName="DB_A67616_makahighfeedModel.Store.SP_LOGINSELECT_tmp">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_LOGINSELECT_tmp_Result">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="password" ColumnName="password" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -555,6 +575,25 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Product_Update" />
     <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode" />
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
+          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+          <ScalarProperty Name="Shift_admin_Name" ColumnName="Shift_admin_Name" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_display">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_Result">
@@ -562,6 +601,23 @@
           <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
           <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display_update" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_Order_Trans_Vin_display_update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_Order_Trans_Vin_display_update_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -597,6 +653,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -614,6 +675,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -639,6 +705,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -886,6 +957,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -903,6 +979,11 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -929,47 +1010,22 @@
           <ScalarProperty Name="تلفون" ColumnName="تلفون" />
           <ScalarProperty Name="هاتف" ColumnName="هاتف" />
           <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A67616_makahighfeedModel.Store.SP_Sales_BarCode_Check">
+    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="DB_A67616_makahighfeedModel.Store.SP_flutter_SumQuantity_Orders_Query">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_Sales_BarCode_Check_Result">
-          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
-          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
-          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
-          <ScalarProperty Name="Shift_admin_Name" ColumnName="Shift_admin_Name" />
-          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
-          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
-          <ScalarProperty Name="date" ColumnName="date" />
+        <ComplexTypeMapping TypeName="DB_A67616_makahighfeedModel.SP_flutter_SumQuantity_Orders_Query_Result">
           <ScalarProperty Name="productName" ColumnName="productName" />
-          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
-          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="gifts">
-      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.gift">
-        <MappingFragment StoreEntitySet="gift">
-          <ScalarProperty Name="giftimg" ColumnName="giftimg" />
-          <ScalarProperty Name="giftBagsCount" ColumnName="giftBagsCount" />
-          <ScalarProperty Name="giftname" ColumnName="giftname" />
-          <ScalarProperty Name="giftid" ColumnName="giftid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PasswordCodes">
-      <EntityTypeMapping TypeName="DB_A67616_makahighfeedModel.PasswordCode">
-        <MappingFragment StoreEntitySet="PasswordCode">
-          <ScalarProperty Name="Time" ColumnName="Time" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

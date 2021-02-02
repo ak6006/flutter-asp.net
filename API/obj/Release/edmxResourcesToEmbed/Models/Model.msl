@@ -1,0 +1,1085 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_A6A5AC_teamiegyptModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.address">
+        <MappingFragment StoreEntitySet="address">
+          <ScalarProperty Name="add_id" ColumnName="add_id" />
+          <ScalarProperty Name="addressType_addressType_id" ColumnName="addressType_addressType_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="midName" ColumnName="midName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="add1" ColumnName="add1" />
+          <ScalarProperty Name="add2" ColumnName="add2" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+          <ScalarProperty Name="addresscol" ColumnName="addresscol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="addresstypes">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.addresstype">
+        <MappingFragment StoreEntitySet="addresstype">
+          <ScalarProperty Name="addressType_id" ColumnName="addressType_id" />
+          <ScalarProperty Name="addressType_name" ColumnName="addressType_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="barcodes">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.barcode">
+        <MappingFragment StoreEntitySet="barcode">
+          <ScalarProperty Name="serialNumber" ColumnName="serialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.customer">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
+          <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gifts">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.gift">
+        <MappingFragment StoreEntitySet="gift">
+          <ScalarProperty Name="giftid" ColumnName="giftid" />
+          <ScalarProperty Name="giftname" ColumnName="giftname" />
+          <ScalarProperty Name="giftBagsCount" ColumnName="giftBagsCount" />
+          <ScalarProperty Name="giftimg" ColumnName="giftimg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="measurements">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.measurement">
+        <MappingFragment StoreEntitySet="measurement">
+          <ScalarProperty Name="measure_id" ColumnName="measure_id" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="customers_Customers_id" ColumnName="customers_Customers_id" />
+          <ScalarProperty Name="users_user_id" ColumnName="users_user_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="notic" ColumnName="notic" />
+          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+          <ScalarProperty Name="order_state" ColumnName="order_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_has_product">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.order_has_product">
+        <MappingFragment StoreEntitySet="order_has_product">
+          <ScalarProperty Name="order_has_product_Id" ColumnName="order_has_product_Id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="measurement_measure_id" ColumnName="measurement_measure_id" />
+          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PasswordCodes">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.PasswordCode">
+        <MappingFragment StoreEntitySet="PasswordCode">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="TodayPrice" ColumnName="TodayPrice" />
+          <ScalarProperty Name="PriceUpdateTime" ColumnName="PriceUpdateTime" />
+          <ScalarProperty Name="PrductImg" ColumnName="PrductImg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="rolesId" ColumnName="rolesId" />
+          <ScalarProperty Name="rolesName" ColumnName="rolesName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shifts">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.shift">
+        <MappingFragment StoreEntitySet="shift">
+          <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+          <ScalarProperty Name="shiftAdmin_shiftAdmin_id" ColumnName="shiftAdmin_shiftAdmin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shiftadmins">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.shiftadmin">
+        <MappingFragment StoreEntitySet="shiftadmin">
+          <ScalarProperty Name="shiftAdmin_id" ColumnName="shiftAdmin_id" />
+          <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stores">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.store">
+        <MappingFragment StoreEntitySet="store">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
+          <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="store_has_product">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.store_has_product">
+        <MappingFragment StoreEntitySet="store_has_product">
+          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="shift_shift_id" ColumnName="shift_shift_id" />
+          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
+          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+          <ScalarProperty Name="store_has_product_state" ColumnName="store_has_product_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="store_has_product_has_order">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.store_has_product_has_order">
+        <MappingFragment StoreEntitySet="store_has_product_has_order">
+          <ScalarProperty Name="store_has_product_store_store_id" ColumnName="store_has_product_store_store_id" />
+          <ScalarProperty Name="store_has_product_product_product_id" ColumnName="store_has_product_product_product_id" />
+          <ScalarProperty Name="store_has_product_shift_shift_id" ColumnName="store_has_product_shift_shift_id" />
+          <ScalarProperty Name="store_has_product_barcode_serialNumber" ColumnName="store_has_product_barcode_serialNumber" />
+          <ScalarProperty Name="store_has_product_weight_weight_id" ColumnName="store_has_product_weight_weight_id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transvehciles">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.transvehcile">
+        <MappingFragment StoreEntitySet="transvehcile">
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+          <ScalarProperty Name="customers_Customers_id" ColumnName="customers_Customers_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
+          <ScalarProperty Name="transVehcile_serial" ColumnName="transVehcile_serial" />
+          <ScalarProperty Name="transVehcile_phone" ColumnName="transVehcile_phone" />
+          <ScalarProperty Name="transVehcile_add" ColumnName="transVehcile_add" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transvehcile_has_order">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.transvehcile_has_order">
+        <MappingFragment StoreEntitySet="transvehcile_has_order">
+          <ScalarProperty Name="transVehcile_has_order_Id" ColumnName="transVehcile_has_order_Id" />
+          <ScalarProperty Name="transVehcile_v_id" ColumnName="transVehcile_v_id" />
+          <ScalarProperty Name="order_order_id" ColumnName="order_order_id" />
+          <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+          <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+          <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weights">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.weight">
+        <MappingFragment StoreEntitySet="weight">
+          <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workers">
+      <EntityTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.worker">
+        <MappingFragment StoreEntitySet="workers">
+          <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+          <ScalarProperty Name="address_add_id" ColumnName="address_add_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="orderserial" TypeName="DB_A6A5AC_teamiegyptModel.orderserial" StoreEntitySet="orderserial">
+      <EndProperty Name="barcode">
+        <ScalarProperty Name="serialNumber" ColumnName="barcode_serialNumber" />
+      </EndProperty>
+      <EndProperty Name="order">
+        <ScalarProperty Name="order_id" ColumnName="order_order_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="product_has_weight" TypeName="DB_A6A5AC_teamiegyptModel.product_has_weight" StoreEntitySet="product_has_weight">
+      <EndProperty Name="product">
+        <ScalarProperty Name="product_id" ColumnName="product_product_id" />
+      </EndProperty>
+      <EndProperty Name="weight">
+        <ScalarProperty Name="weight_id" ColumnName="weight_weight_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="shift_has_workers" TypeName="DB_A6A5AC_teamiegyptModel.shift_has_workers" StoreEntitySet="shift_has_workers">
+      <EndProperty Name="shift">
+        <ScalarProperty Name="shift_id" ColumnName="shift_shift_id" />
+      </EndProperty>
+      <EndProperty Name="workers">
+        <ScalarProperty Name="worker_id" ColumnName="workers_worker_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="users_has_roles" TypeName="DB_A6A5AC_teamiegyptModel.users_has_roles" StoreEntitySet="users_has_roles">
+      <EndProperty Name="roles">
+        <ScalarProperty Name="rolesId" ColumnName="roles_rolesId" />
+      </EndProperty>
+      <EndProperty Name="users">
+        <ScalarProperty Name="user_id" ColumnName="users_user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionName="DB_A6A5AC_teamiegyptModel.Store.SplitList" FunctionImportName="SplitList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SplitList_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="SP_Customer_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Customer_Delete" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_Delete" />
+    <FunctionImportMapping FunctionImportName="SP_Customer_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Customer_ID_Result">
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Customer_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Customer_Search_Result">
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Customer_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Customer_To_ComboBox_Result">
+          <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Customer_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Customer_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم_الوكيل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد_الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Customer_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Customer_Update" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="SP_flutter_Customer_Orders_Query" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_flutter_Customer_Orders_Query">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_flutter_Customer_Orders_Query_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="order_has_product_state" ColumnName="order_has_product_state" />
+          <ScalarProperty Name="order_has_product_in_date" ColumnName="order_has_product_in_date" />
+          <ScalarProperty Name="order_has_product_out_date" ColumnName="order_has_product_out_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Flutter_Order_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Flutter_Order_van_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Flutter_Order_van_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Flutter_product_prouction" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Flutter_product_prouction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Flutter_product_prouction_Result">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="countBages" ColumnName="countBages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_flutter_Query_Trans" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_flutter_Query_Trans">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_flutter_Query_Trans_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="transVehcile_has_order_state" ColumnName="transVehcile_has_order_state" />
+          <ScalarProperty Name="trans_in_date" ColumnName="trans_in_date" />
+          <ScalarProperty Name="trans_out_date" ColumnName="trans_out_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_flutter_SumQuantity_Orders_Query" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_flutter_SumQuantity_Orders_Query">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_flutter_SumQuantity_Orders_Query_Result">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="sumQuantity" ColumnName="sumQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_LOGINSELECT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_LOGINSELECT_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LOGINSELECT_tmp" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_LOGINSELECT_tmp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_LOGINSELECT_tmp_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Measurement_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Measurement_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Measurement_ID_Result">
+          <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
+          <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
+          <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Measurement_Search_Result">
+          <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
+          <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
+          <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Measurement_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Measurement_To_ComboBox_Result">
+          <ScalarProperty Name="measure_id" ColumnName="measure_id" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Measurement_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Measurement_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الوحدة" ColumnName="رقم الوحدة" />
+          <ScalarProperty Name="اسم_وحدة_القياس" ColumnName="اسم وحدة القياس" />
+          <ScalarProperty Name="measurement_Count_per_unit" ColumnName="measurement_Count_per_unit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Measurement_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Measurement_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_ID_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="Customers_id" ColumnName="Customers_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="notic" ColumnName="notic" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Items_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Items_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Items_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_Items_ID_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
+          <ScalarProperty Name="اسم_العميل" ColumnName="اسم_العميل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="اسم_المنتج" ColumnName="اسم_المنتج" />
+          <ScalarProperty Name="وحدة_القياس" ColumnName="وحدة_القياس" />
+          <ScalarProperty Name="الكمية" ColumnName="الكمية" />
+          <ScalarProperty Name="الوزن" ColumnName="الوزن" />
+          <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="measure_id" ColumnName="measure_id" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Items_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_Items_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
+          <ScalarProperty Name="اسم_العميل" ColumnName="اسم_العميل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="اسم_المنتج" ColumnName="اسم_المنتج" />
+          <ScalarProperty Name="وحدة_القياس" ColumnName="وحدة_القياس" />
+          <ScalarProperty Name="الكمية" ColumnName="الكمية" />
+          <ScalarProperty Name="الوزن" ColumnName="الوزن" />
+          <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="measure_id" ColumnName="measure_id" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Items_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Items_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_Search_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم الطلبية" />
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم الوكيل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="رقم_المخزن" ColumnName="رقم المخزن" />
+          <ScalarProperty Name="المخزن" ColumnName="المخزن" />
+          <ScalarProperty Name="ملاحظة" ColumnName="ملاحظة" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم الطلبية" />
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم الوكيل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="رقم_المخزن" ColumnName="رقم المخزن" />
+          <ScalarProperty Name="المخزن" ColumnName="المخزن" />
+          <ScalarProperty Name="ملاحظة" ColumnName="ملاحظة" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Trans_Vin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Trans_Vin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Trans_Vin_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_Trans_Vin_ID_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
+          <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Trans_Vin_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Order_Trans_Vin_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الطلبية" ColumnName="رقم_الطلبية" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
+          <ScalarProperty Name="التاريخ" ColumnName="التاريخ" />
+          <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
+          <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Order_Trans_Vin_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Trans_Vin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Order_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Order_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Product_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Product_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Product_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Product_ID_Result">
+          <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
+          <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Product_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Product_Search_Result">
+          <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
+          <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
+          <ScalarProperty Name="السعر" ColumnName="السعر" />
+          <ScalarProperty Name="اخر_تحديث_للسعر" ColumnName="اخر تحديث للسعر" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Product_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Product_To_ComboBox_Result">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Product_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Product_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_المنتج" ColumnName="رقم المنتج" />
+          <ScalarProperty Name="اسم_المنتج" ColumnName="اسم المنتج" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Product_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Product_Update" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Sales_BarCode" />
+    <FunctionImportMapping FunctionImportName="SP_Sales_BarCode_Check" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Sales_BarCode_Check">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Sales_BarCode_Check_Result">
+          <ScalarProperty Name="store_store_id" ColumnName="store_store_id" />
+          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+          <ScalarProperty Name="Shift_admin_Name" ColumnName="Shift_admin_Name" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Sales_Order_Trans_Vin_display">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Sales_Order_Trans_Vin_display_Result">
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_display_update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Sales_Order_Trans_Vin_display_update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Sales_Order_Trans_Vin_display_update_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="transVehcile_num" ColumnName="transVehcile_num" />
+          <ScalarProperty Name="transVehcile_model" ColumnName="transVehcile_model" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="measre_name" ColumnName="measre_name" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Sales_Order_Trans_Vin_Load" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Sales_Order_Trans_Vin_Load">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Sales_Order_Trans_Vin_Load_Result">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="order_has_product_Pages_Count" ColumnName="order_has_product_Pages_Count" />
+          <ScalarProperty Name="order_has_product_dept_count" ColumnName="order_has_product_dept_count" />
+          <ScalarProperty Name="weight_weight_id" ColumnName="weight_weight_id" />
+          <ScalarProperty Name="product_product_id" ColumnName="product_product_id" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Admin_ID_Result">
+          <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_SEARCH" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Admin_SEARCH_Result">
+          <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Admin_To_ComboBox_Result">
+          <ScalarProperty Name="shiftAdmin_id" ColumnName="shiftAdmin_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Admin_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_المدير" ColumnName="رقم المدير" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Admin_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Admin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Main_ID_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
+          <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
+          <ScalarProperty Name="اسم_مدير_الوردية" ColumnName="اسم مدير الوردية" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Main_Search_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
+          <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
+          <ScalarProperty Name="اسم_مدير_الوردية" ColumnName="اسم مدير الوردية" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Main_To_ComboBox_Result">
+          <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Main_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="اسم_الوردية" ColumnName="اسم الوردية" />
+          <ScalarProperty Name="رقم_مدير_الوردية" ColumnName="رقم مدير الوردية" />
+          <ScalarProperty Name="اسم_مدير_الوردية" ColumnName="اسم مدير الوردية" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Main_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Main_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_DELETE_ALL" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_DELETE_ALL" />
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Worker_ID_Result">
+          <ScalarProperty Name="shift_shift_id" ColumnName="shift_shift_id" />
+          <ScalarProperty Name="workers_worker_id" ColumnName="workers_worker_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Worker_Search_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Worker_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_To_DataGrid_All" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_To_DataGrid_All">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Shift_Worker_To_DataGrid_All_Result">
+          <ScalarProperty Name="رقم_الوردية" ColumnName="رقم الوردية" />
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="اسم_العامل" ColumnName="اسم العامل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Shift_Worker_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Shift_Worker_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Store_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_Add_New">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_Add_New_Result">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
+          <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_Delete" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_Delete" />
+    <FunctionImportMapping FunctionImportName="SP_Store_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_ID_Result">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
+          <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_Product_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_Product_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Store_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_Search_Result">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
+          <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_To_ComboBox_Result">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_To_DataGrid_Result">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeAdminName" ColumnName="storeAdminName" />
+          <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_To_DataGrid_tmp" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_To_DataGrid_tmp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Store_To_DataGrid_tmp_Result">
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="shiftName" ColumnName="shiftName" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="barcode_serialNumber" ColumnName="barcode_serialNumber" />
+          <ScalarProperty Name="store_has_productDate" ColumnName="store_has_productDate" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Store_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Store_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_Vin_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_Vin_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_Vin_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Trans_Vin_ID_Result">
+          <ScalarProperty Name="الرقم" ColumnName="الرقم" />
+          <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
+          <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
+          <ScalarProperty Name="الموديل" ColumnName="الموديل" />
+          <ScalarProperty Name="سريال_العربية" ColumnName="سريال_العربية" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="العنوان" ColumnName="العنوان" />
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم_الوكيل" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_TRANS_VIN_Search" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_TRANS_VIN_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_TRANS_VIN_Search_Result">
+          <ScalarProperty Name="الرقم" ColumnName="الرقم" />
+          <ScalarProperty Name="اسم_السائق" ColumnName="اسم السائق" />
+          <ScalarProperty Name="رقم_العربية" ColumnName="رقم العربية" />
+          <ScalarProperty Name="الموديل" ColumnName="الموديل" />
+          <ScalarProperty Name="سريال_العربية" ColumnName="سريال العربية" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="العنوان" ColumnName="العنوان" />
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم الوكيل" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم الوكيل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_Vin_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Trans_Vin_To_ComboBox_Result">
+          <ScalarProperty Name="transVehcile_driver_name" ColumnName="transVehcile_driver_name" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Trans_Vin_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_Vin_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Trans_Vin_To_DataGrid_Result">
+          <ScalarProperty Name="الرقم" ColumnName="الرقم" />
+          <ScalarProperty Name="اسم_السائق" ColumnName="اسم_السائق" />
+          <ScalarProperty Name="رقم_العربية" ColumnName="رقم_العربية" />
+          <ScalarProperty Name="الموديل" ColumnName="الموديل" />
+          <ScalarProperty Name="سريال_العربية" ColumnName="سريال_العربية" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="العنوان" ColumnName="العنوان" />
+          <ScalarProperty Name="رقم_الوكيل" ColumnName="رقم_الوكيل" />
+          <ScalarProperty Name="اسم_الوكيل" ColumnName="اسم_الوكيل" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Trans_vin_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Trans_vin_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Update_Product_Price" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Update_Product_Price" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A6A5AC_teamiegyptModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="SP_User_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_User_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_User_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_User_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_User_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_المستخدم" ColumnName="رقم_المستخدم" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد_الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="roles_rolesId" ColumnName="roles_rolesId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_weight_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_weight_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_weight_To_ComboBox_Result">
+          <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+          <ScalarProperty Name="weight_net" ColumnName="weight_net" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Worker_Add_New" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_Add_New" />
+    <FunctionImportMapping FunctionImportName="SP_Worker_DELETE" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_Worker_ID" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Worker_ID_Result">
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Worker_SEARCH" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Worker_SEARCH_Result">
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Worker_To_ComboBox" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_To_ComboBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Worker_To_ComboBox_Result">
+          <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Worker_Update" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Worker_Update" />
+    <FunctionImportMapping FunctionImportName="SP_Workers_To_DataGrid" FunctionName="DB_A6A5AC_teamiegyptModel.Store.SP_Workers_To_DataGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A6A5AC_teamiegyptModel.SP_Workers_To_DataGrid_Result">
+          <ScalarProperty Name="رقم_العامل" ColumnName="رقم العامل" />
+          <ScalarProperty Name="معرف" ColumnName="معرف" />
+          <ScalarProperty Name="الاسم" ColumnName="الاسم" />
+          <ScalarProperty Name="دولة" ColumnName="دولة" />
+          <ScalarProperty Name="المحافظة" ColumnName="المحافظة" />
+          <ScalarProperty Name="المدينة" ColumnName="المدينة" />
+          <ScalarProperty Name="بريد_الكتروني" ColumnName="بريد الكتروني" />
+          <ScalarProperty Name="عنوان" ColumnName="عنوان" />
+          <ScalarProperty Name="تلفون" ColumnName="تلفون" />
+          <ScalarProperty Name="هاتف" ColumnName="هاتف" />
+          <ScalarProperty Name="فاكس" ColumnName="فاكس" />
+          <ScalarProperty Name="id_card_number" ColumnName="id_card_number" />
+          <ScalarProperty Name="relative_name_person_A" ColumnName="relative_name_person_A" />
+          <ScalarProperty Name="relative_phone_person_A" ColumnName="relative_phone_person_A" />
+          <ScalarProperty Name="relative_name_person_B" ColumnName="relative_name_person_B" />
+          <ScalarProperty Name="relative_phone_person_B" ColumnName="relative_phone_person_B" />
+          <ScalarProperty Name="relative_casen_person_A" ColumnName="relative_casen_person_A" />
+          <ScalarProperty Name="relative_casen_person_B" ColumnName="relative_casen_person_B" />
+          <ScalarProperty Name="job_titel" ColumnName="job_titel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -55,7 +55,7 @@ namespace API.Controllers
                             ///
                             // Add Order
                             db.SP_Flutter_Order_Add_New(CustomerId, StoreId, item.OrderDate, null, item.ProductId,
-                            item.MeasureId, item.WieghtId, int.Parse(item.quantity), CarIds);
+                            item.MeasureId, item.WieghtId, item.quantity, CarIds);
                         }
                         else
                         {
@@ -70,7 +70,7 @@ namespace API.Controllers
                                 CarIds.TrimEnd(CarIds[CarIds.Length - 1]);
                             }
                             db.SP_Flutter_Order_van_Update(item.OrderId, item.OrderHasProductId, item.OrderDate,
-                                item.ProductId, item.WieghtId, item.MeasureId, int.Parse(item.quantity), CarIds);
+                                item.ProductId, item.WieghtId, item.MeasureId, item.quantity, CarIds);
                         }
                     }
                     return Ok("Done");

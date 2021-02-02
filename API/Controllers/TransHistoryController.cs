@@ -17,7 +17,7 @@ namespace API.Controllers
 
         //api/TransHistory/data
         [HttpGet]
-        public IHttpActionResult Data(string Key)
+        public IHttpActionResult Data(DateTime Key)
         {
             //return Ok("ay test");
             var UserId = User.Identity.GetUserId();
@@ -29,7 +29,7 @@ namespace API.Controllers
             {
                 //var Today = DateTime.Today;
                 
-                var TodayResult = result.Where(r => r.date.ToString() == Key.ToString());
+                var TodayResult = result.Where(r => r.date.Value.Date == Key.Date);
                 if (TodayResult != null)
                     return Ok(TodayResult);
                 else
