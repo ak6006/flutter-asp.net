@@ -195,8 +195,16 @@ namespace API.Controllers
             ///////////////
             ///Gifts
             //// Products + كل المنتجات 
-            var gifts = db.gifts.ToList();
-
+            var gifts1 = db.gifts.ToList();
+            List<gift> gifts = new List<gift>();
+            foreach (var item in gifts1)
+            {
+                gifts.Add(item);
+            }
+            foreach (var item in gifts)
+            {
+                item.giftimg = null;
+            }
             ///
             ProdNames.Add(PName);
 
